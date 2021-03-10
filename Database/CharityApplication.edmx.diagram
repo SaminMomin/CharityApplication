@@ -6,6 +6,28 @@
     <edmx:Diagrams>
       <Diagram DiagramId="d6aaf4bffedd403fb5c1aeefc73671e8" Name="Diagram1">
         <EntityTypeShape EntityType="HelpingHandsModel.user" Width="1.625" PointX="0.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="HelpingHandsModel.organization" Width="1.5" PointX="3.375" PointY="0.75" />
+        <EntityTypeShape EntityType="HelpingHandsModel.cause" Width="1.5" PointX="5.625" PointY="1.625" />
+        <AssociationConnector Association="HelpingHandsModel.orgId" />
+        <EntityTypeShape EntityType="HelpingHandsModel.donation" Width="1.5" PointX="7.875" PointY="1.375" />
+        <AssociationConnector Association="HelpingHandsModel.FK_donations_cause" />
+        <AssociationConnector Association="HelpingHandsModel.FK_donations_organization" />
+        <AssociationConnector Association="HelpingHandsModel.FK_donations_user" ManuallyRouted="true" >
+          <ConnectorPoint PointX="1.5625" PointY="0.75" />
+          <ConnectorPoint PointX="1.5625" PointY="0.5" />
+          <ConnectorPoint PointX="7.3708333333333336" PointY="0.5" />
+          <ConnectorPoint PointX="7.3708333333333336" PointY="18.69220698227549" />
+          <ConnectorPoint PointX="7.4583333333333339" PointY="18.69220698227549" />
+          <ConnectorPoint PointX="7.4583333333333339" PointY="18.578665315608824" />
+          <ConnectorPoint PointX="7.4541666666666666" PointY="18.578665315608824" />
+          <ConnectorPoint PointX="7.2875000000000005" PointY="18.578665315608824" />
+          <ConnectorPoint PointX="7.075" PointY="18.578665315608824" />
+          <ConnectorPoint PointX="7.075" PointY="22.525540315608822" />
+          <ConnectorPoint PointX="7.5791666666666666" PointY="18.621634944775913" />
+          <ConnectorPoint PointX="7.5791666666666666" PointY="13.584134944775911" />
+          <ConnectorPoint PointX="7.875" PointY="13.584134944775911" />
+          <ConnectorPoint PointX="7.875" PointY="4.1244921875" />
+        </AssociationConnector>
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

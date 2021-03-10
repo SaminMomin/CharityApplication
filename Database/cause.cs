@@ -12,27 +12,22 @@ namespace CharityApplication.Database
     using System;
     using System.Collections.Generic;
     
-    public partial class user
+    public partial class cause
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public user()
+        public cause()
         {
             this.donations = new HashSet<donation>();
         }
     
         public int Id { get; set; }
-        public string fname { get; set; }
-        public string lname { get; set; }
-        public int age { get; set; }
-        public string password { get; set; }
-        public System.DateTime dob { get; set; }
-        public string contact { get; set; }
-        public string city { get; set; }
-        public string state { get; set; }
-        public string country { get; set; }
-        public string email { get; set; }
+        public string name { get; set; }
+        public decimal goal { get; set; }
+        public decimal collected { get; set; }
+        public int orgId { get; set; }
         public string hash { get; set; }
     
+        public virtual organization organization { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<donation> donations { get; set; }
     }

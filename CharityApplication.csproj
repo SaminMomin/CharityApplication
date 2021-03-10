@@ -129,6 +129,9 @@
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Database\cause.cs">
+      <DependentUpon>CharityApplication.tt</DependentUpon>
+    </Compile>
     <Compile Include="Database\CharityApplication.Context.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -143,6 +146,12 @@
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>CharityApplication.edmx</DependentUpon>
+    </Compile>
+    <Compile Include="Database\donation.cs">
+      <DependentUpon>CharityApplication.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Database\organization.cs">
+      <DependentUpon>CharityApplication.tt</DependentUpon>
     </Compile>
     <Compile Include="Database\user.cs">
       <DependentUpon>CharityApplication.tt</DependentUpon>
