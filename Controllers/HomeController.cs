@@ -1,4 +1,6 @@
-﻿using System;
+﻿using CharityApplication.Database;
+using CharityApplication.Models;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -8,9 +10,13 @@ namespace CharityApplication.Controllers
 {
     public class HomeController : Controller
     {
+        SQLRepository<user> userContext=new SQLRepository<user>(new DataContext());
+
         public ActionResult Index()
         {
-            return View();
+            var list=userContext.Collection();
+            ViewBag.Message = list.FirstOrDefault(x => x.Id == 1).fname;
+            return View() ;
         }
 
         public ActionResult About()

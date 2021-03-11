@@ -9,10 +9,11 @@
 
 namespace CharityApplication.Database
 {
+    using CharityApplication.Models;
     using System;
     using System.Collections.Generic;
     
-    public partial class user
+    public partial class user : BaseEntity
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public user()
@@ -20,7 +21,6 @@ namespace CharityApplication.Database
             this.donations = new HashSet<donation>();
         }
     
-        public int Id { get; set; }
         public string fname { get; set; }
         public string lname { get; set; }
         public int age { get; set; }
