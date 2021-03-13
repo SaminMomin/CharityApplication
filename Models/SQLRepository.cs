@@ -25,27 +25,35 @@ namespace CharityApplication.Models
 
         public void Delete(int Id)
         {
-            throw new NotImplementedException();
+            var obj = Find(Id);
+            if(context.Entry(obj).State == EntityState.Detached)
+            {
+                dbSet.Attach(obj);
+            }
+            dbSet.Remove(obj);
+
         }
 
         public T Find(int Id)
         {
-            throw new NotImplementedException();
+            return dbSet.Find(Id);
         }
 
         public void Insert(T t)
         {
-            throw new NotImplementedException();
-        }
+            dbSet.Add(t);
+         }
 
         public void Save()
         {
-            throw new NotImplementedException();
+            context.SaveChanges();
         }
 
         public void Update(T t)
         {
-            throw new NotImplementedException();
+            dbSet.Attach(t);
+            context.Entry(t).State = EntityState.Modified;
+            //throw new NotImplementedException();
         }
     }
 }

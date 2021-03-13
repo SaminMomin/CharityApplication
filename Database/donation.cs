@@ -9,12 +9,12 @@
 
 namespace CharityApplication.Database
 {
-    using CharityApplication.Models;
     using System;
     using System.Collections.Generic;
     
-    public partial class donation : BaseEntity
-    { 
+    public partial class donation
+    {
+        public int Id { get; set; }
         public int userId { get; set; }
         public int orgId { get; set; }
         public int amount { get; set; }

@@ -15,6 +15,7 @@
           <Property Name="collected" Type="money" Nullable="false" />
           <Property Name="orgId" Type="int" Nullable="false" />
           <Property Name="hash" Type="nvarchar(max)" />
+          <Property Name="isactive" Type="bit" Nullable="false" />
         </EntityType>
         <EntityType Name="donations">
           <Key>
@@ -210,6 +211,7 @@
           <NavigationProperty Name="organization" Relationship="HelpingHandsModel.orgId" FromRole="cause" ToRole="organization" />
           <NavigationProperty Name="donations" Relationship="HelpingHandsModel.FK_donations_cause" FromRole="cause" ToRole="donation" />
           <Property Name="hash" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="isactive" Type="Boolean" Nullable="false" />
         </EntityType>
         <Association Name="orgId">
           <End Type="HelpingHandsModel.organization" Role="organization" Multiplicity="1" />
@@ -320,6 +322,7 @@
           <EntitySetMapping Name="causes">
             <EntityTypeMapping TypeName="HelpingHandsModel.cause">
               <MappingFragment StoreEntitySet="cause">
+                <ScalarProperty Name="isactive" ColumnName="isactive" />
                 <ScalarProperty Name="hash" ColumnName="hash" />
                 <ScalarProperty Name="orgId" ColumnName="orgId" />
                 <ScalarProperty Name="collected" ColumnName="collected" />
