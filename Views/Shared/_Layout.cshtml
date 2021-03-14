@@ -29,10 +29,10 @@
             </ul>
             <ul class="navbar-nav flex-md-row-reverse">
                 <li class="nav-item">
-                    @Html.ActionLink(" Organization Login", "OrgLogin", "Home", new { @area = "" }, new { @class = "nav-link" })
+                    @Html.ActionLink(" Organization Login", "Login", "Organization", new { @area = "" }, new { @class = "nav-link" })
                 </li>
                 <li class="nav-item">
-                    @Html.ActionLink("User Login", "UserLogin", "Home", new { @area = "" }, new { @class = "nav-link" })
+                    @Html.ActionLink("User Login", "Login", "User", new { @area = "" }, new { @class = "nav-link" })
                 </li>
             </ul>
         </div>
@@ -67,5 +67,6 @@
     @Scripts.Render("~/bundles/jquery")
     @Scripts.Render("~/bundles/bootstrap")
     @RenderSection("scripts", required: false)
+    
 </body>
 </html>

@@ -128,7 +128,9 @@
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
+    <Compile Include="Controllers\ErrorController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\OrganizationController.cs" />
     <Compile Include="Controllers\UserController.cs" />
     <Compile Include="Database\cause.cs">
       <DependentUpon>CharityApplication.tt</DependentUpon>
@@ -163,8 +165,10 @@
     <Compile Include="Interfaces\IRepository.cs" />
     <Compile Include="Models\BaseEntity.cs" />
     <Compile Include="Models\DataContext.cs" />
+    <Compile Include="Models\Error.cs" />
     <Compile Include="Models\SQLRepository.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="ViewModels\LoginViewModel.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Content\bootstrap-theme.css" />
@@ -173,8 +177,8 @@
     <Content Include="Content\bootstrap.min.css" />
     <Content Include="Database\CharityApplication.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
-      <LastGenOutput>CharityApplication.Context.cs</LastGenOutput>
       <DependentUpon>CharityApplication.edmx</DependentUpon>
+      <LastGenOutput>CharityApplication.Context.cs</LastGenOutput>
     </Content>
     <Content Include="Database\CharityApplication.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
@@ -185,8 +189,12 @@
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
+    <Content Include="Images\5053309.jpg" />
+    <Content Include="Images\lock-line.png" />
+    <Content Include="Images\star.jpg" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
+    <Content Include="fonts\SourceSansPro-Regular.ttf" />
     <EntityDeploy Include="Database\CharityApplication.edmx">
       <Generator>EntityModelCodeGenerator</Generator>
       <LastGenOutput>CharityApplication.Designer.cs</LastGenOutput>
@@ -194,7 +202,6 @@
     <Content Include="Database\CharityApplication.edmx.diagram">
       <DependentUpon>CharityApplication.edmx</DependentUpon>
     </Content>
-    <Content Include="fonts\SourceSansPro-Regular.ttf" />
     <None Include="Scripts\jquery-3.4.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.4.1.js" />
     <Content Include="Scripts\jquery-3.4.1.min.js" />
@@ -206,7 +213,6 @@
     <Content Include="Scripts\jquery.validate.unobtrusive.js" />
     <Content Include="Scripts\jquery.validate.unobtrusive.min.js" />
     <Content Include="Scripts\modernizr-2.8.3.js" />
-    <Content Include="shards.css" />
     <Content Include="Web.config" />
     <Content Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
@@ -221,10 +227,14 @@
     <Content Include="Views\Home\About.cshtml" />
     <Content Include="Views\Home\Contact.cshtml" />
     <Content Include="Views\Home\Index.cshtml" />
+    <Content Include="Views\Error\Index.cshtml" />
+    <Content Include="Views\User\Login.cshtml" />
+    <Content Include="Views\User\Index.cshtml" />
+    <Content Include="Views\User\Register.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Views\User\" />
+    <Folder Include="Views\Organization\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff2" />
