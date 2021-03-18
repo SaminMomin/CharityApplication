@@ -131,6 +131,7 @@
     <Compile Include="Controllers\ErrorController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\OrganizationController.cs" />
+    <Compile Include="Controllers\UserActionController.cs" />
     <Compile Include="Controllers\UserController.cs" />
     <Compile Include="Database\cause.cs">
       <DependentUpon>CharityApplication.tt</DependentUpon>
@@ -166,9 +167,12 @@
     <Compile Include="Models\BaseEntity.cs" />
     <Compile Include="Models\DataContext.cs" />
     <Compile Include="Models\Error.cs" />
+    <Compile Include="Models\General.cs" />
     <Compile Include="Models\SQLRepository.cs" />
+    <Compile Include="Models\User.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ViewModels\LoginViewModel.cs" />
+    <Compile Include="ViewModels\UserViewModel.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Content\bootstrap-theme.css" />
@@ -229,8 +233,10 @@
     <Content Include="Views\Home\Index.cshtml" />
     <Content Include="Views\Error\Index.cshtml" />
     <Content Include="Views\User\Login.cshtml" />
-    <Content Include="Views\User\Index.cshtml" />
     <Content Include="Views\User\Register.cshtml" />
+    <Content Include="Views\User\Edit.cshtml" />
+    <Content Include="Views\UserAction\Index.cshtml" />
+    <Content Include="Views\User\Delete.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

@@ -8,8 +8,10 @@
 <head>
     <meta name="viewport" content="width=device-width" />
     <title></title>
-    <style>
-        
+    @*<link href="~/Content/bootstrap-theme.css" rel="stylesheet" />*@
+    <link href="~/Content/bootstrap.css" rel="stylesheet" />
+  <style>
+
         html,
         body {
             height: 100%;
@@ -32,9 +34,8 @@
             transform: translate(-50%, -50%);
             text-align: center;
         }
-            h1, h2, h3
 
-        {
+        h1, h2, h3 {
             margin: 0;
             line-height: .8;
         }
@@ -64,7 +65,7 @@
         }
 
         button {
-            background: transparent;
+            background: content-box;
             border: 2px solid lightslategray;
             color: lightslategray;
             padding: 5px 15px;
@@ -80,10 +81,7 @@
                 cursor: pointer;
                 transform: scale(1.05);
             }
-
-        
     </style>
-
     <link href="https://fonts.googleapis.com/css?family=Roboto:300,400,700" rel="stylesheet">
 </head>
 <body style="margin:0px">
@@ -95,7 +93,15 @@
         <h2>@Model.error</h2>
         <br />
         <!-- use window.history.back(); to go back -->
-        @Html.ActionLink("Go Back","UserLogin","User",new { @class="button"})
+        @if (Model.type == 1)
+        {
+            @Html.ActionLink("Sign Up", "Register", "User", new { }, new { @class = "btn btn-primary" });
+        }
+
+        @if (Model.type == 2)
+        {
+            @Html.ActionLink("Login", "Login", "User", new { }, new { @class = "btn btn-primary" });
+        }
     </div>
 
 </body>

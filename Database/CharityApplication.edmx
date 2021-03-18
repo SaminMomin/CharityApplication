@@ -4,7 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-      <Schema Namespace="HelpingHands.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+    <Schema Namespace="HelpingHands.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="cause">
           <Key>
             <PropertyRef Name="Id" />
@@ -46,6 +46,7 @@
           <Property Name="fcra" Type="nvarchar(max)" />
           <Property Name="website" Type="nvarchar(max)" />
           <Property Name="contact" Type="nvarchar" MaxLength="20" Nullable="false" />
+          <Property Name="regcerti" Type="varchar(max)" />
         </EntityType>
         <EntityType Name="user">
           <Key>
@@ -134,8 +135,7 @@
             <End Role="cause" EntitySet="cause" />
           </AssociationSet>
         </EntityContainer>
-      </Schema>
-    </edmx:StorageModels>
+      </Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="HelpingHands" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
@@ -187,6 +187,7 @@
           <Property Name="contact" Type="String" MaxLength="20" FixedLength="false" Unicode="true" Nullable="false" />
           <NavigationProperty Name="causes" Relationship="Self.orgId" FromRole="organization" ToRole="cause" />
           <NavigationProperty Name="donations" Relationship="Self.FK_donations_organization" FromRole="organization" ToRole="donations" />
+          <Property Name="regcerti" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
         </EntityType>
         <EntityType Name="user">
           <Key>
@@ -310,6 +311,7 @@
           <EntitySetMapping Name="organizations">
             <EntityTypeMapping TypeName="HelpingHands.organization">
               <MappingFragment StoreEntitySet="organization">
+                <ScalarProperty Name="regcerti" ColumnName="regcerti" />
                 <ScalarProperty Name="Id" ColumnName="Id" />
                 <ScalarProperty Name="name" ColumnName="name" />
                 <ScalarProperty Name="email" ColumnName="email" />

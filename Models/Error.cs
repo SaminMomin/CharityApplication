@@ -8,5 +8,6 @@ namespace CharityApplication.Models
     public class Error
     {
         public string error;
+        public int type;
     }
 }

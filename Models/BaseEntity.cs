@@ -8,6 +8,10 @@ namespace CharityApplication.Models
     public class BaseEntity
     {
         public int Id { get; set; }
+        public BaseEntity()
+        {
+            Id= Guid.NewGuid().GetHashCode() & 0xfffffff;
+        }
 
     }
 }

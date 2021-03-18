@@ -14,10 +14,11 @@ namespace CharityApplication.Controllers
     {
         SQLRepository<user> userContext = new SQLRepository<user>(new DataContext());
         List<user> Users;
+        
         public UserController()
         {
             Users = userContext.Collection().ToList();
-        }
+         }
 
         // GET: User
         [HttpGet]
@@ -30,19 +31,22 @@ namespace CharityApplication.Controllers
         {
             if (ModelState.IsValid && model != null)
             {
-                if (Users.Exists(x => x.email == model.email && x.password == model.password))
+                if (Users.Exists(x => x.email == model.email && x.password.GetHashCode().ToString() == model.password.GetHashCode().ToString()))
                 {
-                    return RedirectToAction("Index", "Home");
+                    int usr= Users.FirstOrDefault(x => x.email == model.email).Id;
+                    General.userLoginStatus = true;
+                    General.orgLoginStatus = true;
+                    General.userId = usr;
+                    return RedirectToAction("Index", "UserAction",new { Id = usr });
                 }
                 else
                 {
-                    return RedirectToAction("Index", "Error", new { error = "User does not exist" });
+                    return RedirectToAction("Index", "Error", new { error = "User does not exist", type=1});
                 }
             }
             else
             {
                 return View(model);
-
             }
         }
         [HttpGet]
@@ -53,23 +57,102 @@ namespace CharityApplication.Controllers
         [HttpPost]
         public ActionResult Register(user usr)
         {
-            if (!ModelState.IsValid && usr!=null)
+            if (!ModelState.IsValid && usr == null)
+            {
+                return View(usr);
+            }
+            else if (Users.Exists(x => x.email == usr.email || x.contact == usr.contact)) {
+                return RedirectToAction("Index", "Error", new { error="User already exists",type=2});
+            }
+            else
+            {
+                user temp = new user();
+                temp.fname = usr.fname;
+                temp.lname = usr.lname;
+                temp.password = usr.password;
+                temp.state = usr.state;
+                temp.email = usr.email;
+                temp.dob = usr.dob;
+                temp.country = usr.country;
+                temp.contact = usr.contact;
+                temp.city = usr.city;
+                temp.age = usr.age;
+                temp.hash = string.Concat(usr.fname, usr.lname).GetHashCode();
+                userContext.Insert(temp);
+                userContext.Save();
+                Users.Add(usr);
+                return RedirectToAction("Login","User");
+            }
+        }
+
+        public ActionResult Edit(int Id)
+        {
+            return View(Users.FirstOrDefault(x => x.Id == Id));
+         }
+        
+        [HttpPost]
+        public ActionResult Edit(user usr)
+        {
+            if (!ModelState.IsValid && usr == null)
             {
                 return View(usr);
             }
             else
             {
-                usr.hash = string.Concat(usr.fname, usr.lname).GetHashCode();
-                userContext.Insert(usr);
-                userContext.Save();
-                return RedirectToAction("Index");
+                var t = userContext.Find(General.userId);
+                if (t != null)
+                {
+                    if (!ModelState.IsValid)
+                    {
+                        return View(usr);
+                    }
+                    else
+                    {
+                        t.Id = usr.Id;
+                        t.fname = usr.fname;
+                        t.lname = usr.lname;
+                        t.password = usr.password;
+                        t.state = usr.state;
+                        t.email = usr.email;
+                        t.dob = usr.dob;
+                        t.country = usr.country;
+                        t.contact = usr.contact;
+                        t.city = usr.city;
+                        t.age = usr.age;
+                        t.hash = string.Concat(usr.fname, usr.lname).GetHashCode();
+                        userContext.Save();
+                        Users.Remove(Users.FirstOrDefault(x => x.Id == usr.Id));
+                        Users.Add(usr);
+                        return RedirectToAction("Index", "UserAction",new { usr.Id });
+                    }
+                }
+                else
+                {
+                    return RedirectToAction("Index", "Error",new { error="User not found",type=1});
+                }
+                
             }
         }
-
-        public ActionResult Index()
+public ActionResult Delete(int id)
         {
-            return View();
+            return View(Users.FirstOrDefault(x => x.Id == id));
         }
-
+        [HttpPost]
+        [ActionName("Delete")]
+        public ActionResult ConfirmDelete(int Id)
+        {
+            var usr = userContext.Find(Id);
+            if (usr != null)
+            {
+                userContext.Delete(Id);
+                userContext.Save();
+                Users.Remove(usr);
+                return RedirectToAction("Login","User");
+            }
+            else
+            {
+                return RedirectToAction("Index", "Error", new { error = "User not found!",type=2 });
+            }
+        }
     } 
 }

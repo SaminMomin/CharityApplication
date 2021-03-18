@@ -13,7 +13,7 @@ namespace CharityApplication.Database
     using System;
     using System.Collections.Generic;
     
-    public partial class user: BaseEntity
+    public partial class user:BaseEntity
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public user()

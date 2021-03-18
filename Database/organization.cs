@@ -36,6 +36,7 @@ namespace CharityApplication.Database
         public string fcra { get; set; }
         public string website { get; set; }
         public string contact { get; set; }
+        public string regcerti { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<cause> causes { get; set; }
