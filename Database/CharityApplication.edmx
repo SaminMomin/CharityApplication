@@ -16,6 +16,7 @@
           <Property Name="orgId" Type="int" Nullable="false" />
           <Property Name="hash" Type="int" />
           <Property Name="isactive" Type="bit" Nullable="false" />
+          <Property Name="description" Type="varchar(max)" Nullable="false" />
         </EntityType>
         <EntityType Name="donations">
           <Key>
@@ -47,6 +48,7 @@
           <Property Name="website" Type="nvarchar(max)" />
           <Property Name="contact" Type="nvarchar" MaxLength="20" Nullable="false" />
           <Property Name="regcerti" Type="varchar(max)" />
+          <Property Name="description" Type="varchar(max)" Nullable="false" />
         </EntityType>
         <EntityType Name="user">
           <Key>
@@ -152,6 +154,7 @@
           <Property Name="isactive" Type="Boolean" Nullable="false" />
           <NavigationProperty Name="donations" Relationship="Self.FK_donations_cause" FromRole="cause" ToRole="donations" />
           <NavigationProperty Name="organization" Relationship="Self.orgId" FromRole="cause" ToRole="organization" />
+          <Property Name="description" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="false" />
         </EntityType>
         <EntityType Name="donation">
           <Key>
@@ -188,6 +191,7 @@
           <NavigationProperty Name="causes" Relationship="Self.orgId" FromRole="organization" ToRole="cause" />
           <NavigationProperty Name="donations" Relationship="Self.FK_donations_organization" FromRole="organization" ToRole="donations" />
           <Property Name="regcerti" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="description" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="false" />
         </EntityType>
         <EntityType Name="user">
           <Key>
@@ -286,6 +290,7 @@
           <EntitySetMapping Name="causes">
             <EntityTypeMapping TypeName="HelpingHands.cause">
               <MappingFragment StoreEntitySet="cause">
+                <ScalarProperty Name="description" ColumnName="description" />
                 <ScalarProperty Name="Id" ColumnName="Id" />
                 <ScalarProperty Name="name" ColumnName="name" />
                 <ScalarProperty Name="goal" ColumnName="goal" />
@@ -311,6 +316,7 @@
           <EntitySetMapping Name="organizations">
             <EntityTypeMapping TypeName="HelpingHands.organization">
               <MappingFragment StoreEntitySet="organization">
+                <ScalarProperty Name="description" ColumnName="description" />
                 <ScalarProperty Name="regcerti" ColumnName="regcerti" />
                 <ScalarProperty Name="Id" ColumnName="Id" />
                 <ScalarProperty Name="name" ColumnName="name" />

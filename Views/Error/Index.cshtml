@@ -102,6 +102,16 @@
         {
             @Html.ActionLink("Login", "Login", "User", new { }, new { @class = "btn btn-primary" });
         }
+
+        @if (Model.type == 3)
+        {
+            @Html.ActionLink("Sign Up", "Register", "Organization", new { }, new { @class = "btn btn-primary" });
+        }
+
+        @if (Model.type == 4)
+        {
+            @Html.ActionLink("Login", "Login", "Organization", new { }, new { @class = "btn btn-primary" });
+        }
     </div>
 
 </body>

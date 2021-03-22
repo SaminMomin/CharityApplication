@@ -21,7 +21,7 @@ namespace CharityApplication.Database
             this.causes = new HashSet<cause>();
             this.donations = new HashSet<donation>();
         }
-    
+
         //public int Id { get; set; }
         public string name { get; set; }
         public string email { get; set; }
@@ -37,7 +37,8 @@ namespace CharityApplication.Database
         public string website { get; set; }
         public string contact { get; set; }
         public string regcerti { get; set; }
-    
+        public string description { get; set; }
+
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<cause> causes { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]

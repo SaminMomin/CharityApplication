@@ -12,7 +12,7 @@ namespace CharityApplication.Controllers
 {
     public class UserController : Controller
     {
-        SQLRepository<user> userContext = new SQLRepository<user>(new DataContext());
+        private SQLRepository<user> userContext = new SQLRepository<user>(new DataContext());
         List<user> Users;
         
         public UserController()
@@ -33,11 +33,11 @@ namespace CharityApplication.Controllers
             {
                 if (Users.Exists(x => x.email == model.email && x.password.GetHashCode().ToString() == model.password.GetHashCode().ToString()))
                 {
-                    int usr= Users.FirstOrDefault(x => x.email == model.email).Id;
+                    var usr= Users.FirstOrDefault(x => x.email == model.email);
                     General.userLoginStatus = true;
-                    General.orgLoginStatus = true;
-                    General.userId = usr;
-                    return RedirectToAction("Index", "UserAction",new { Id = usr });
+                    General.userId = usr.Id;
+                    General.userName = usr.fname;
+                    return RedirectToAction("Index", "UserAction",new { Id = usr.Id });
                 }
                 else
                 {
@@ -77,7 +77,7 @@ namespace CharityApplication.Controllers
                 temp.contact = usr.contact;
                 temp.city = usr.city;
                 temp.age = usr.age;
-                temp.hash = string.Concat(usr.fname, usr.lname).GetHashCode();
+                temp.hash = string.Concat(usr.fname, usr.lname).GetHashCode() & 0xfffffff;
                 userContext.Insert(temp);
                 userContext.Save();
                 Users.Add(usr);
@@ -147,6 +147,10 @@ public ActionResult Delete(int id)
                 userContext.Delete(Id);
                 userContext.Save();
                 Users.Remove(usr);
+                General.userId= -1;
+                General.orgLoginStatus = false;
+                General.userLoginStatus = false;
+                General.userName= "";
                 return RedirectToAction("Login","User");
             }
             else
@@ -154,5 +158,16 @@ public ActionResult Delete(int id)
                 return RedirectToAction("Index", "Error", new { error = "User not found!",type=2 });
             }
         }
+
+        public ActionResult Logout()
+        {
+            General.userLoginStatus = false;
+            General.orgLoginStatus = false;
+            General.userId = -1;
+            General.userName = "";
+            return RedirectToAction("Login","User");
+        }
+
+
     } 
 }

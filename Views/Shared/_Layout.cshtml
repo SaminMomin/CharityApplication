@@ -30,18 +30,31 @@
                 </li>
             </ul>
             <ul class="navbar-nav flex-md-row-reverse">
-                @if (CharityApplication.Models.General.orgLoginStatus == false)
+                @if (CharityApplication.Models.General.orgLoginStatus == false && CharityApplication.Models.General.userLoginStatus == false)
                 {
                     <li class="nav-item">
                         @Html.ActionLink(" Organization Login", "Login", "Organization", new { @area = "" }, new { @class = "nav-link" })
                     </li>
-                }
-                @if (CharityApplication.Models.General.userLoginStatus == false)
-                {
                     <li class="nav-item">
                         @Html.ActionLink("User Login", "Login", "User", new { @area = "" }, new { @class = "nav-link" })
                     </li>
                 }
+                
+                @if (CharityApplication.Models.General.orgLoginStatus == true)
+                {
+                    <li class="nav-item">
+                        @Html.ActionLink(string.Concat("Logout ", CharityApplication.Models.General.orgName), "Logout", "Organization", new { @area = "" }, new { @class = "nav-link" })
+                    </li>
+                }
+                @if (CharityApplication.Models.General.userLoginStatus == true)
+                {
+                    <li class="nav-item">
+                        @Html.ActionLink(string.Concat("Logout ", CharityApplication.Models.General.userName), "Logout", "User", new { @area = "" }, new { @class = "nav-link" })
+                    </li>
+                }
+
+
+
             </ul>
         </div>
     </nav>

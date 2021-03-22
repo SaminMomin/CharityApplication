@@ -1,0 +1,66 @@
+﻿@model IEnumerable<CharityApplication.Database.cause>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+<p>
+    <div class="row">
+        <div class="col-md-3">
+            @Html.ActionLink("Register New Cause", "Register", "Cause", new { @class = "btn btn-success" })
+        </div>
+        <div class="col-md-3">
+            @Html.ActionLink("Edit Organization", "Edit", "Organization",new { }, new { @class = "btn btn-primary" })
+        </div>
+        <div class="col-md-3">
+            @Html.ActionLink("Delete Organization", "Delete", "Organization", new { },new { @class = "btn btn-danger" })
+        </div>
+    </div>
+    
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.name)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.description)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.goal)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.collected)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.isactive)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+<tr>
+    <td>
+        @Html.DisplayFor(modelItem => item.name)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.description)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.goal)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.collected)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.isactive)
+    </td>
+    <td>
+        @Html.ActionLink("View Cause","Index", "Cause", new { id = item.Id },new { @class="btn btn-active"}) 
+    </td>
+</tr>
+}
+
+</table>
