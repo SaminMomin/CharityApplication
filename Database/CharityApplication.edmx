@@ -17,6 +17,7 @@
           <Property Name="hash" Type="int" />
           <Property Name="isactive" Type="bit" Nullable="false" />
           <Property Name="description" Type="varchar(max)" Nullable="false" />
+          <Property Name="transactionhash" Type="varchar(max)" />
         </EntityType>
         <EntityType Name="donations">
           <Key>
@@ -28,6 +29,7 @@
           <Property Name="amount" Type="int" Nullable="false" />
           <Property Name="causeId" Type="int" Nullable="false" />
           <Property Name="date" Type="datetime" Nullable="false" />
+          <Property Name="transactionhash" Type="varchar(max)" />
         </EntityType>
         <EntityType Name="organization">
           <Key>
@@ -49,6 +51,7 @@
           <Property Name="contact" Type="nvarchar" MaxLength="20" Nullable="false" />
           <Property Name="regcerti" Type="varchar(max)" />
           <Property Name="description" Type="varchar(max)" Nullable="false" />
+          <Property Name="transactionhash" Type="varchar(max)" />
         </EntityType>
         <EntityType Name="user">
           <Key>
@@ -66,6 +69,7 @@
           <Property Name="country" Type="nvarchar" MaxLength="30" Nullable="false" />
           <Property Name="email" Type="nvarchar" MaxLength="50" Nullable="false" />
           <Property Name="hash" Type="int" />
+          <Property Name="transactionhash" Type="varchar(max)" />
         </EntityType>
         <Association Name="FK_donations_cause">
           <End Role="cause" Type="Self.cause" Multiplicity="1" />
@@ -155,6 +159,7 @@
           <NavigationProperty Name="donations" Relationship="Self.FK_donations_cause" FromRole="cause" ToRole="donations" />
           <NavigationProperty Name="organization" Relationship="Self.orgId" FromRole="cause" ToRole="organization" />
           <Property Name="description" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="transactionhash" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
         </EntityType>
         <EntityType Name="donation">
           <Key>
@@ -169,6 +174,7 @@
           <NavigationProperty Name="cause" Relationship="Self.FK_donations_cause" FromRole="donations" ToRole="cause" />
           <NavigationProperty Name="organization" Relationship="Self.FK_donations_organization" FromRole="donations" ToRole="organization" />
           <NavigationProperty Name="user" Relationship="Self.FK_donations_user" FromRole="donations" ToRole="user" />
+          <Property Name="transactionhash" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
         </EntityType>
         <EntityType Name="organization">
           <Key>
@@ -192,6 +198,7 @@
           <NavigationProperty Name="donations" Relationship="Self.FK_donations_organization" FromRole="organization" ToRole="donations" />
           <Property Name="regcerti" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
           <Property Name="description" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="transactionhash" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
         </EntityType>
         <EntityType Name="user">
           <Key>
@@ -210,6 +217,7 @@
           <Property Name="email" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="hash" Type="Int32" />
           <NavigationProperty Name="donations" Relationship="Self.FK_donations_user" FromRole="user" ToRole="donations" />
+          <Property Name="transactionhash" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
         </EntityType>
         <Association Name="FK_donations_cause">
           <End Role="cause" Type="Self.cause" Multiplicity="1" />
@@ -290,6 +298,7 @@
           <EntitySetMapping Name="causes">
             <EntityTypeMapping TypeName="HelpingHands.cause">
               <MappingFragment StoreEntitySet="cause">
+                <ScalarProperty Name="transactionhash" ColumnName="transactionhash" />
                 <ScalarProperty Name="description" ColumnName="description" />
                 <ScalarProperty Name="Id" ColumnName="Id" />
                 <ScalarProperty Name="name" ColumnName="name" />
@@ -304,6 +313,7 @@
           <EntitySetMapping Name="donations">
             <EntityTypeMapping TypeName="HelpingHands.donation">
               <MappingFragment StoreEntitySet="donations">
+                <ScalarProperty Name="transactionhash" ColumnName="transactionhash" />
                 <ScalarProperty Name="Id" ColumnName="Id" />
                 <ScalarProperty Name="userId" ColumnName="userId" />
                 <ScalarProperty Name="orgId" ColumnName="orgId" />
@@ -316,6 +326,7 @@
           <EntitySetMapping Name="organizations">
             <EntityTypeMapping TypeName="HelpingHands.organization">
               <MappingFragment StoreEntitySet="organization">
+                <ScalarProperty Name="transactionhash" ColumnName="transactionhash" />
                 <ScalarProperty Name="description" ColumnName="description" />
                 <ScalarProperty Name="regcerti" ColumnName="regcerti" />
                 <ScalarProperty Name="Id" ColumnName="Id" />
@@ -338,6 +349,7 @@
           <EntitySetMapping Name="users">
             <EntityTypeMapping TypeName="HelpingHands.user">
               <MappingFragment StoreEntitySet="user">
+                <ScalarProperty Name="transactionhash" ColumnName="transactionhash" />
                 <ScalarProperty Name="Id" ColumnName="Id" />
                 <ScalarProperty Name="fname" ColumnName="fname" />
                 <ScalarProperty Name="lname" ColumnName="lname" />

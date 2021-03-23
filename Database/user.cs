@@ -32,6 +32,7 @@ namespace CharityApplication.Database
         public string country { get; set; }
         public string email { get; set; }
         public Nullable<int> hash { get; set; }
+        public string transactionhash { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<donation> donations { get; set; }

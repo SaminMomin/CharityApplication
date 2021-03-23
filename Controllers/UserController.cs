@@ -1,9 +1,13 @@
 ﻿using CharityApplication.Database;
 using CharityApplication.Models;
 using CharityApplication.ViewModels;
+using Nethereum.Hex.HexTypes;
+using Nethereum.Web3;
+using Nethereum.Web3.Accounts;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Threading.Tasks;
 using System.Web;
 using System.Web.Caching;
 using System.Web.Mvc;
@@ -14,14 +18,23 @@ namespace CharityApplication.Controllers
     {
         private SQLRepository<user> userContext = new SQLRepository<user>(new DataContext());
         List<user> Users;
-        
+        Smart contract = new Smart();
+        //private string privateKey;
+        //private Account account;
+        //private Web3 web3;
+        //private string abi;
+        //private Nethereum.Contracts.Contract contract;
+        //private HexBigInteger x = new HexBigInteger("1");
+        //public string TransactionHash { get; set; }
+
         public UserController()
         {
             Users = userContext.Collection().ToList();
-         }
+           }
 
-        // GET: User
-        [HttpGet]
+		
+		// GET: User
+		[HttpGet]
         public ActionResult Login()
         {
             return View();
@@ -37,6 +50,7 @@ namespace CharityApplication.Controllers
                     General.userLoginStatus = true;
                     General.userId = usr.Id;
                     General.userName = usr.fname;
+                    General.userTx = usr.transactionhash;
                     return RedirectToAction("Index", "UserAction",new { Id = usr.Id });
                 }
                 else
@@ -55,7 +69,7 @@ namespace CharityApplication.Controllers
             return View();
         }
         [HttpPost]
-        public ActionResult Register(user usr)
+        public async Task<ActionResult> Register(user usr)
         {
             if (!ModelState.IsValid && usr == null)
             {
@@ -78,6 +92,7 @@ namespace CharityApplication.Controllers
                 temp.city = usr.city;
                 temp.age = usr.age;
                 temp.hash = string.Concat(usr.fname, usr.lname).GetHashCode() & 0xfffffff;
+                temp.transactionhash = await Smart.regFunc(usr.fname);
                 userContext.Insert(temp);
                 userContext.Save();
                 Users.Add(usr);
@@ -165,6 +180,7 @@ public ActionResult Delete(int id)
             General.orgLoginStatus = false;
             General.userId = -1;
             General.userName = "";
+            General.userTx = "";
             return RedirectToAction("Login","User");
         }
 

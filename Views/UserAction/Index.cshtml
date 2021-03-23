@@ -5,17 +5,18 @@
 }
 
 <h2>Index</h2>
-<div class="flex-xl-row-reverse">
-    <div class="col-sm-6">
+<div class="row">
+    <div class="col-md-3">
         @Html.ActionLink("Edit User", "Edit", "User", new { @Id = CharityApplication.Models.General.userId }, new { @class = "btn btn-primary" })
     </div>
-    <div class="col-sm-6">
+    <div class="col-md-3">
         @Html.ActionLink("Delete User", "Delete", "User", new { @Id = CharityApplication.Models.General.userId }, new { @class = "btn btn-danger" })
     </div>
+    <div class="col-md-3">
+        <a href=@string.Concat("https://kovan.etherscan.io/tx/",CharityApplication.Models.General.userTx) target="_blank">Click to verify registration on Blockchain</a>
+    </div>
 </div>
-@*<p>
-    @Html.ActionLink("Edit User", "Edit", "User", new { Id = Model.userId });
-</p>*@
+<br />
 <table class="table">
     <tr>
         <th>

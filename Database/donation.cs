@@ -13,14 +13,14 @@ namespace CharityApplication.Database
     using System;
     using System.Collections.Generic;
     
-    public partial class donation: BaseEntity
+    public partial class donation:BaseEntity
     {
-        //public int Id { get; set; }
         public int userId { get; set; }
         public int orgId { get; set; }
         public int amount { get; set; }
         public int causeId { get; set; }
         public System.DateTime date { get; set; }
+        public string transactionhash { get; set; }
     
         public virtual cause cause { get; set; }
         public virtual organization organization { get; set; }
