@@ -58,7 +58,7 @@ namespace CharityApplication.Controllers
 
 
         [HttpPost]
-        public ActionResult Register(organization Org,HttpPostedFileBase file)
+        public ActionResult Register(organization Org,HttpPostedFileBase[] file)
         {
             if (!ModelState.IsValid)
             {
@@ -88,8 +88,10 @@ namespace CharityApplication.Controllers
                 temp.description = Org.description;
                 if (file != null)
                 {
-                    temp.regcerti = Org.Id+Path.GetExtension(file.FileName);
-                    file.SaveAs(Server.MapPath("//OrganizationCertificates//")+temp.regcerti);
+                    temp.profilepic = string.Concat(temp.Id, Path.GetExtension(file[0].FileName));
+                    temp.regcerti = Org.Id+Path.GetExtension(file[1].FileName);
+                    file[0].SaveAs(Server.MapPath("//OrganizationImages//") + temp.profilepic);
+                    file[1].SaveAs(Server.MapPath("//OrganizationCertificates//")+temp.regcerti);
                 }
                 organizationContext.Insert(temp);
                 organizationContext.Save();
@@ -102,7 +104,7 @@ namespace CharityApplication.Controllers
             return View(Organizations.FirstOrDefault(x=>x.Id==Id));
         }
         [HttpPost]
-        public ActionResult Edit(organization Org,HttpPostedFileBase file)
+        public ActionResult Edit(organization Org,HttpPostedFileBase[] file)
         {
             var temp = organizationContext.Find(General.orgId);
             if (!ModelState.IsValid || Org == null)
@@ -130,8 +132,10 @@ namespace CharityApplication.Controllers
                     temp.description = Org.description;
                     if (file != null)
                     {
-                        temp.regcerti = Org.Id + Path.GetExtension(file.FileName);
-                        file.SaveAs(Server.MapPath("//OrganizationCertificates//") + temp.regcerti);
+                        temp.profilepic = string.Concat(temp.Id, Path.GetExtension(file[0].FileName));
+                        temp.regcerti = Org.Id + Path.GetExtension(file[1].FileName);
+                        file[0].SaveAs(Server.MapPath("//OrganizationImages//") + temp.profilepic);
+                        file[1].SaveAs(Server.MapPath("//OrganizationCertificates//") + temp.regcerti);
                     }
                     organizationContext.Update(temp);
                     organizationContext.Save();

@@ -6,6 +6,7 @@ using Nethereum.Web3;
 using Nethereum.Web3.Accounts;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Web;
@@ -51,7 +52,7 @@ namespace CharityApplication.Controllers
                     General.userId = usr.Id;
                     General.userName = usr.fname;
                     General.userTx = usr.transactionhash;
-                    return RedirectToAction("Index", "UserAction",new { Id = usr.Id });
+                    return RedirectToAction("Index", "UserAction");
                 }
                 else
                 {
@@ -69,7 +70,7 @@ namespace CharityApplication.Controllers
             return View();
         }
         [HttpPost]
-        public async Task<ActionResult> Register(user usr)
+        public async Task<ActionResult> Register(user usr,HttpPostedFileBase file)
         {
             if (!ModelState.IsValid && usr == null)
             {
@@ -91,6 +92,11 @@ namespace CharityApplication.Controllers
                 temp.contact = usr.contact;
                 temp.city = usr.city;
                 temp.age = usr.age;
+                if (file != null)
+                {
+                    temp.profilepic = string.Concat(temp.Id,Path.GetExtension(file.FileName));
+                    file.SaveAs(Server.MapPath("//UserImages//"+temp.profilepic));
+                }
                 temp.hash = string.Concat(usr.fname, usr.lname).GetHashCode() & 0xfffffff;
                 temp.transactionhash = await Smart.regFunc(usr.fname);
                 userContext.Insert(temp);
@@ -106,7 +112,7 @@ namespace CharityApplication.Controllers
          }
         
         [HttpPost]
-        public ActionResult Edit(user usr)
+        public ActionResult Edit(user usr,HttpPostedFileBase file)
         {
             if (!ModelState.IsValid && usr == null)
             {
@@ -134,18 +140,22 @@ namespace CharityApplication.Controllers
                         t.contact = usr.contact;
                         t.city = usr.city;
                         t.age = usr.age;
+                        if (file != null)
+                        {
+                            t.profilepic = string.Concat(t.Id, Path.GetExtension(file.FileName));
+                            file.SaveAs(Server.MapPath("//UserImages//" + t.profilepic));
+                        }
                         t.hash = string.Concat(usr.fname, usr.lname).GetHashCode();
                         userContext.Save();
                         Users.Remove(Users.FirstOrDefault(x => x.Id == usr.Id));
                         Users.Add(usr);
-                        return RedirectToAction("Index", "UserAction",new { usr.Id });
+                        return RedirectToAction("Index", "UserAction");
                     }
                 }
                 else
                 {
                     return RedirectToAction("Index", "Error",new { error="User not found",type=1});
                 }
-                
             }
         }
 public ActionResult Delete(int id)

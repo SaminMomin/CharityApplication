@@ -4,7 +4,7 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="6a1f208bc1694bf99d20457709c817e9" Name="Diagram1">
+      <Diagram DiagramId="6a1f208bc1694bf99d20457709c817e9" Name="Diagram1" ZoomLevel="98">
         <EntityTypeShape EntityType="HelpingHands.cause" Width="1.5" PointX="3" PointY="1.75" IsExpanded="true" />
         <EntityTypeShape EntityType="HelpingHands.donation" Width="1.5" PointX="5.25" PointY="1.75" IsExpanded="true" />
         <EntityTypeShape EntityType="HelpingHands.organization" Width="1.5" PointX="0.75" PointY="1" IsExpanded="true" />

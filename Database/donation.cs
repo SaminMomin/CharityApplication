@@ -13,8 +13,9 @@ namespace CharityApplication.Database
     using System;
     using System.Collections.Generic;
     
-    public partial class donation:BaseEntity
+    public partial class donation: BaseEntity
     {
+        //public int Id { get; set; }
         public int userId { get; set; }
         public int orgId { get; set; }
         public int amount { get; set; }

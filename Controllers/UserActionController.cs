@@ -21,9 +21,9 @@ namespace CharityApplication.Controllers
         List<organization> Orgs;
 
         
-        public ActionResult Index(int Id)
+        public ActionResult Index()
         {
-            Donations = donationContext.Collection().Where(x => x.userId == Id).ToList();
+            Donations = donationContext.Collection().Where(x => x.userId == General.userId).ToList();
             var temp = organizationContext.Collection().ToList();
             var temp2 = causeContext.Collection().ToList();
             foreach (var d in Donations)
@@ -38,9 +38,6 @@ namespace CharityApplication.Controllers
                     Causes.Add(temp2.FirstOrDefault(x => x.Id == d.causeId));
                 }
             }
-            
-            //Orgs = organizationContext.Collection().Where(x => x.I/*/*d*/*/==(Donations.FirstOrDefault(t=>t.orgId==x.Id).orgId)).ToList();
-            //Causes = causeContext.Collection().Where(x => Donations.Exists(p => p.causeId == x.Id)).ToList();
             List<UserViewModel> donateList = new List<UserViewModel>();
             foreach(var d in Donations)
             {
@@ -56,6 +53,5 @@ namespace CharityApplication.Controllers
             }
             return View(donateList);
         }
-
     }
 }

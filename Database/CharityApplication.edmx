@@ -18,6 +18,7 @@
           <Property Name="isactive" Type="bit" Nullable="false" />
           <Property Name="description" Type="varchar(max)" Nullable="false" />
           <Property Name="transactionhash" Type="varchar(max)" />
+          <Property Name="type" Type="varchar(max)" Nullable="false" />
         </EntityType>
         <EntityType Name="donations">
           <Key>
@@ -52,6 +53,7 @@
           <Property Name="regcerti" Type="varchar(max)" />
           <Property Name="description" Type="varchar(max)" Nullable="false" />
           <Property Name="transactionhash" Type="varchar(max)" />
+          <Property Name="profilepic" Type="nchar" MaxLength="10" Nullable="false" />
         </EntityType>
         <EntityType Name="user">
           <Key>
@@ -70,6 +72,7 @@
           <Property Name="email" Type="nvarchar" MaxLength="50" Nullable="false" />
           <Property Name="hash" Type="int" />
           <Property Name="transactionhash" Type="varchar(max)" />
+          <Property Name="profilepic" Type="varchar(max)" Nullable="false" />
         </EntityType>
         <Association Name="FK_donations_cause">
           <End Role="cause" Type="Self.cause" Multiplicity="1" />
@@ -160,6 +163,7 @@
           <NavigationProperty Name="organization" Relationship="Self.orgId" FromRole="cause" ToRole="organization" />
           <Property Name="description" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="false" />
           <Property Name="transactionhash" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="type" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="false" />
         </EntityType>
         <EntityType Name="donation">
           <Key>
@@ -199,6 +203,7 @@
           <Property Name="regcerti" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
           <Property Name="description" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="false" />
           <Property Name="transactionhash" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="profilepic" Type="String" Nullable="false" MaxLength="Max" FixedLength="true" Unicode="true" />
         </EntityType>
         <EntityType Name="user">
           <Key>
@@ -218,6 +223,7 @@
           <Property Name="hash" Type="Int32" />
           <NavigationProperty Name="donations" Relationship="Self.FK_donations_user" FromRole="user" ToRole="donations" />
           <Property Name="transactionhash" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="profilepic" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="false" />
         </EntityType>
         <Association Name="FK_donations_cause">
           <End Role="cause" Type="Self.cause" Multiplicity="1" />
@@ -298,6 +304,7 @@
           <EntitySetMapping Name="causes">
             <EntityTypeMapping TypeName="HelpingHands.cause">
               <MappingFragment StoreEntitySet="cause">
+                <ScalarProperty Name="type" ColumnName="type" />
                 <ScalarProperty Name="transactionhash" ColumnName="transactionhash" />
                 <ScalarProperty Name="description" ColumnName="description" />
                 <ScalarProperty Name="Id" ColumnName="Id" />
@@ -326,6 +333,7 @@
           <EntitySetMapping Name="organizations">
             <EntityTypeMapping TypeName="HelpingHands.organization">
               <MappingFragment StoreEntitySet="organization">
+                <ScalarProperty Name="profilepic" ColumnName="profilepic" />
                 <ScalarProperty Name="transactionhash" ColumnName="transactionhash" />
                 <ScalarProperty Name="description" ColumnName="description" />
                 <ScalarProperty Name="regcerti" ColumnName="regcerti" />
@@ -349,6 +357,7 @@
           <EntitySetMapping Name="users">
             <EntityTypeMapping TypeName="HelpingHands.user">
               <MappingFragment StoreEntitySet="user">
+                <ScalarProperty Name="profilepic" ColumnName="profilepic" />
                 <ScalarProperty Name="transactionhash" ColumnName="transactionhash" />
                 <ScalarProperty Name="Id" ColumnName="Id" />
                 <ScalarProperty Name="fname" ColumnName="fname" />

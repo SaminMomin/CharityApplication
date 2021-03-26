@@ -21,6 +21,7 @@ namespace CharityApplication.Database
             this.donations = new HashSet<donation>();
         }
     
+        //public int Id { get; set; }
         public string name { get; set; }
         public int goal { get; set; }
         public int collected { get; set; }
@@ -29,6 +30,7 @@ namespace CharityApplication.Database
         public bool isactive { get; set; }
         public string description { get; set; }
         public string transactionhash { get; set; }
+        public string type { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<donation> donations { get; set; }
