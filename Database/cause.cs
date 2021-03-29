@@ -13,7 +13,7 @@ namespace CharityApplication.Database
     using System;
     using System.Collections.Generic;
     
-    public partial class cause:BaseEntity
+    public partial class cause: BaseEntity
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public cause()
@@ -28,9 +28,10 @@ namespace CharityApplication.Database
         public int orgId { get; set; }
         public Nullable<int> hash { get; set; }
         public bool isactive { get; set; }
-        public string description { get; set; }
         public string transactionhash { get; set; }
         public string type { get; set; }
+        public string shortDescription { get; set; }
+        public string longDescription { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<donation> donations { get; set; }

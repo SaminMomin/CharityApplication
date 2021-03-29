@@ -21,12 +21,29 @@
     </div>
 
     <div class="form-group">
-        @Html.LabelFor(model => model.description, htmlAttributes: new { @class = "control-label col-md-2" })
+        @Html.LabelFor(model => model.shortDescription, htmlAttributes: new { @class = "control-label col-md-2" })
         <div class="col-md-10">
-            @Html.EditorFor(model => model.description, new { htmlAttributes = new { @class = "form-control" } })
-            @Html.ValidationMessageFor(model => model.description, "", new { @class = "text-danger" })
+            @Html.TextBoxFor(model => model.shortDescription,  new { @class = "form-control"})
+            @Html.ValidationMessageFor(model => model.shortDescription, "", new { @class = "text-danger" })
         </div>
     </div>
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.longDescription, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.TextBoxFor(model => model.longDescription, new { @class = "form-control" })
+            @Html.ValidationMessageFor(model => model.longDescription, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.type, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.DropDownListFor(model => model.type, new SelectList(CharityApplication.Models.General.causeCollection(), "type", "type"), new { @class = "form-control" })
+            @Html.ValidationMessageFor(model => model.type, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
 
     <div class="form-group">
         @Html.LabelFor(model => model.goal, htmlAttributes: new { @class = "control-label col-md-2" })
@@ -43,17 +60,6 @@
             @Html.ValidationMessageFor(model => model.collected, "", new { @class = "text-danger" })
         </div>
     </div>
-
-    <div class="form-group">
-        @Html.LabelFor(model => model.isactive, htmlAttributes: new { @class = "control-label col-md-2" })
-        <div class="col-md-10">
-            <div class="checkbox">
-                @Html.EditorFor(model => model.isactive)
-                @Html.ValidationMessageFor(model => model.isactive, "", new { @class = "text-danger" })
-            </div>
-        </div>
-    </div>
-
     <div class="form-group">
         <div class="col-md-offset-2 col-md-10">
             <input type="submit" value="Register" class="btn btn-primary" />

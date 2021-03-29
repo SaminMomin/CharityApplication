@@ -29,5 +29,6 @@ namespace CharityApplication.Database
         public virtual DbSet<donation> donations { get; set; }
         public virtual DbSet<organization> organizations { get; set; }
         public virtual DbSet<user> users { get; set; }
+        public virtual DbSet<sysdiagram> sysdiagrams { get; set; }
     }
 }

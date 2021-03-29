@@ -1,0 +1,175 @@
+﻿@model CharityApplication.ViewModels.OrgViewModel
+
+@{
+    ViewBag.Title = "ViewOrg";
+}
+<link href="~/Content/Custom/assets/img/favicon.png" rel="icon">
+<link href="~/Content/Custom/assets/img/apple-touch-icon.png" rel="apple-touch-icon">
+
+<!-- Google Fonts -->
+@*<link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,700,700i|Raleway:300,400,500,700,800" rel="stylesheet">*@
+
+<!-- Vendor CSS Files -->
+<link href="~/Content/bootstrap.min.css" rel="stylesheet">
+<link href="~/Content/Custom/assets/vendor/venobox/venobox.css" rel="stylesheet">
+@*<link href="~/Content/Custom/assets/vendor/font-awesome/css/font-awesome.min.css" rel="stylesheet">*@
+<link href="~/Content/Custom/assets/vendor/owl.carousel/assets/owl.carousel.min.css" rel="stylesheet">
+<link href="~/Content/Custom/assets/vendor/aos/aos.css" rel="stylesheet">
+
+<!-- Template Main CSS File -->
+<link href="~/Content/Custom/assets/css/style.css" rel="stylesheet">
+
+<section id="intro">
+    <div class="intro-container" data-aos="zoom-in" data-aos-delay="100">
+        <h1 class="mb-4 pb-0"><span>@Model.org.name</span></h1>
+        <p class="mb-4 pb-0">@string.Concat(Model.org.street, ", ", Model.org.city, ", ", Model.org.state, ", ", Model.org.country)</p>
+        <p class="mb-4 pb-0">@string.Concat("Email us to ", Model.org.email)</p>
+        <p>or</p>
+        <p class="mb-4 pb-0">@string.Concat("Call us at +91", Model.org.contact)</p>
+
+        @*<a href="https://www.youtube.com/watch?v=jDDaplaOz7Q" class="venobox play-btn mb-4" data-vbtype="video" data-autoplay="true"></a>*@
+        @*<a href="#about" class="about-btn scrollto">About The Organization</a>*@
+    </div>
+</section><!-- End Intro Section -->
+<section id="about">
+    <div class="container" data-aos="fade-up">
+        <div class="row">
+            <div class="col-lg-12">
+                <h2>About The Organization</h2>
+                <p>
+                    @Model.org.description
+                </p>
+            </div>
+        </div>
+    </div>
+</section><!-- End About Section -->
+<section id="speakers">
+    <div class="container" data-aos="fade-up">
+        <div class="section-header">
+            <h2>Causes Supported So Far</h2>
+            <p>Here are some of our causes that we have supported and worked for so far</p>
+        </div>
+        @for (int i = 0; i < Model.row; i++)
+        {
+            <div class="row">
+                @for (int j = 0; j < 3; j++)
+                {
+                    if ((i * 3 + j) < Model.cols)
+                    {
+                        <div class="col-md-4">
+                            <div class="speaker" data-aos="fade-up" data-aos-delay="100">
+                                @if (@Model.causes.ElementAt(i * 3 + j).type == "Community")
+                                {
+                                <img src="~/CardImages/Community.png" alt="Speaker 1" class="img-fluid">}
+                                else if (@Model.causes.ElementAt(i * 3 + j).type == "Housing")
+                                {
+                            <img src="~/CardImages/Housing.jpg" alt="Speaker 1" class="img-fluid">}
+                                else if (@Model.causes.ElementAt(i * 3 + j).type == "Overseas Aid")
+                                {
+                            <img src="~/CardImages/Overseas Aid.jpg" alt="Speaker 1" class="img-fluid">}
+                                else if (@Model.causes.ElementAt(i * 3 + j).type == "Poverty Relief")
+                                {
+                            <img src="~/CardImages/Poverty Relief.jpg" alt="Speaker 1" class="img-fluid">}
+                                else if (@Model.causes.ElementAt(i * 3 + j).type == "Training")
+                                {
+                            <img src="~/CardImages/Training.png" alt="Speaker 1" class="img-fluid">}
+                                else if (@Model.causes.ElementAt(i * 3 + j).type == "Medical")
+                                {
+                            <img src="~/CardImages/Medical.jpg" alt="Speaker 1" class="img-fluid">}
+                                else if (@Model.causes.ElementAt(i * 3 + j).type == "Sports Clubs")
+                                {
+                            <img src="~/CardImages/Sports Clubs.jpg" alt="Speaker 1" class="img-fluid">}
+                                else if (@Model.causes.ElementAt(i * 3 + j).type == "Arts and Culture")
+                                {
+                            <img src="~/CardImages/Arts and Culture.jpg" alt="Speaker 1" class="img-fluid">}
+                                else if (@Model.causes.ElementAt(i * 3 + j).type == "Public Service and Military")
+                                {
+                            <img src="~/CardImages/Public Service and Military.jpg" alt="Speaker 1" class="img-fluid">}
+                                else if (@Model.causes.ElementAt(i * 3 + j).type == "Education")
+                                {
+                            <img src="~/CardImages/Education.jpg" alt="Speaker 1" class="img-fluid">}
+                                else if (@Model.causes.ElementAt(i * 3 + j).type == "Children's")
+                                {
+                            <img src="~/CardImages/Children.png" alt="Speaker 1" class="img-fluid">}
+                                else if (@Model.causes.ElementAt(i * 3 + j).type == "Disability")
+                                {
+                            <img src="~/CardImages/Disability.png" alt="Speaker 1" class="img-fluid">}
+                                else if (@Model.causes.ElementAt(i * 3 + j).type == "Environmental")
+                                {
+                            <img src="~/CardImages/Environmental.jpg" alt="Speaker 1" class="img-fluid">}
+                                else if (@Model.causes.ElementAt(i * 3 + j).type == "Religious")
+                                {
+                            <img src="~/CardImages/Religious.png" alt="Speaker 1" class="img-fluid">}
+                                else if (@Model.causes.ElementAt(i * 3 + j).type == "Animal")
+                                {
+                            <img src="~/CardImages/Animals.jpg" alt="Speaker 1" class="img-fluid">
+                                }
+                                else
+                                {
+                            <img src="~/CardImages/Elderly.jpg" alt="Speaker 1" class="img-fluid">
+                                }
+                                <div class="details">
+                                    <h3>@Model.causes.ElementAt(i * 3 + j).name</h3>
+                                    <p class="text-break">@Model.causes.ElementAt(i * 3 + j).shortDescription</p>
+                                    <div class="row">
+                                        <p class="col-md-6">Goal:₹@Model.causes.ElementAt(i * 3 + j).goal</p>
+                                        <p class="col-md-6">Collected:₹@Model.causes.ElementAt(i * 3 + j).collected</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    }
+                    else
+                    {
+                        break;
+                    }
+                }
+            </div>
+        }
+    </div>
+</section><!-- End Speakers Section -->
+
+<section id="facts">
+    <div class="container" data-aos="fade-up">
+        <div class="section-header">
+            <h2>Statistics</h2>
+            <p>Some of our achievements so far</p>
+        </div>
+        <div class="row counters">
+            <div class="col-lg-4 text-center">
+                @*<h4 class="speaker details" data-toggle="counter-up">274</h4>*@
+                <span class="countfect" data-num=@Model.causes.Count()></span>
+                <h5 class="speaker details">Causes supported so far</h5>
+            </div>
+            <div class="col-lg-4 text-center">
+                @*<h4 class="speaker details" data-toggle="counter-num">421</h4>*@
+                <span class="countfect" data-num=@Model.fundsCollected></span>
+                <h5 class="speaker details">Funds Received ₹</h5>
+            </div>
+            <div class="col-lg-4 text-center">
+                @*<h4 class="speaker details" data-toggle="counter-up">1,364</h4>*@
+                <span class="countfect" data-num=@Model.totalUsers></span>
+                <h5 class="speaker details">Users who donated to our causes</h5>
+            </div>
+        </div>
+    </div>
+</section>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { /* id = Model.PrimaryKey */ }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>
+
+<!-- Vendor JS Files -->
+<script src="~/Content/Custom/assets/vendor/jquery/jquery.min.js"></script>
+<script src="~/Content/Custom/assets/js/countfect.min.js"></script>
+<script src="~/Content/Custom/assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+<script src="~/Content/Custom/assets/vendor/jquery.easing/jquery.easing.min.js"></script>
+<script src="~/Content/Custom/assets/vendor/php-email-form/validate.js"></script>
+<script src="~/Content/Custom/assets/vendor/venobox/venobox.min.js"></script>
+<script src="~/Content/Custom/assets/vendor/owl.carousel/owl.carousel.min.js"></script>
+<script src="~/Content/Custom/assets/vendor/superfish/superfish.min.js"></script>
+<script src="~/Content/Custom/assets/vendor/hoverIntent/hoverIntent.js"></script>
+<script src="~/Content/Custom/assets/vendor/aos/aos.js"></script>
+
+<!-- Template Main JS File -->
+<script src="~/Content/Custom/assets/js/main.js"></script>

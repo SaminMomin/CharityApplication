@@ -108,7 +108,7 @@ namespace CharityApplication.Controllers
 
         public ActionResult Edit(int Id)
         {
-            return View(Users.FirstOrDefault(x => x.Id == Id));
+            return View(userContext.Collection().FirstOrDefault(x => x.Id == Id));
          }
         
         [HttpPost]
@@ -191,7 +191,7 @@ public ActionResult Delete(int id)
             General.userId = -1;
             General.userName = "";
             General.userTx = "";
-            return RedirectToAction("Login","User");
+            return RedirectToAction("Index","Home");
         }
 
 

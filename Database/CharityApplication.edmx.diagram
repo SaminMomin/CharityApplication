@@ -13,6 +13,7 @@
         <AssociationConnector Association="HelpingHands.orgId" ManuallyRouted="false" />
         <AssociationConnector Association="HelpingHands.FK_donations_organization" ManuallyRouted="false" />
         <AssociationConnector Association="HelpingHands.FK_donations_user" ManuallyRouted="false" />
+        <EntityTypeShape EntityType="HelpingHands.sysdiagram" Width="1.5" PointX="5.375" PointY="5.75" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

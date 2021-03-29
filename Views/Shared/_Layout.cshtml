@@ -17,17 +17,37 @@
         </button>
         <div class="collapse navbar-collapse" id="navbarColor02">
             <ul class="navbar-nav mr-auto">
-                <li class="nav-item">
-                    @*<a class="nav-link" href="Index">Home</a>*@
-                    @Html.ActionLink("Home", "Index", "Home", new { @area = "" }, new { @class = "nav-link" })
-                    <span class="sr-only"></span>
-                </li>
-                <li class="nav-item">
-                    @Html.ActionLink("About", "About", "Home", new { @area = "" }, new { @class = "nav-link" })@*<a class="nav-link" href="About">About</a>*@
-                </li>
-                <li class="nav-item">
-                    @Html.ActionLink("Contact", "Contact", "Home", new { @area = "" }, new { @class = "nav-link" })@*<a class="nav-link" href="Contact">Contact</a>*@
-                </li>
+                @if (CharityApplication.Models.General.userLoginStatus == true)
+                {
+                    <li class="nav-item">
+                        @Html.ActionLink("Dashboard", "Index", "UserAction", new { @area = "" }, new { @class = "nav-link" })
+                    </li>
+                    <li class="nav-item">
+                        @Html.ActionLink("Donation History", "History", "UserAction", new { @area = "" }, new { @class = "nav-link" })
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" target="_blank" href=@string.Concat("https://kovan.etherscan.io/tx/",CharityApplication.Models.General.userTx)>Verify on Etherscan</a>
+                    </li>
+                    <li class="nav-item">
+                        @Html.ActionLink("Edit Profile", "Edit", "User", new { @area = "", Id = CharityApplication.Models.General.userId }, new { @class = "nav-link" })@*<a class="nav-link" href="About">About</a>*@
+                    </li>
+                    <li class="nav-item">
+                        @Html.ActionLink("Delete Profile", "Delete", "User", new { @area = "", id = CharityApplication.Models.General.userId }, new { @class = "nav-link" })
+                    </li>
+                }
+
+                @if (CharityApplication.Models.General.orgLoginStatus == true)
+                {
+                    <li class="nav-item">
+                        @Html.ActionLink("Dashboard", "Index", "OrganizationAction", new { @area = "" }, new { @class = "nav-link" })
+                    </li>
+                    <li class="nav-item">
+                        @Html.ActionLink("Edit Profile", "Edit", "Organization", new { @area = "", Id = CharityApplication.Models.General.userId }, new { @class = "nav-link" })@*<a class="nav-link" href="About">About</a>*@
+                    </li>
+                    <li class="nav-item">
+                        @Html.ActionLink("Delete Profile", "Delete", "Organization", new { @area = "", id = CharityApplication.Models.General.userId }, new { @class = "nav-link" })
+                    </li>
+                }
             </ul>
             <ul class="navbar-nav flex-md-row-reverse">
                 @if (CharityApplication.Models.General.orgLoginStatus == false && CharityApplication.Models.General.userLoginStatus == false)
@@ -58,7 +78,7 @@
             </ul>
         </div>
     </nav>
- <div class="container body-content">
+ <div class="body-content">
         @RenderBody()
         <hr />
         <footer>

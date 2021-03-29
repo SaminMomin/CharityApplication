@@ -11,6 +11,7 @@ namespace CharityApplication.Models
         public static int userId;
         public static string userName;
         public static string userTx;
+        public static string orgTx;
         public static IEnumerable<TypeList> typeCollection()
         {
             List<TypeList> lister = new List<TypeList>();

@@ -8,89 +8,100 @@
 
 <h3>Are you sure you want to delete this?</h3>
 <div>
-    <h4>user</h4>
     <hr />
-    <dl class="dl-horizontal">
-        <dt>
-            @Html.DisplayNameFor(model => model.fname)
-        </dt>
+        <div class="container">
+            <div class="row">
+                <div class="col-md-6">
+                    <dl class="dl-horizontal">
+                        <dt>
+                            @Html.DisplayNameFor(model => model.fname)
+                        </dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.fname)
-        </dd>
+                        <dd>
+                            @Html.DisplayFor(model => model.fname)
+                        </dd>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.lname)
-        </dt>
+                        <dt>
+                            @Html.DisplayNameFor(model => model.lname)
+                        </dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.lname)
-        </dd>
+                        <dd>
+                            @Html.DisplayFor(model => model.lname)
+                        </dd>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.age)
-        </dt>
+                        <dt>
+                            @Html.DisplayNameFor(model => model.age)
+                        </dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.age)
-        </dd>
+                        <dd>
+                            @Html.DisplayFor(model => model.age)
+                        </dd>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.dob)
-        </dt>
+                        <dt>
+                            @Html.DisplayNameFor(model => model.dob)
+                        </dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.dob)
-        </dd>
+                        <dd>
+                            @Html.DisplayFor(model => model.dob)
+                        </dd>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.contact)
-        </dt>
+                        <dt>
+                            @Html.DisplayNameFor(model => model.contact)
+                        </dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.contact)
-        </dd>
+                        <dd>
+                            @Html.DisplayFor(model => model.contact)
+                        </dd>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.city)
-        </dt>
+</dl>
+</div>
+                <div class="col-md-6">
+                    <dl class="dl-horizontal">
 
-        <dd>
-            @Html.DisplayFor(model => model.city)
-        </dd>
+                        <dt>
+                            @Html.DisplayNameFor(model => model.city)
+                        </dt>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.state)
-        </dt>
+                        <dd>
+                            @Html.DisplayFor(model => model.city)
+                        </dd>
 
-        <dd>
-            @Html.DisplayFor(model => model.state)
-        </dd>
+                        <dt>
+                            @Html.DisplayNameFor(model => model.state)
+                        </dt>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.country)
-        </dt>
+                        <dd>
+                            @Html.DisplayFor(model => model.state)
+                        </dd>
 
-        <dd>
-            @Html.DisplayFor(model => model.country)
-        </dd>
+                        <dt>
+                            @Html.DisplayNameFor(model => model.country)
+                        </dt>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.email)
-        </dt>
+                        <dd>
+                            @Html.DisplayFor(model => model.country)
+                        </dd>
 
-        <dd>
-            @Html.DisplayFor(model => model.email)
-        </dd>
-
-    </dl>
+                        <dt>
+                            @Html.DisplayNameFor(model => model.email)
+                        </dt>
+                        <dd>
+                            @Html.DisplayFor(model => model.email)
+                        </dd>
+                    </dl>
+                </div>
+            </div>
+        </div>
+  
 
     @using (Html.BeginForm()) {
         @Html.AntiForgeryToken()
-
-        <div class="form-actions no-color">
-            <input type="submit" value="Delete" class="btn btn-danger" /> |
-            @Html.ActionLink("Back to List", "Index","UserAction")
-        </div>
+<div class="text-xl-center">
+    <div class="form-actions no-color">
+        <input type="submit" value="Delete" class="btn btn-danger" /> 
+        @Html.ActionLink("Back to List", "Index", "UserAction",new { },new { @class="btn btn-primary mx-1"})
+    </div>
+</div>  
+        
     }
 </div>

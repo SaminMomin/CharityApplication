@@ -3,6 +3,7 @@ using CharityApplication.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Threading.Tasks;
 using System.Web;
 using System.Web.Mvc;
 
@@ -18,7 +19,7 @@ namespace CharityApplication.Controllers
         }
 
         [HttpPost]
-        public ActionResult Register(cause model)
+        public async Task<ActionResult> Register(cause model)
         {
             if (!ModelState.IsValid || model==null)
             {
@@ -32,11 +33,13 @@ namespace CharityApplication.Controllers
                     goal = model.goal,
                     collected = model.collected,
                     orgId = General.orgId,
-                    description = model.description,
-                    isactive = true
+                    shortDescription=model.shortDescription,
+                    longDescription = model.longDescription,
+                    isactive = true,
+                    type=model.type
                 };
-                temp.hash = String.Concat(temp.name, temp.description).GetHashCode();
-                temp.transactionhash = GetHashCode().ToString();
+                temp.hash = String.Concat(temp.name, temp.longDescription,temp.shortDescription).GetHashCode();
+                temp.transactionhash = await Smart.regCause(temp.orgId,temp.goal,temp.name);
                 causeContext.Insert(temp);
                 causeContext.Save();
                 return RedirectToAction("Index","OrganizationAction");

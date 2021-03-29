@@ -16,9 +16,10 @@
           <Property Name="orgId" Type="int" Nullable="false" />
           <Property Name="hash" Type="int" />
           <Property Name="isactive" Type="bit" Nullable="false" />
-          <Property Name="description" Type="varchar(max)" Nullable="false" />
+          <Property Name="shortDescription" Type="varchar" MaxLength="200" Nullable="false" />
           <Property Name="transactionhash" Type="varchar(max)" />
           <Property Name="type" Type="varchar(max)" Nullable="false" />
+          <Property Name="longDescription" Type="varchar(max)" Nullable="false" />
         </EntityType>
         <EntityType Name="donations">
           <Key>
@@ -53,7 +54,17 @@
           <Property Name="regcerti" Type="varchar(max)" />
           <Property Name="description" Type="varchar(max)" Nullable="false" />
           <Property Name="transactionhash" Type="varchar(max)" />
-          <Property Name="profilepic" Type="nchar" MaxLength="10" Nullable="false" />
+          <Property Name="profilepic" Type="varchar(max)" Nullable="false" />
+        </EntityType>
+        <EntityType Name="sysdiagrams">
+          <Key>
+            <PropertyRef Name="diagram_id" />
+          </Key>
+          <Property Name="name" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="principal_id" Type="int" Nullable="false" />
+          <Property Name="diagram_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="version" Type="int" />
+          <Property Name="definition" Type="varbinary(max)" />
         </EntityType>
         <EntityType Name="user">
           <Key>
@@ -126,6 +137,7 @@
           <EntitySet Name="cause" EntityType="Self.cause" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="donations" EntityType="Self.donations" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="organization" EntityType="Self.organization" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="user" EntityType="Self.user" Schema="dbo" store:Type="Tables" />
           <AssociationSet Name="FK_donations_cause" Association="Self.FK_donations_cause">
             <End Role="cause" EntitySet="cause" />
@@ -161,9 +173,10 @@
           <Property Name="isactive" Type="Boolean" Nullable="false" />
           <NavigationProperty Name="donations" Relationship="Self.FK_donations_cause" FromRole="cause" ToRole="donations" />
           <NavigationProperty Name="organization" Relationship="Self.orgId" FromRole="cause" ToRole="organization" />
-          <Property Name="description" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="false" />
           <Property Name="transactionhash" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
           <Property Name="type" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="shortDescription" Type="String" Nullable="false" MaxLength="200" FixedLength="false" Unicode="false" />
+          <Property Name="longDescription" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="false" />
         </EntityType>
         <EntityType Name="donation">
           <Key>
@@ -203,7 +216,7 @@
           <Property Name="regcerti" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
           <Property Name="description" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="false" />
           <Property Name="transactionhash" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
-          <Property Name="profilepic" Type="String" Nullable="false" MaxLength="Max" FixedLength="true" Unicode="true" />
+          <Property Name="profilepic" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="false" />
         </EntityType>
         <EntityType Name="user">
           <Key>
@@ -294,7 +307,18 @@
             <End Role="user" EntitySet="users" />
             <End Role="donations" EntitySet="donations" />
           </AssociationSet>
+          <EntitySet Name="sysdiagrams" EntityType="HelpingHands.sysdiagram" />
         </EntityContainer>
+        <EntityType Name="sysdiagram">
+          <Key>
+            <PropertyRef Name="diagram_id" />
+          </Key>
+          <Property Name="name" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
+          <Property Name="principal_id" Type="Int32" Nullable="false" />
+          <Property Name="diagram_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="version" Type="Int32" />
+          <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
+        </EntityType>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -304,9 +328,10 @@
           <EntitySetMapping Name="causes">
             <EntityTypeMapping TypeName="HelpingHands.cause">
               <MappingFragment StoreEntitySet="cause">
+                <ScalarProperty Name="longDescription" ColumnName="longDescription" />
+                <ScalarProperty Name="shortDescription" ColumnName="shortDescription" />
                 <ScalarProperty Name="type" ColumnName="type" />
                 <ScalarProperty Name="transactionhash" ColumnName="transactionhash" />
-                <ScalarProperty Name="description" ColumnName="description" />
                 <ScalarProperty Name="Id" ColumnName="Id" />
                 <ScalarProperty Name="name" ColumnName="name" />
                 <ScalarProperty Name="goal" ColumnName="goal" />
@@ -371,6 +396,17 @@
                 <ScalarProperty Name="country" ColumnName="country" />
                 <ScalarProperty Name="email" ColumnName="email" />
                 <ScalarProperty Name="hash" ColumnName="hash" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="sysdiagrams">
+            <EntityTypeMapping TypeName="HelpingHands.sysdiagram">
+              <MappingFragment StoreEntitySet="sysdiagrams">
+                <ScalarProperty Name="definition" ColumnName="definition" />
+                <ScalarProperty Name="version" ColumnName="version" />
+                <ScalarProperty Name="diagram_id" ColumnName="diagram_id" />
+                <ScalarProperty Name="principal_id" ColumnName="principal_id" />
+                <ScalarProperty Name="name" ColumnName="name" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

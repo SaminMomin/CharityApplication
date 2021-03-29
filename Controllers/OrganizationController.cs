@@ -5,6 +5,7 @@ using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using System.Threading.Tasks;
 using System.Web;
 using System.Web.Mvc;
 
@@ -38,6 +39,7 @@ namespace CharityApplication.Controllers
                     General.orgLoginStatus = true;
                     General.orgId = Org.Id;
                     General.orgName = Org.name;
+                    General.orgTx = Org.transactionhash;
                     return RedirectToAction("Index", "OrganizationAction", new { Id = Org.Id });
                 }
                 else
@@ -58,7 +60,7 @@ namespace CharityApplication.Controllers
 
 
         [HttpPost]
-        public ActionResult Register(organization Org,HttpPostedFileBase[] file)
+        public async Task<ActionResult> Register(organization Org,HttpPostedFileBase[] file)
         {
             if (!ModelState.IsValid)
             {
@@ -86,6 +88,7 @@ namespace CharityApplication.Controllers
                 temp.type = Org.type;
                 temp.website = Org.website;
                 temp.description = Org.description;
+                temp.transactionhash = await Smart.regOrg(temp.name);
                 if (file != null)
                 {
                     temp.profilepic = string.Concat(temp.Id, Path.GetExtension(file[0].FileName));
@@ -101,7 +104,7 @@ namespace CharityApplication.Controllers
         }
         public ActionResult Edit(int Id)
         {
-            return View(Organizations.FirstOrDefault(x=>x.Id==Id));
+            return View(organizationContext.Collection().FirstOrDefault(x=>x.Id==Id));
         }
         [HttpPost]
         public ActionResult Edit(organization Org,HttpPostedFileBase[] file)
@@ -152,8 +155,8 @@ namespace CharityApplication.Controllers
 
         public ActionResult Delete(int Id)
         {
-            var org= Organizations.Find(x=>x.Id==Id);
-            return View(org);
+            //var org= Organizations.Find(x=>x.Id==Id);
+            return View(organizationContext.Find(Id));
         }
 
         [HttpPost]
@@ -170,6 +173,7 @@ namespace CharityApplication.Controllers
                 General.orgLoginStatus = false;
                 General.userLoginStatus = false;
                 General.orgName = "";
+                General.orgTx = "";
                 return RedirectToAction("Login","Organization");
             }
             else
@@ -184,6 +188,7 @@ namespace CharityApplication.Controllers
             General.orgLoginStatus = false;
             General.orgName = "";
             General.orgId = -1;
+            General.orgTx = "";
             return RedirectToAction("Login","Organization");
         }
     }

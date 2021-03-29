@@ -9,7 +9,11 @@ namespace CharityApplication.ViewModels
 {
     public class OrgViewModel
     {
-        public organization orga { get; set; }
-        public IEnumerable<TypeList> types { get; set; }
+        public organization org { get; set; }
+        public IEnumerable<cause> causes { get; set; }
+        public int row { get; set; }
+        public int cols { get; set; }
+        public int fundsCollected { get; set; }
+        public int totalUsers { get; set; }
     }
 }

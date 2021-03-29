@@ -1,0 +1,49 @@
+﻿@model IEnumerable<CharityApplication.ViewModels.UserViewModel>
+
+@{
+    ViewBag.Title = "History";
+}
+<h4 class="text-lg-center">History</h4>
+<br />
+<table class="table">
+    <tr>
+        <th class="text-center">
+            @Html.DisplayNameFor(model => model.organization)
+        </th>
+        <th class="text-center">
+            @Html.DisplayNameFor(model => model.cause)
+        </th>
+        <th class="text-center">
+            @Html.DisplayNameFor(model => model.amount)
+        </th>
+        <th class="text-center">
+            @Html.DisplayNameFor(model => model.time)
+        </th>
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td class="text-center">
+                @Html.DisplayFor(modelItem => item.organization)
+            </td>
+            <td class="text-center">
+                @Html.DisplayFor(modelItem => item.cause)
+            </td>
+            <td class="text-center">
+                @Html.DisplayFor(modelItem => item.amount)
+            </td>
+            <td class="text-center">
+                @Html.DisplayFor(modelItem => item.time)
+            </td>
+            <td>
+                @Html.ActionLink("View Organization", "ViewOrg", "UserAction",new { orgId=item.orgId},new { @class="btn btn-primary mx-1"}) 
+                @Html.ActionLink("View Cause", "ViewCause", "UserAction",new { causeId=item.causeId}, new { @class = "btn btn-success" }) 
+                <a class="btn btn-secondary mx-1" target="_blank" href=@string.Concat("https://kovan.etherscan.io/tx/",item.transactionHash)>Verify on Etherscan</a>@*@Html.ActionLink("Verify on EtherScan", "7", new { /* id=item.PrimaryKey */ })*@
+            </td>
+        </tr>
+    }
+
+</table>
+

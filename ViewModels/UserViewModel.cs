@@ -19,6 +19,7 @@ namespace CharityApplication.ViewModels
         public string cause { get; set; }
         public  int causeId { get; set; }
         [DisplayName("Date")]
-        public DateTime time { get; set; }
+        public string time { get; set; }
+        public string transactionHash { get; set; }
     }
 }

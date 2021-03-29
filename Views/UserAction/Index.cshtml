@@ -1,77 +1,99 @@
-﻿@model IEnumerable<CharityApplication.ViewModels.UserViewModel>
+﻿@model CharityApplication.ViewModels.UserIndexViewModel
 
 @{
     ViewBag.Title = "Index";
 }
-
-<h2>User Details Menu</h2>
-<div class="row">
-    <div class="col-md-4">
-        @Html.ActionLink("Edit User", "Edit", "User", new { @Id = CharityApplication.Models.General.userId }, new { @class = "btn btn-primary" })
+<h2 class="text-lg-center">Active Causes</h2>
+@for (int i = 0; i < Model.row; i++)
+{
+    <div class="row">
+        @for (int j = 0; j < 3; j++)
+        {
+            if ((i * 3 + j) < Model.cols)
+            {
+                <div class="col-md-4">
+                    <div class="card flex-md-row mb-4 shadow-sm h-md-250 border-primary">
+                        <div class="card-body d-flex flex-column align-items-start">
+                            <h5 class="d-inline-block mb-2 text-primary">@Model.causes.ElementAt(i * 3 + j).name</h5>
+                            <h6 class="mb-0">
+                                @Html.ActionLink(@Model.orgMap[@Model.causes.ElementAt(i * 3 + j).orgId], "ViewOrg", "UserAction", new { orgId = @Model.causes.ElementAt(i * 3 + j).orgId }, new { @class= "btn btn-outline-success" })
+                            </h6>
+                            <br />
+                            <h6 class="mb-1 text-primary">@string.Concat("Goal: ₹", @Model.causes.ElementAt(i * 3 + j).goal)</h6>
+                            <p class="card-text text-white text-justify mb-auto">@Model.causes.ElementAt(i * 3 + j).shortDescription</p>
+                            @Html.ActionLink("Click To View More", "ViewCause", "UserAction", new {causeId= @Model.causes.ElementAt(i * 3 + j).Id }, new { @class = "btn btn-outline-primary btn-sm" })
+                        </div>
+                        @if (@Model.causes.ElementAt(i * 3 + j).type == "Community")
+                        {
+                            <img class="card-img-right flex-auto d-none d-lg-block" alt="Thumbnail [200x250]" src="~/CardImages/Community.png" style="width: 200px; height: 250px;">
+                        }
+                        else if (@Model.causes.ElementAt(i * 3 + j).type == "Housing")
+                        {
+                            <img class="card-img-right flex-auto d-none d-lg-block" alt="Thumbnail [200x250]" src="~/CardImages/Housing.jpg" style="width: 200px; height: 250px;">
+                        }
+                        else if (@Model.causes.ElementAt(i * 3 + j).type == "Overseas Aid")
+                        {
+                            <img class="card-img-right flex-auto d-none d-lg-block" alt="Thumbnail [200x250]" src="~/CardImages/Overseas Aid.jpg" style="width: 200px; height: 250px;">
+                        }
+                        else if (@Model.causes.ElementAt(i * 3 + j).type == "Poverty Relief")
+                        {
+                            <img class="card-img-right flex-auto d-none d-lg-block" alt="Thumbnail [200x250]" src="~/CardImages/Poverty Relief.jpg" style="width: 200px; height: 250px;">
+                        }
+                        else if (@Model.causes.ElementAt(i * 3 + j).type == "Training")
+                        {
+                            <img class="card-img-right flex-auto d-none d-lg-block" alt="Thumbnail [200x250]" src="~/CardImages/Training.png" style="width: 200px; height: 250px;">
+                        }
+                        else if (@Model.causes.ElementAt(i * 3 + j).type == "Medical")
+                        {
+                            <img class="card-img-right flex-auto d-none d-lg-block" alt="Thumbnail [200x250]" src="~/CardImages/Medical.jpg" style="width: 200px; height: 250px;">
+                        }
+                        else if (@Model.causes.ElementAt(i * 3 + j).type == "Sports Clubs")
+                        {
+                            <img class="card-img-right flex-auto d-none d-lg-block" alt="Thumbnail [200x250]" src="~/CardImages/Sports Clubs.jpg" style="width: 200px; height: 250px;">
+                        }
+                        else if (@Model.causes.ElementAt(i * 3 + j).type == "Arts and Culture")
+                        {
+                            <img class="card-img-right flex-auto d-none d-lg-block" alt="Thumbnail [200x250]" src="~/CardImages/Arts and Culture.jpg" style="width: 200px; height: 250px;">
+                        }
+                        else if (@Model.causes.ElementAt(i * 3 + j).type == "Public Service and Military")
+                        {
+                            <img class="card-img-right flex-auto d-none d-lg-block" alt="Thumbnail [200x250]" src="~/CardImages/Public Service and Military.jpg" style="width: 200px; height: 250px;">
+                        }
+                        else if (@Model.causes.ElementAt(i * 3 + j).type == "Education")
+                        {
+                            <img class="card-img-right flex-auto d-none d-lg-block" alt="Thumbnail [200x250]" src="~/CardImages/Education.jpg" style="width: 200px; height: 250px;">
+                        }
+                        else if (@Model.causes.ElementAt(i * 3 + j).type == "Children's")
+                        {
+                            <img class="card-img-right flex-auto d-none d-lg-block" alt="Thumbnail [200x250]" src="~/CardImages/Children.png" style="width: 200px; height: 250px;">
+                        }
+                        else if (@Model.causes.ElementAt(i * 3 + j).type == "Disability")
+                        {
+                            <img class="card-img-right flex-auto d-none d-lg-block" alt="Thumbnail [200x250]" src="~/CardImages/Disability.png" style="width: 200px; height: 250px;">
+                        }
+                        else if (@Model.causes.ElementAt(i * 3 + j).type == "Environmental")
+                        {
+                            <img class="card-img-right flex-auto d-none d-lg-block" alt="Thumbnail [200x250]" src="~/CardImages/Environmental.jpg" style="width: 200px; height: 250px;">
+                        }
+                        else if (@Model.causes.ElementAt(i * 3 + j).type == "Religious")
+                        {
+                            <img class="card-img-right flex-auto d-none d-lg-block" alt="Thumbnail [200x250]" src="~/CardImages/Religious.png" style="width: 200px; height: 250px;">
+                        }
+                        else if (@Model.causes.ElementAt(i * 3 + j).type == "Animal")
+                        {
+                            <img class="card-img-right flex-auto d-none d-lg-block" alt="Thumbnail [200x250]" src="~/CardImages/Animals.jpg" style="width: 200px; height: 250px;">
+                        }
+                        else
+                        {
+                            <img class="card-img-right flex-auto d-none d-lg-block" alt="Thumbnail [200x250]" src="~/CardImages/Elderly.jpg" style="width: 200px; height: 250px;">
+                        }
+                    </div>
+                </div>
+            }
+            else
+            {
+                break;
+            }
+        }
     </div>
-    <div class="col-md-4">
-        @Html.ActionLink("Delete User", "Delete", "User", new { @Id = CharityApplication.Models.General.userId }, new { @class = "btn btn-danger" })
-    </div>
-    <div class="col-md-4">
-        <a href=@string.Concat("https://kovan.etherscan.io/tx/",CharityApplication.Models.General.userTx) target="_blank" class="btn btn-dark">Click to verify your registration on Blockchain</a>
-    </div>
-</div>
-<h2>User Functionalities Menu</h2>
-<div class="row">
-    <div class="col-md-6">
-        <div class="card flex-md-row mb-4 shadow-sm h-md-250">
-            <div class="card-body d-flex flex-column align-items-start">
-                <strong class="d-inline-block mb-2 text-primary">World</strong>
-                <h6 class="mb-0">
-                    <a class="text-dark" href="#">40 Percent of People Can’t Afford Basics</a>
-                </h6>
-                <div class="mb-1 text-muted small">Nov 12</div>
-                <p class="card-text mb-auto">This is a wider card with supporting text below as a natural lead-in to additional content.</p>
-                <a class="btn btn-outline-primary btn-sm" role="button" href="http://www.jquery2dotnet.com/">Continue reading</a>
-            </div>
-            <img class="card-img-right flex-auto d-none d-lg-block" alt="Thumbnail [200x250]" src="~/Images/5053309.jpg" style="width: 200px; height: 250px;">
-        </div>
-    </div>
-</div>
-<br />
-
-<table class="table">
-    <tr>
-        <th>
-            @Html.DisplayNameFor(model => model.organization)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.cause)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.amount)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.time)
-        </th>
-        <th></th>
-    </tr>
-
-@foreach (var item in Model) {
-<tr>
-    <td>
-        @Html.DisplayFor(modelItem => item.organization)
-    </td>
-    <td>
-        @Html.DisplayFor(modelItem => item.cause)
-    </td>
-    <td>
-        @Html.DisplayFor(modelItem => item.amount)
-    </td>
-    <td>
-        @Html.DisplayFor(modelItem => item.time)
-    </td>
-    <td>
-        @Html.ActionLink("View Organization", "Edit", new { /* id=item.PrimaryKey */ }) |
-        @Html.ActionLink("View Cause", "Details", new { /* id=item.PrimaryKey */ }) |
-        @*@Html.ActionLink("Edit User", "7", new { /* id=item.PrimaryKey */ })*@
-    </td>
-</tr>
 }
-
-</table>
