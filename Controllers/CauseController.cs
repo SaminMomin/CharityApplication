@@ -31,7 +31,7 @@ namespace CharityApplication.Controllers
                 {
                     name = model.name,
                     goal = model.goal,
-                    collected = model.collected,
+                    collected = 0,
                     orgId = General.orgId,
                     shortDescription=model.shortDescription,
                     longDescription = model.longDescription,
@@ -39,11 +39,25 @@ namespace CharityApplication.Controllers
                     type=model.type
                 };
                 temp.hash = String.Concat(temp.name, temp.longDescription,temp.shortDescription).GetHashCode();
-                temp.transactionhash = await Smart.regCause(temp.orgId,temp.goal,temp.name);
+                temp.transactionhash = await Smart.regCause(temp.orgId,temp.Id,temp.goal,temp.name);
                 causeContext.Insert(temp);
                 causeContext.Save();
                 return RedirectToAction("Index","OrganizationAction");
             }
+        }
+        public ActionResult CloseCause(int causeId)
+        {
+            var model = causeContext.Find(causeId);
+            model.isactive = false;
+            causeContext.Update(model);
+            causeContext.Save();
+            return RedirectToAction("Index","OrganizationAction");
+        }
+
+        public ActionResult ManageCauses()
+        {
+            var model = causeContext.Collection().Where(x => x.orgId == General.orgId).ToList();
+            return View(model);
         }
     }
 }

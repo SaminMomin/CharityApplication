@@ -16,12 +16,46 @@ namespace CharityApplication.Models
 {
 	class Smart
 	{
-		public static async Task<string> regFunc(string name)
+		public static async Task<string> regFunc(int userId,string name)
 		{
 			var privateKey = "0x1f2ed433579f8d059fd95610fe12f2462156fac047a6f99d99f53b1fb7b2be48";
 			var account = new Account(privateKey);
 			var web3 = new Web3(account, "https://kovan.infura.io/v3/aed105d4f1364e188fba9f1295c89452");
 			var abi = @"[
+	{
+		""inputs"": [
+			{
+				""internalType"": ""uint256"",
+				""name"": ""amount"",
+				""type"": ""uint256""
+			},
+			{
+				""internalType"": ""uint256"",
+				""name"": ""userId"",
+				""type"": ""uint256""
+			},
+			{
+				""internalType"": ""uint256"",
+				""name"": ""orgId"",
+				""type"": ""uint256""
+			},
+			{
+				""internalType"": ""uint256"",
+				""name"": ""causeId"",
+				""type"": ""uint256""
+			}
+		],
+		""name"": ""donate"",
+		""outputs"": [
+			{
+				""internalType"": ""string"",
+				""name"": ""message"",
+				""type"": ""string""
+			}
+		],
+		""stateMutability"": ""nonpayable"",
+		""type"": ""function""
+	},
 	{
 		""inputs"": [],
 		""stateMutability"": ""nonpayable"",
@@ -33,145 +67,29 @@ namespace CharityApplication.Models
 			{
 				""indexed"": false,
 				""internalType"": ""string"",
-				""name"": ""message"",
-				""type"": ""string""
-			},
-			{
-	""indexed"": false,
-				""internalType"": ""uint256"",
-				""name"": ""time"",
-				""type"": ""uint256""
-			}
-		],
-		""name"": ""CauseClose"",
-		""type"": ""event""
-	},
-	{
-	""inputs"": [
-			{
-		""internalType"": ""uint256"",
-				""name"": ""causeId"",
-				""type"": ""uint256""
-			},
-			{
-		""internalType"": ""uint256"",
-				""name"": ""orgId"",
-				""type"": ""uint256""
-			}
-		],
-		""name"": ""closeCause"",
-		""outputs"": [],
-		""stateMutability"": ""nonpayable"",
-		""type"": ""function""
-	},
-	{
-	""anonymous"": false,
-		""inputs"": [
-			{
-		""indexed"": false,
-				""internalType"": ""string"",
-				""name"": ""message"",
-				""type"": ""string""
-			},
-			{
-		""indexed"": false,
-				""internalType"": ""uint256"",
-				""name"": ""time"",
-				""type"": ""uint256""
-			}
-		],
-		""name"": ""Delete"",
-		""type"": ""event""
-	},
-	{
-	""inputs"": [
-			{
-		""internalType"": ""uint256"",
-				""name"": ""id"",
-				""type"": ""uint256""
-			}
-		],
-		""name"": ""deleteOrganization"",
-		""outputs"": [],
-		""stateMutability"": ""nonpayable"",
-		""type"": ""function""
-	},
-	{
-	""inputs"": [
-			{
-		""internalType"": ""uint256"",
-				""name"": ""id"",
-				""type"": ""uint256""
-			}
-		],
-		""name"": ""deleteUser"",
-		""outputs"": [],
-		""stateMutability"": ""nonpayable"",
-		""type"": ""function""
-	},
-	{
-	""inputs"": [
-			{
-		""internalType"": ""uint256"",
-				""name"": ""amount"",
-				""type"": ""uint256""
-			},
-			{
-		""internalType"": ""uint256"",
-				""name"": ""userId"",
-				""type"": ""uint256""
-			},
-			{
-		""internalType"": ""uint256"",
-				""name"": ""orgId"",
-				""type"": ""uint256""
-			},
-			{
-		""internalType"": ""uint256"",
-				""name"": ""causeId"",
-				""type"": ""uint256""
-			}
-		],
-		""name"": ""donate"",
-		""outputs"": [
-			{
-		""internalType"": ""string"",
-				""name"": ""message"",
-				""type"": ""string""
-			}
-		],
-		""stateMutability"": ""nonpayable"",
-		""type"": ""function""
-	},
-	{
-	""anonymous"": false,
-		""inputs"": [
-			{
-		""indexed"": false,
-				""internalType"": ""string"",
 				""name"": ""donor"",
 				""type"": ""string""
 			},
 			{
-		""indexed"": false,
+				""indexed"": false,
 				""internalType"": ""string"",
 				""name"": ""organization"",
 				""type"": ""string""
 			},
 			{
-		""indexed"": false,
+				""indexed"": false,
 				""internalType"": ""string"",
 				""name"": ""cause"",
 				""type"": ""string""
 			},
 			{
-		""indexed"": false,
+				""indexed"": false,
 				""internalType"": ""uint256"",
 				""name"": ""amount"",
 				""type"": ""uint256""
 			},
 			{
-		""indexed"": false,
+				""indexed"": false,
 				""internalType"": ""uint256"",
 				""name"": ""time"",
 				""type"": ""uint256""
@@ -181,26 +99,26 @@ namespace CharityApplication.Models
 		""type"": ""event""
 	},
 	{
-	""inputs"": [
+		""inputs"": [
 			{
-		""internalType"": ""uint256"",
+				""internalType"": ""uint256"",
 				""name"": ""orgId"",
 				""type"": ""uint256""
 			},
 			{
-		""internalType"": ""uint256"",
+				""internalType"": ""uint256"",
+				""name"": ""causeId"",
+				""type"": ""uint256""
+			},
+			{
+				""internalType"": ""uint256"",
 				""name"": ""goal"",
 				""type"": ""uint256""
 			},
 			{
-		""internalType"": ""string"",
+				""internalType"": ""string"",
 				""name"": ""name"",
 				""type"": ""string""
-			},
-			{
-		""internalType"": ""uint256"",
-				""name"": ""causeId"",
-				""type"": ""uint256""
 			}
 		],
 		""name"": ""regCause"",
@@ -209,28 +127,28 @@ namespace CharityApplication.Models
 		""type"": ""function""
 	},
 	{
-	""anonymous"": false,
+		""anonymous"": false,
 		""inputs"": [
 			{
-		""indexed"": false,
+				""indexed"": false,
 				""internalType"": ""string"",
 				""name"": ""name"",
 				""type"": ""string""
 			},
 			{
-		""indexed"": false,
+				""indexed"": false,
 				""internalType"": ""uint256"",
 				""name"": ""id"",
 				""type"": ""uint256""
 			},
 			{
-		""indexed"": false,
+				""indexed"": false,
 				""internalType"": ""string"",
 				""name"": ""message"",
 				""type"": ""string""
 			},
 			{
-		""indexed"": false,
+				""indexed"": false,
 				""internalType"": ""uint256"",
 				""name"": ""time"",
 				""type"": ""uint256""
@@ -240,16 +158,16 @@ namespace CharityApplication.Models
 		""type"": ""event""
 	},
 	{
-	""inputs"": [
+		""inputs"": [
 			{
-		""internalType"": ""string"",
-				""name"": ""name"",
-				""type"": ""string""
+				""internalType"": ""uint256"",
+				""name"": ""id"",
+				""type"": ""uint256""
 			},
 			{
-		""internalType"": ""uint256"",
-				""name"": ""org_id"",
-				""type"": ""uint256""
+				""internalType"": ""string"",
+				""name"": ""name"",
+				""type"": ""string""
 			}
 		],
 		""name"": ""regOrg"",
@@ -258,16 +176,16 @@ namespace CharityApplication.Models
 		""type"": ""function""
 	},
 	{
-	""inputs"": [
+		""inputs"": [
 			{
-		""internalType"": ""string"",
-				""name"": ""name"",
-				""type"": ""string""
+				""internalType"": ""uint256"",
+				""name"": ""id"",
+				""type"": ""uint256""
 			},
 			{
-		""internalType"": ""uint256"",
-				""name"": ""user_id"",
-				""type"": ""uint256""
+				""internalType"": ""string"",
+				""name"": ""name"",
+				""type"": ""string""
 			}
 		],
 		""name"": ""regUser"",
@@ -276,9 +194,9 @@ namespace CharityApplication.Models
 		""type"": ""function""
 	},
 	{
-	""inputs"": [
+		""inputs"": [
 			{
-		""internalType"": ""uint256"",
+				""internalType"": ""uint256"",
 				""name"": ""id"",
 				""type"": ""uint256""
 			}
@@ -286,17 +204,17 @@ namespace CharityApplication.Models
 		""name"": ""getOrg"",
 		""outputs"": [
 			{
-		""internalType"": ""string"",
+				""internalType"": ""string"",
 				""name"": ""name"",
 				""type"": ""string""
 			},
 			{
-		""internalType"": ""uint256"",
+				""internalType"": ""uint256"",
 				""name"": ""fundsCollected"",
 				""type"": ""uint256""
 			},
 			{
-		""internalType"": ""uint256"",
+				""internalType"": ""uint256"",
 				""name"": ""causeCount"",
 				""type"": ""uint256""
 			}
@@ -305,11 +223,11 @@ namespace CharityApplication.Models
 		""type"": ""function""
 	},
 	{
-	""inputs"": [],
+		""inputs"": [],
 		""name"": ""getOrgCount"",
 		""outputs"": [
 			{
-		""internalType"": ""uint256"",
+				""internalType"": ""uint256"",
 				""name"": ""count"",
 				""type"": ""uint256""
 			}
@@ -318,9 +236,9 @@ namespace CharityApplication.Models
 		""type"": ""function""
 	},
 	{
-	""inputs"": [
+		""inputs"": [
 			{
-		""internalType"": ""uint256"",
+				""internalType"": ""uint256"",
 				""name"": ""id"",
 				""type"": ""uint256""
 			}
@@ -328,19 +246,19 @@ namespace CharityApplication.Models
 		""name"": ""getUser"",
 		""outputs"": [
 			{
-		""components"": [
+				""components"": [
 					{
-			""internalType"": ""string"",
+						""internalType"": ""string"",
 						""name"": ""name"",
 						""type"": ""string""
 					},
 					{
-			""internalType"": ""uint256"",
+						""internalType"": ""uint256"",
 						""name"": ""moneyDonated"",
 						""type"": ""uint256""
 					},
 					{
-			""internalType"": ""string[]"",
+						""internalType"": ""string[]"",
 						""name"": ""orgList"",
 						""type"": ""string[]""
 					}
@@ -354,11 +272,11 @@ namespace CharityApplication.Models
 		""type"": ""function""
 	},
 	{
-	""inputs"": [],
+		""inputs"": [],
 		""name"": ""getUserCount"",
 		""outputs"": [
 			{
-		""internalType"": ""uint256"",
+				""internalType"": ""uint256"",
 				""name"": ""count"",
 				""type"": ""uint256""
 			}
@@ -367,10 +285,10 @@ namespace CharityApplication.Models
 		""type"": ""function""
 	}
 ]";
-			var contract = web3.Eth.GetContract(abi, "0x7973240251466dBa86f10A530b9ff819869EDF4E");
+			var contract = web3.Eth.GetContract(abi, "0xB9A8667ea54A815a67Fda4B8f0aB39F0362edC3c");
 			var regUserFunction = contract.GetFunction("regUser");
-			var gas = await regUserFunction.EstimateGasAsync(account.Address, null, null, new String("CrankShaft".ToCharArray()));
-			var receiptFirstAmountSend = await regUserFunction.SendTransactionAndWaitForReceiptAsync(account.Address, gas, null, null, name);
+			var gas = await regUserFunction.EstimateGasAsync(account.Address, null, null, new Object[] { userId,name});
+			var receiptFirstAmountSend = await regUserFunction.SendTransactionAndWaitForReceiptAsync(account.Address, gas, null, null, new Object[] { userId,name });
 			return (receiptFirstAmountSend.TransactionHash);
 		}
 
@@ -381,6 +299,40 @@ namespace CharityApplication.Models
 			var web3 = new Web3(account, "https://kovan.infura.io/v3/aed105d4f1364e188fba9f1295c89452");
 			var abi = @"[
 	{
+		""inputs"": [
+			{
+				""internalType"": ""uint256"",
+				""name"": ""amount"",
+				""type"": ""uint256""
+			},
+			{
+				""internalType"": ""uint256"",
+				""name"": ""userId"",
+				""type"": ""uint256""
+			},
+			{
+				""internalType"": ""uint256"",
+				""name"": ""orgId"",
+				""type"": ""uint256""
+			},
+			{
+				""internalType"": ""uint256"",
+				""name"": ""causeId"",
+				""type"": ""uint256""
+			}
+		],
+		""name"": ""donate"",
+		""outputs"": [
+			{
+				""internalType"": ""string"",
+				""name"": ""message"",
+				""type"": ""string""
+			}
+		],
+		""stateMutability"": ""nonpayable"",
+		""type"": ""function""
+	},
+	{
 		""inputs"": [],
 		""stateMutability"": ""nonpayable"",
 		""type"": ""constructor""
@@ -391,145 +343,29 @@ namespace CharityApplication.Models
 			{
 				""indexed"": false,
 				""internalType"": ""string"",
-				""name"": ""message"",
-				""type"": ""string""
-			},
-			{
-	""indexed"": false,
-				""internalType"": ""uint256"",
-				""name"": ""time"",
-				""type"": ""uint256""
-			}
-		],
-		""name"": ""CauseClose"",
-		""type"": ""event""
-	},
-	{
-	""inputs"": [
-			{
-		""internalType"": ""uint256"",
-				""name"": ""causeId"",
-				""type"": ""uint256""
-			},
-			{
-		""internalType"": ""uint256"",
-				""name"": ""orgId"",
-				""type"": ""uint256""
-			}
-		],
-		""name"": ""closeCause"",
-		""outputs"": [],
-		""stateMutability"": ""nonpayable"",
-		""type"": ""function""
-	},
-	{
-	""anonymous"": false,
-		""inputs"": [
-			{
-		""indexed"": false,
-				""internalType"": ""string"",
-				""name"": ""message"",
-				""type"": ""string""
-			},
-			{
-		""indexed"": false,
-				""internalType"": ""uint256"",
-				""name"": ""time"",
-				""type"": ""uint256""
-			}
-		],
-		""name"": ""Delete"",
-		""type"": ""event""
-	},
-	{
-	""inputs"": [
-			{
-		""internalType"": ""uint256"",
-				""name"": ""id"",
-				""type"": ""uint256""
-			}
-		],
-		""name"": ""deleteOrganization"",
-		""outputs"": [],
-		""stateMutability"": ""nonpayable"",
-		""type"": ""function""
-	},
-	{
-	""inputs"": [
-			{
-		""internalType"": ""uint256"",
-				""name"": ""id"",
-				""type"": ""uint256""
-			}
-		],
-		""name"": ""deleteUser"",
-		""outputs"": [],
-		""stateMutability"": ""nonpayable"",
-		""type"": ""function""
-	},
-	{
-	""inputs"": [
-			{
-		""internalType"": ""uint256"",
-				""name"": ""amount"",
-				""type"": ""uint256""
-			},
-			{
-		""internalType"": ""uint256"",
-				""name"": ""userId"",
-				""type"": ""uint256""
-			},
-			{
-		""internalType"": ""uint256"",
-				""name"": ""orgId"",
-				""type"": ""uint256""
-			},
-			{
-		""internalType"": ""uint256"",
-				""name"": ""causeId"",
-				""type"": ""uint256""
-			}
-		],
-		""name"": ""donate"",
-		""outputs"": [
-			{
-		""internalType"": ""string"",
-				""name"": ""message"",
-				""type"": ""string""
-			}
-		],
-		""stateMutability"": ""nonpayable"",
-		""type"": ""function""
-	},
-	{
-	""anonymous"": false,
-		""inputs"": [
-			{
-		""indexed"": false,
-				""internalType"": ""string"",
 				""name"": ""donor"",
 				""type"": ""string""
 			},
 			{
-		""indexed"": false,
+				""indexed"": false,
 				""internalType"": ""string"",
 				""name"": ""organization"",
 				""type"": ""string""
 			},
 			{
-		""indexed"": false,
+				""indexed"": false,
 				""internalType"": ""string"",
 				""name"": ""cause"",
 				""type"": ""string""
 			},
 			{
-		""indexed"": false,
+				""indexed"": false,
 				""internalType"": ""uint256"",
 				""name"": ""amount"",
 				""type"": ""uint256""
 			},
 			{
-		""indexed"": false,
+				""indexed"": false,
 				""internalType"": ""uint256"",
 				""name"": ""time"",
 				""type"": ""uint256""
@@ -539,26 +375,26 @@ namespace CharityApplication.Models
 		""type"": ""event""
 	},
 	{
-	""inputs"": [
+		""inputs"": [
 			{
-		""internalType"": ""uint256"",
+				""internalType"": ""uint256"",
 				""name"": ""orgId"",
 				""type"": ""uint256""
 			},
 			{
-		""internalType"": ""uint256"",
+				""internalType"": ""uint256"",
+				""name"": ""causeId"",
+				""type"": ""uint256""
+			},
+			{
+				""internalType"": ""uint256"",
 				""name"": ""goal"",
 				""type"": ""uint256""
 			},
 			{
-		""internalType"": ""string"",
+				""internalType"": ""string"",
 				""name"": ""name"",
 				""type"": ""string""
-			},
-			{
-		""internalType"": ""uint256"",
-				""name"": ""causeId"",
-				""type"": ""uint256""
 			}
 		],
 		""name"": ""regCause"",
@@ -567,28 +403,28 @@ namespace CharityApplication.Models
 		""type"": ""function""
 	},
 	{
-	""anonymous"": false,
+		""anonymous"": false,
 		""inputs"": [
 			{
-		""indexed"": false,
+				""indexed"": false,
 				""internalType"": ""string"",
 				""name"": ""name"",
 				""type"": ""string""
 			},
 			{
-		""indexed"": false,
+				""indexed"": false,
 				""internalType"": ""uint256"",
 				""name"": ""id"",
 				""type"": ""uint256""
 			},
 			{
-		""indexed"": false,
+				""indexed"": false,
 				""internalType"": ""string"",
 				""name"": ""message"",
 				""type"": ""string""
 			},
 			{
-		""indexed"": false,
+				""indexed"": false,
 				""internalType"": ""uint256"",
 				""name"": ""time"",
 				""type"": ""uint256""
@@ -598,16 +434,16 @@ namespace CharityApplication.Models
 		""type"": ""event""
 	},
 	{
-	""inputs"": [
+		""inputs"": [
 			{
-		""internalType"": ""string"",
-				""name"": ""name"",
-				""type"": ""string""
+				""internalType"": ""uint256"",
+				""name"": ""id"",
+				""type"": ""uint256""
 			},
 			{
-		""internalType"": ""uint256"",
-				""name"": ""org_id"",
-				""type"": ""uint256""
+				""internalType"": ""string"",
+				""name"": ""name"",
+				""type"": ""string""
 			}
 		],
 		""name"": ""regOrg"",
@@ -616,16 +452,16 @@ namespace CharityApplication.Models
 		""type"": ""function""
 	},
 	{
-	""inputs"": [
+		""inputs"": [
 			{
-		""internalType"": ""string"",
-				""name"": ""name"",
-				""type"": ""string""
+				""internalType"": ""uint256"",
+				""name"": ""id"",
+				""type"": ""uint256""
 			},
 			{
-		""internalType"": ""uint256"",
-				""name"": ""user_id"",
-				""type"": ""uint256""
+				""internalType"": ""string"",
+				""name"": ""name"",
+				""type"": ""string""
 			}
 		],
 		""name"": ""regUser"",
@@ -634,9 +470,9 @@ namespace CharityApplication.Models
 		""type"": ""function""
 	},
 	{
-	""inputs"": [
+		""inputs"": [
 			{
-		""internalType"": ""uint256"",
+				""internalType"": ""uint256"",
 				""name"": ""id"",
 				""type"": ""uint256""
 			}
@@ -644,17 +480,17 @@ namespace CharityApplication.Models
 		""name"": ""getOrg"",
 		""outputs"": [
 			{
-		""internalType"": ""string"",
+				""internalType"": ""string"",
 				""name"": ""name"",
 				""type"": ""string""
 			},
 			{
-		""internalType"": ""uint256"",
+				""internalType"": ""uint256"",
 				""name"": ""fundsCollected"",
 				""type"": ""uint256""
 			},
 			{
-		""internalType"": ""uint256"",
+				""internalType"": ""uint256"",
 				""name"": ""causeCount"",
 				""type"": ""uint256""
 			}
@@ -663,11 +499,11 @@ namespace CharityApplication.Models
 		""type"": ""function""
 	},
 	{
-	""inputs"": [],
+		""inputs"": [],
 		""name"": ""getOrgCount"",
 		""outputs"": [
 			{
-		""internalType"": ""uint256"",
+				""internalType"": ""uint256"",
 				""name"": ""count"",
 				""type"": ""uint256""
 			}
@@ -676,9 +512,9 @@ namespace CharityApplication.Models
 		""type"": ""function""
 	},
 	{
-	""inputs"": [
+		""inputs"": [
 			{
-		""internalType"": ""uint256"",
+				""internalType"": ""uint256"",
 				""name"": ""id"",
 				""type"": ""uint256""
 			}
@@ -686,19 +522,19 @@ namespace CharityApplication.Models
 		""name"": ""getUser"",
 		""outputs"": [
 			{
-		""components"": [
+				""components"": [
 					{
-			""internalType"": ""string"",
+						""internalType"": ""string"",
 						""name"": ""name"",
 						""type"": ""string""
 					},
 					{
-			""internalType"": ""uint256"",
+						""internalType"": ""uint256"",
 						""name"": ""moneyDonated"",
 						""type"": ""uint256""
 					},
 					{
-			""internalType"": ""string[]"",
+						""internalType"": ""string[]"",
 						""name"": ""orgList"",
 						""type"": ""string[]""
 					}
@@ -712,11 +548,11 @@ namespace CharityApplication.Models
 		""type"": ""function""
 	},
 	{
-	""inputs"": [],
+		""inputs"": [],
 		""name"": ""getUserCount"",
 		""outputs"": [
 			{
-		""internalType"": ""uint256"",
+				""internalType"": ""uint256"",
 				""name"": ""count"",
 				""type"": ""uint256""
 			}
@@ -725,19 +561,53 @@ namespace CharityApplication.Models
 		""type"": ""function""
 	}
 ]";
-			var contract = web3.Eth.GetContract(abi, "0x7973240251466dBa86f10A530b9ff819869EDF4E");
+			var contract = web3.Eth.GetContract(abi, "0xB9A8667ea54A815a67Fda4B8f0aB39F0362edC3c");
 			var regUserFunction = contract.GetFunction("donate");
 			var gas = await regUserFunction.EstimateGasAsync(account.Address, null, null, new Object[] {amount,userId,orgId,causeId});
 			var receiptFirstAmountSend = await regUserFunction.SendTransactionAndWaitForReceiptAsync(account.Address, gas, null, null, new Object[] { amount, userId, orgId, causeId });
 			return (receiptFirstAmountSend.TransactionHash);
 		}
 
-		public static async Task<string> regOrg(string name)
+		public static async Task<string> regOrg(int orgId,string name)
 		{
 			var privateKey = "0x1f2ed433579f8d059fd95610fe12f2462156fac047a6f99d99f53b1fb7b2be48";
 			var account = new Account(privateKey);
 			var web3 = new Web3(account, "https://kovan.infura.io/v3/aed105d4f1364e188fba9f1295c89452");
 			var abi = @"[
+	{
+		""inputs"": [
+			{
+				""internalType"": ""uint256"",
+				""name"": ""amount"",
+				""type"": ""uint256""
+			},
+			{
+				""internalType"": ""uint256"",
+				""name"": ""userId"",
+				""type"": ""uint256""
+			},
+			{
+				""internalType"": ""uint256"",
+				""name"": ""orgId"",
+				""type"": ""uint256""
+			},
+			{
+				""internalType"": ""uint256"",
+				""name"": ""causeId"",
+				""type"": ""uint256""
+			}
+		],
+		""name"": ""donate"",
+		""outputs"": [
+			{
+				""internalType"": ""string"",
+				""name"": ""message"",
+				""type"": ""string""
+			}
+		],
+		""stateMutability"": ""nonpayable"",
+		""type"": ""function""
+	},
 	{
 		""inputs"": [],
 		""stateMutability"": ""nonpayable"",
@@ -749,145 +619,29 @@ namespace CharityApplication.Models
 			{
 				""indexed"": false,
 				""internalType"": ""string"",
-				""name"": ""message"",
-				""type"": ""string""
-			},
-			{
-	""indexed"": false,
-				""internalType"": ""uint256"",
-				""name"": ""time"",
-				""type"": ""uint256""
-			}
-		],
-		""name"": ""CauseClose"",
-		""type"": ""event""
-	},
-	{
-	""inputs"": [
-			{
-		""internalType"": ""uint256"",
-				""name"": ""causeId"",
-				""type"": ""uint256""
-			},
-			{
-		""internalType"": ""uint256"",
-				""name"": ""orgId"",
-				""type"": ""uint256""
-			}
-		],
-		""name"": ""closeCause"",
-		""outputs"": [],
-		""stateMutability"": ""nonpayable"",
-		""type"": ""function""
-	},
-	{
-	""anonymous"": false,
-		""inputs"": [
-			{
-		""indexed"": false,
-				""internalType"": ""string"",
-				""name"": ""message"",
-				""type"": ""string""
-			},
-			{
-		""indexed"": false,
-				""internalType"": ""uint256"",
-				""name"": ""time"",
-				""type"": ""uint256""
-			}
-		],
-		""name"": ""Delete"",
-		""type"": ""event""
-	},
-	{
-	""inputs"": [
-			{
-		""internalType"": ""uint256"",
-				""name"": ""id"",
-				""type"": ""uint256""
-			}
-		],
-		""name"": ""deleteOrganization"",
-		""outputs"": [],
-		""stateMutability"": ""nonpayable"",
-		""type"": ""function""
-	},
-	{
-	""inputs"": [
-			{
-		""internalType"": ""uint256"",
-				""name"": ""id"",
-				""type"": ""uint256""
-			}
-		],
-		""name"": ""deleteUser"",
-		""outputs"": [],
-		""stateMutability"": ""nonpayable"",
-		""type"": ""function""
-	},
-	{
-	""inputs"": [
-			{
-		""internalType"": ""uint256"",
-				""name"": ""amount"",
-				""type"": ""uint256""
-			},
-			{
-		""internalType"": ""uint256"",
-				""name"": ""userId"",
-				""type"": ""uint256""
-			},
-			{
-		""internalType"": ""uint256"",
-				""name"": ""orgId"",
-				""type"": ""uint256""
-			},
-			{
-		""internalType"": ""uint256"",
-				""name"": ""causeId"",
-				""type"": ""uint256""
-			}
-		],
-		""name"": ""donate"",
-		""outputs"": [
-			{
-		""internalType"": ""string"",
-				""name"": ""message"",
-				""type"": ""string""
-			}
-		],
-		""stateMutability"": ""nonpayable"",
-		""type"": ""function""
-	},
-	{
-	""anonymous"": false,
-		""inputs"": [
-			{
-		""indexed"": false,
-				""internalType"": ""string"",
 				""name"": ""donor"",
 				""type"": ""string""
 			},
 			{
-		""indexed"": false,
+				""indexed"": false,
 				""internalType"": ""string"",
 				""name"": ""organization"",
 				""type"": ""string""
 			},
 			{
-		""indexed"": false,
+				""indexed"": false,
 				""internalType"": ""string"",
 				""name"": ""cause"",
 				""type"": ""string""
 			},
 			{
-		""indexed"": false,
+				""indexed"": false,
 				""internalType"": ""uint256"",
 				""name"": ""amount"",
 				""type"": ""uint256""
 			},
 			{
-		""indexed"": false,
+				""indexed"": false,
 				""internalType"": ""uint256"",
 				""name"": ""time"",
 				""type"": ""uint256""
@@ -897,26 +651,26 @@ namespace CharityApplication.Models
 		""type"": ""event""
 	},
 	{
-	""inputs"": [
+		""inputs"": [
 			{
-		""internalType"": ""uint256"",
+				""internalType"": ""uint256"",
 				""name"": ""orgId"",
 				""type"": ""uint256""
 			},
 			{
-		""internalType"": ""uint256"",
+				""internalType"": ""uint256"",
+				""name"": ""causeId"",
+				""type"": ""uint256""
+			},
+			{
+				""internalType"": ""uint256"",
 				""name"": ""goal"",
 				""type"": ""uint256""
 			},
 			{
-		""internalType"": ""string"",
+				""internalType"": ""string"",
 				""name"": ""name"",
 				""type"": ""string""
-			},
-			{
-		""internalType"": ""uint256"",
-				""name"": ""causeId"",
-				""type"": ""uint256""
 			}
 		],
 		""name"": ""regCause"",
@@ -925,28 +679,28 @@ namespace CharityApplication.Models
 		""type"": ""function""
 	},
 	{
-	""anonymous"": false,
+		""anonymous"": false,
 		""inputs"": [
 			{
-		""indexed"": false,
+				""indexed"": false,
 				""internalType"": ""string"",
 				""name"": ""name"",
 				""type"": ""string""
 			},
 			{
-		""indexed"": false,
+				""indexed"": false,
 				""internalType"": ""uint256"",
 				""name"": ""id"",
 				""type"": ""uint256""
 			},
 			{
-		""indexed"": false,
+				""indexed"": false,
 				""internalType"": ""string"",
 				""name"": ""message"",
 				""type"": ""string""
 			},
 			{
-		""indexed"": false,
+				""indexed"": false,
 				""internalType"": ""uint256"",
 				""name"": ""time"",
 				""type"": ""uint256""
@@ -956,16 +710,16 @@ namespace CharityApplication.Models
 		""type"": ""event""
 	},
 	{
-	""inputs"": [
+		""inputs"": [
 			{
-		""internalType"": ""string"",
-				""name"": ""name"",
-				""type"": ""string""
+				""internalType"": ""uint256"",
+				""name"": ""id"",
+				""type"": ""uint256""
 			},
 			{
-		""internalType"": ""uint256"",
-				""name"": ""org_id"",
-				""type"": ""uint256""
+				""internalType"": ""string"",
+				""name"": ""name"",
+				""type"": ""string""
 			}
 		],
 		""name"": ""regOrg"",
@@ -974,16 +728,16 @@ namespace CharityApplication.Models
 		""type"": ""function""
 	},
 	{
-	""inputs"": [
+		""inputs"": [
 			{
-		""internalType"": ""string"",
-				""name"": ""name"",
-				""type"": ""string""
+				""internalType"": ""uint256"",
+				""name"": ""id"",
+				""type"": ""uint256""
 			},
 			{
-		""internalType"": ""uint256"",
-				""name"": ""user_id"",
-				""type"": ""uint256""
+				""internalType"": ""string"",
+				""name"": ""name"",
+				""type"": ""string""
 			}
 		],
 		""name"": ""regUser"",
@@ -992,9 +746,9 @@ namespace CharityApplication.Models
 		""type"": ""function""
 	},
 	{
-	""inputs"": [
+		""inputs"": [
 			{
-		""internalType"": ""uint256"",
+				""internalType"": ""uint256"",
 				""name"": ""id"",
 				""type"": ""uint256""
 			}
@@ -1002,17 +756,17 @@ namespace CharityApplication.Models
 		""name"": ""getOrg"",
 		""outputs"": [
 			{
-		""internalType"": ""string"",
+				""internalType"": ""string"",
 				""name"": ""name"",
 				""type"": ""string""
 			},
 			{
-		""internalType"": ""uint256"",
+				""internalType"": ""uint256"",
 				""name"": ""fundsCollected"",
 				""type"": ""uint256""
 			},
 			{
-		""internalType"": ""uint256"",
+				""internalType"": ""uint256"",
 				""name"": ""causeCount"",
 				""type"": ""uint256""
 			}
@@ -1021,11 +775,11 @@ namespace CharityApplication.Models
 		""type"": ""function""
 	},
 	{
-	""inputs"": [],
+		""inputs"": [],
 		""name"": ""getOrgCount"",
 		""outputs"": [
 			{
-		""internalType"": ""uint256"",
+				""internalType"": ""uint256"",
 				""name"": ""count"",
 				""type"": ""uint256""
 			}
@@ -1034,9 +788,9 @@ namespace CharityApplication.Models
 		""type"": ""function""
 	},
 	{
-	""inputs"": [
+		""inputs"": [
 			{
-		""internalType"": ""uint256"",
+				""internalType"": ""uint256"",
 				""name"": ""id"",
 				""type"": ""uint256""
 			}
@@ -1044,19 +798,19 @@ namespace CharityApplication.Models
 		""name"": ""getUser"",
 		""outputs"": [
 			{
-		""components"": [
+				""components"": [
 					{
-			""internalType"": ""string"",
+						""internalType"": ""string"",
 						""name"": ""name"",
 						""type"": ""string""
 					},
 					{
-			""internalType"": ""uint256"",
+						""internalType"": ""uint256"",
 						""name"": ""moneyDonated"",
 						""type"": ""uint256""
 					},
 					{
-			""internalType"": ""string[]"",
+						""internalType"": ""string[]"",
 						""name"": ""orgList"",
 						""type"": ""string[]""
 					}
@@ -1070,11 +824,11 @@ namespace CharityApplication.Models
 		""type"": ""function""
 	},
 	{
-	""inputs"": [],
+		""inputs"": [],
 		""name"": ""getUserCount"",
 		""outputs"": [
 			{
-		""internalType"": ""uint256"",
+				""internalType"": ""uint256"",
 				""name"": ""count"",
 				""type"": ""uint256""
 			}
@@ -1083,19 +837,53 @@ namespace CharityApplication.Models
 		""type"": ""function""
 	}
 ]";
-			var contract = web3.Eth.GetContract(abi, "0x7973240251466dBa86f10A530b9ff819869EDF4E");
+			var contract = web3.Eth.GetContract(abi, "0xB9A8667ea54A815a67Fda4B8f0aB39F0362edC3c");
 			var regUserFunction = contract.GetFunction("regOrg");
-			var gas = await regUserFunction.EstimateGasAsync(account.Address, null, null, new Object[] { name});
-			var receiptFirstAmountSend = await regUserFunction.SendTransactionAndWaitForReceiptAsync(account.Address, gas, null, null, new Object[] {name});
+			var gas = await regUserFunction.EstimateGasAsync(account.Address, null, null, new Object[] { orgId,name});
+			var receiptFirstAmountSend = await regUserFunction.SendTransactionAndWaitForReceiptAsync(account.Address, gas, null, null, new Object[] {orgId,name});
 			return (receiptFirstAmountSend.TransactionHash);
 		}
 
-		public static async Task<string> regCause(int orgId,int goal,string name)
+		public static async Task<string> regCause(int orgId,int causeId,int goal,string name)
 		{
 			var privateKey = "0x1f2ed433579f8d059fd95610fe12f2462156fac047a6f99d99f53b1fb7b2be48";
 			var account = new Account(privateKey);
 			var web3 = new Web3(account, "https://kovan.infura.io/v3/aed105d4f1364e188fba9f1295c89452");
 			var abi = @"[
+	{
+		""inputs"": [
+			{
+				""internalType"": ""uint256"",
+				""name"": ""amount"",
+				""type"": ""uint256""
+			},
+			{
+				""internalType"": ""uint256"",
+				""name"": ""userId"",
+				""type"": ""uint256""
+			},
+			{
+				""internalType"": ""uint256"",
+				""name"": ""orgId"",
+				""type"": ""uint256""
+			},
+			{
+				""internalType"": ""uint256"",
+				""name"": ""causeId"",
+				""type"": ""uint256""
+			}
+		],
+		""name"": ""donate"",
+		""outputs"": [
+			{
+				""internalType"": ""string"",
+				""name"": ""message"",
+				""type"": ""string""
+			}
+		],
+		""stateMutability"": ""nonpayable"",
+		""type"": ""function""
+	},
 	{
 		""inputs"": [],
 		""stateMutability"": ""nonpayable"",
@@ -1107,145 +895,29 @@ namespace CharityApplication.Models
 			{
 				""indexed"": false,
 				""internalType"": ""string"",
-				""name"": ""message"",
-				""type"": ""string""
-			},
-			{
-	""indexed"": false,
-				""internalType"": ""uint256"",
-				""name"": ""time"",
-				""type"": ""uint256""
-			}
-		],
-		""name"": ""CauseClose"",
-		""type"": ""event""
-	},
-	{
-	""inputs"": [
-			{
-		""internalType"": ""uint256"",
-				""name"": ""causeId"",
-				""type"": ""uint256""
-			},
-			{
-		""internalType"": ""uint256"",
-				""name"": ""orgId"",
-				""type"": ""uint256""
-			}
-		],
-		""name"": ""closeCause"",
-		""outputs"": [],
-		""stateMutability"": ""nonpayable"",
-		""type"": ""function""
-	},
-	{
-	""anonymous"": false,
-		""inputs"": [
-			{
-		""indexed"": false,
-				""internalType"": ""string"",
-				""name"": ""message"",
-				""type"": ""string""
-			},
-			{
-		""indexed"": false,
-				""internalType"": ""uint256"",
-				""name"": ""time"",
-				""type"": ""uint256""
-			}
-		],
-		""name"": ""Delete"",
-		""type"": ""event""
-	},
-	{
-	""inputs"": [
-			{
-		""internalType"": ""uint256"",
-				""name"": ""id"",
-				""type"": ""uint256""
-			}
-		],
-		""name"": ""deleteOrganization"",
-		""outputs"": [],
-		""stateMutability"": ""nonpayable"",
-		""type"": ""function""
-	},
-	{
-	""inputs"": [
-			{
-		""internalType"": ""uint256"",
-				""name"": ""id"",
-				""type"": ""uint256""
-			}
-		],
-		""name"": ""deleteUser"",
-		""outputs"": [],
-		""stateMutability"": ""nonpayable"",
-		""type"": ""function""
-	},
-	{
-	""inputs"": [
-			{
-		""internalType"": ""uint256"",
-				""name"": ""amount"",
-				""type"": ""uint256""
-			},
-			{
-		""internalType"": ""uint256"",
-				""name"": ""userId"",
-				""type"": ""uint256""
-			},
-			{
-		""internalType"": ""uint256"",
-				""name"": ""orgId"",
-				""type"": ""uint256""
-			},
-			{
-		""internalType"": ""uint256"",
-				""name"": ""causeId"",
-				""type"": ""uint256""
-			}
-		],
-		""name"": ""donate"",
-		""outputs"": [
-			{
-		""internalType"": ""string"",
-				""name"": ""message"",
-				""type"": ""string""
-			}
-		],
-		""stateMutability"": ""nonpayable"",
-		""type"": ""function""
-	},
-	{
-	""anonymous"": false,
-		""inputs"": [
-			{
-		""indexed"": false,
-				""internalType"": ""string"",
 				""name"": ""donor"",
 				""type"": ""string""
 			},
 			{
-		""indexed"": false,
+				""indexed"": false,
 				""internalType"": ""string"",
 				""name"": ""organization"",
 				""type"": ""string""
 			},
 			{
-		""indexed"": false,
+				""indexed"": false,
 				""internalType"": ""string"",
 				""name"": ""cause"",
 				""type"": ""string""
 			},
 			{
-		""indexed"": false,
+				""indexed"": false,
 				""internalType"": ""uint256"",
 				""name"": ""amount"",
 				""type"": ""uint256""
 			},
 			{
-		""indexed"": false,
+				""indexed"": false,
 				""internalType"": ""uint256"",
 				""name"": ""time"",
 				""type"": ""uint256""
@@ -1255,26 +927,26 @@ namespace CharityApplication.Models
 		""type"": ""event""
 	},
 	{
-	""inputs"": [
+		""inputs"": [
 			{
-		""internalType"": ""uint256"",
+				""internalType"": ""uint256"",
 				""name"": ""orgId"",
 				""type"": ""uint256""
 			},
 			{
-		""internalType"": ""uint256"",
+				""internalType"": ""uint256"",
+				""name"": ""causeId"",
+				""type"": ""uint256""
+			},
+			{
+				""internalType"": ""uint256"",
 				""name"": ""goal"",
 				""type"": ""uint256""
 			},
 			{
-		""internalType"": ""string"",
+				""internalType"": ""string"",
 				""name"": ""name"",
 				""type"": ""string""
-			},
-			{
-		""internalType"": ""uint256"",
-				""name"": ""causeId"",
-				""type"": ""uint256""
 			}
 		],
 		""name"": ""regCause"",
@@ -1283,28 +955,28 @@ namespace CharityApplication.Models
 		""type"": ""function""
 	},
 	{
-	""anonymous"": false,
+		""anonymous"": false,
 		""inputs"": [
 			{
-		""indexed"": false,
+				""indexed"": false,
 				""internalType"": ""string"",
 				""name"": ""name"",
 				""type"": ""string""
 			},
 			{
-		""indexed"": false,
+				""indexed"": false,
 				""internalType"": ""uint256"",
 				""name"": ""id"",
 				""type"": ""uint256""
 			},
 			{
-		""indexed"": false,
+				""indexed"": false,
 				""internalType"": ""string"",
 				""name"": ""message"",
 				""type"": ""string""
 			},
 			{
-		""indexed"": false,
+				""indexed"": false,
 				""internalType"": ""uint256"",
 				""name"": ""time"",
 				""type"": ""uint256""
@@ -1314,16 +986,16 @@ namespace CharityApplication.Models
 		""type"": ""event""
 	},
 	{
-	""inputs"": [
+		""inputs"": [
 			{
-		""internalType"": ""string"",
-				""name"": ""name"",
-				""type"": ""string""
+				""internalType"": ""uint256"",
+				""name"": ""id"",
+				""type"": ""uint256""
 			},
 			{
-		""internalType"": ""uint256"",
-				""name"": ""org_id"",
-				""type"": ""uint256""
+				""internalType"": ""string"",
+				""name"": ""name"",
+				""type"": ""string""
 			}
 		],
 		""name"": ""regOrg"",
@@ -1332,16 +1004,16 @@ namespace CharityApplication.Models
 		""type"": ""function""
 	},
 	{
-	""inputs"": [
+		""inputs"": [
 			{
-		""internalType"": ""string"",
-				""name"": ""name"",
-				""type"": ""string""
+				""internalType"": ""uint256"",
+				""name"": ""id"",
+				""type"": ""uint256""
 			},
 			{
-		""internalType"": ""uint256"",
-				""name"": ""user_id"",
-				""type"": ""uint256""
+				""internalType"": ""string"",
+				""name"": ""name"",
+				""type"": ""string""
 			}
 		],
 		""name"": ""regUser"",
@@ -1350,9 +1022,9 @@ namespace CharityApplication.Models
 		""type"": ""function""
 	},
 	{
-	""inputs"": [
+		""inputs"": [
 			{
-		""internalType"": ""uint256"",
+				""internalType"": ""uint256"",
 				""name"": ""id"",
 				""type"": ""uint256""
 			}
@@ -1360,17 +1032,17 @@ namespace CharityApplication.Models
 		""name"": ""getOrg"",
 		""outputs"": [
 			{
-		""internalType"": ""string"",
+				""internalType"": ""string"",
 				""name"": ""name"",
 				""type"": ""string""
 			},
 			{
-		""internalType"": ""uint256"",
+				""internalType"": ""uint256"",
 				""name"": ""fundsCollected"",
 				""type"": ""uint256""
 			},
 			{
-		""internalType"": ""uint256"",
+				""internalType"": ""uint256"",
 				""name"": ""causeCount"",
 				""type"": ""uint256""
 			}
@@ -1379,11 +1051,11 @@ namespace CharityApplication.Models
 		""type"": ""function""
 	},
 	{
-	""inputs"": [],
+		""inputs"": [],
 		""name"": ""getOrgCount"",
 		""outputs"": [
 			{
-		""internalType"": ""uint256"",
+				""internalType"": ""uint256"",
 				""name"": ""count"",
 				""type"": ""uint256""
 			}
@@ -1392,9 +1064,9 @@ namespace CharityApplication.Models
 		""type"": ""function""
 	},
 	{
-	""inputs"": [
+		""inputs"": [
 			{
-		""internalType"": ""uint256"",
+				""internalType"": ""uint256"",
 				""name"": ""id"",
 				""type"": ""uint256""
 			}
@@ -1402,19 +1074,19 @@ namespace CharityApplication.Models
 		""name"": ""getUser"",
 		""outputs"": [
 			{
-		""components"": [
+				""components"": [
 					{
-			""internalType"": ""string"",
+						""internalType"": ""string"",
 						""name"": ""name"",
 						""type"": ""string""
 					},
 					{
-			""internalType"": ""uint256"",
+						""internalType"": ""uint256"",
 						""name"": ""moneyDonated"",
 						""type"": ""uint256""
 					},
 					{
-			""internalType"": ""string[]"",
+						""internalType"": ""string[]"",
 						""name"": ""orgList"",
 						""type"": ""string[]""
 					}
@@ -1428,11 +1100,11 @@ namespace CharityApplication.Models
 		""type"": ""function""
 	},
 	{
-	""inputs"": [],
+		""inputs"": [],
 		""name"": ""getUserCount"",
 		""outputs"": [
 			{
-		""internalType"": ""uint256"",
+				""internalType"": ""uint256"",
 				""name"": ""count"",
 				""type"": ""uint256""
 			}
@@ -1441,10 +1113,10 @@ namespace CharityApplication.Models
 		""type"": ""function""
 	}
 ]";
-			var contract = web3.Eth.GetContract(abi, "0x7973240251466dBa86f10A530b9ff819869EDF4E");
+			var contract = web3.Eth.GetContract(abi, "0xB9A8667ea54A815a67Fda4B8f0aB39F0362edC3c");
 			var regUserFunction = contract.GetFunction("regCause");
-			var gas = await regUserFunction.EstimateGasAsync(account.Address, null, null, new Object[] { orgId, goal, name });
-			var receiptFirstAmountSend = await regUserFunction.SendTransactionAndWaitForReceiptAsync(account.Address, gas, null, null, new Object[] {orgId,goal,name});
+			var gas = await regUserFunction.EstimateGasAsync(account.Address, null, null, new Object[] { orgId, causeId,goal, name });
+			var receiptFirstAmountSend = await regUserFunction.SendTransactionAndWaitForReceiptAsync(account.Address, gas, null, null, new Object[] {orgId,causeId,goal,name});
 			return (receiptFirstAmountSend.TransactionHash);
 		}
 	}

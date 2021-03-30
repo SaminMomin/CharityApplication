@@ -370,6 +370,7 @@
     <Content Include="Content\Site.css" />
     <Content Include="Images\5053309.jpg" />
     <Content Include="Images\lock-line.png" />
+    <Content Include="Images\pexels-snapwire-34950.jpg" />
     <Content Include="Images\star.jpg" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
@@ -460,6 +461,7 @@
     <Content Include="Views\UserAction\ViewOrg.cshtml" />
     <Content Include="Views\UserAction\ViewCause.cshtml" />
     <Content Include="Views\UserAction\Donate.cshtml" />
+    <Content Include="Views\Cause\ManageCauses.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

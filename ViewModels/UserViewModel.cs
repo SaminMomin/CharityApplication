@@ -9,7 +9,7 @@ namespace CharityApplication.ViewModels
 {
     public class UserViewModel
     {
-        public int userId { get; set; }
+        public int? userId { get; set; }
         [DisplayName("Donation Amount")]
         public int amount { get; set; }
         [DisplayName("Organization")]

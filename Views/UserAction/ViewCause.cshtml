@@ -13,8 +13,10 @@
             <h2 class="masthead-subheading mb-0">@Model.Organization.name</h2>
             <h3 class="text-center my-3">@Model.Cause.shortDescription</h3>
             <div class="row">
-                <div class="col-md-6">@Html.ActionLink("Donate", "Donate", "UserAction", new { causeId = Model.Cause.Id, orgId = Model.Cause.orgId, userId = CharityApplication.Models.General.userId }, new { @class = "btn btn-primary btn-xl rounded-pill mt-5" })</div>
-                <div class="col-md-6"> <a href=@string.Concat("https://kovan.etherscan.io/tx/",Model.Cause.transactionhash) target="_blank" class = "btn btn-primary btn-xl rounded-pill mt-5" })>Verify on Etherscan</a></div>
+                @if (Model.Cause.isactive == true)
+                {<div class="col-md-6">@Html.ActionLink("Donate", "Donate", "UserAction", new { causeId = Model.Cause.Id, orgId = Model.Cause.orgId, userId = CharityApplication.Models.General.userId }, new { @class = "btn btn-primary btn-xl rounded-pill mt-5" })</div>
+            }
+                <div class="col-md-6"> <a href=@string.Concat("https://kovan.etherscan.io/tx/",Model.Cause.transactionhash) target="_blank" class="btn btn-primary btn-xl rounded-pill mt-5" })>Verify on Etherscan</a></div>
             </div>
         </div>
     </div>

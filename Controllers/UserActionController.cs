@@ -46,13 +46,22 @@ namespace CharityApplication.Controllers
         {
             var temp = new OrgViewModel();
             temp.org = organizationContext.Collection().FirstOrDefault(x=>x.Id==orgId);
-            temp.causes = causeContext.Collection().Where(x => x.orgId == orgId).ToList();
-            temp.cols = temp.causes.Count();
+            temp.activeCauses= causeContext.Collection().Where(x => x.orgId == orgId && x.isactive==true).ToList();
+            temp.completedCauses= causeContext.Collection().Where(x => x.orgId == orgId && x.isactive==false).ToList();
+            temp.cols = temp.activeCauses.Count();
             temp.row = temp.cols/3;
             if (temp.cols % 3 != 0)
             {
                 temp.row += 1;
             }
+
+            temp.ccols = temp.completedCauses.Count();
+            temp.crow = temp.ccols / 3;
+            if (temp.ccols % 3 != 0)
+            {
+                temp.crow += 1;
+            }
+            temp.totalCauses = temp.cols + temp.ccols;
             temp.fundsCollected = donationContext.Collection().Where(x => x.orgId == orgId).ToList().Sum(x => x.amount);
             temp.totalUsers = donationContext.Collection().Where(x => x.orgId == orgId).Count();
             return View(temp);
@@ -111,7 +120,22 @@ namespace CharityApplication.Controllers
             temp.date = DateTime.Today;
             temp.transactionhash = await Smart.donate(temp.amount,temp.userId,temp.orgId,temp.causeId);
             var x = causeContext.Find(model.causeId);
-            x.collected += model.amount;
+            if (x.isactive == true)
+            {
+                if (x.goal > x.collected)
+                {
+                    x.collected += model.amount;
+                    if (x.goal < x.collected)
+                    {
+                        x.isactive = false;
+                    }
+                }
+                else
+                {
+                    x.isactive = false;
+                }
+            }
+            
             causeContext.Insert(x);
             causeContext.Save();
             donationContext.Insert(temp);

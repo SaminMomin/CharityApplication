@@ -486,6 +486,7 @@ body.mobile-nav-active #mobile-nav-toggle {
   position: relative;
 }
 
+
 @media (min-width: 1024px) {
   #intro {
     background-attachment: fixed;

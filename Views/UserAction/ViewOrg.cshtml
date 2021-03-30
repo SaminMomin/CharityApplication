@@ -49,6 +49,7 @@
             <h2>Causes Supported So Far</h2>
             <p>Here are some of our causes that we have supported and worked for so far</p>
         </div>
+        <h2>Active Causes</h2>
         @for (int i = 0; i < Model.row; i++)
         {
             <div class="row">
@@ -58,62 +59,62 @@
                     {
                         <div class="col-md-4">
                             <div class="speaker" data-aos="fade-up" data-aos-delay="100">
-                                @if (@Model.causes.ElementAt(i * 3 + j).type == "Community")
+                                @if (@Model.activeCauses.ElementAt(i * 3 + j).type == "Community")
                                 {
-                                <img src="~/CardImages/Community.png" alt="Speaker 1" class="img-fluid">}
-                                else if (@Model.causes.ElementAt(i * 3 + j).type == "Housing")
+                                    <img src="~/CardImages/Community.png" alt="Speaker 1" class="img-fluid">}
+                                else if (@Model.activeCauses.ElementAt(i * 3 + j).type == "Housing")
                                 {
-                            <img src="~/CardImages/Housing.jpg" alt="Speaker 1" class="img-fluid">}
-                                else if (@Model.causes.ElementAt(i * 3 + j).type == "Overseas Aid")
+                                    <img src="~/CardImages/Housing.jpg" alt="Speaker 1" class="img-fluid">}
+                                else if (@Model.activeCauses.ElementAt(i * 3 + j).type == "Overseas Aid")
                                 {
-                            <img src="~/CardImages/Overseas Aid.jpg" alt="Speaker 1" class="img-fluid">}
-                                else if (@Model.causes.ElementAt(i * 3 + j).type == "Poverty Relief")
+                                    <img src="~/CardImages/Overseas Aid.jpg" alt="Speaker 1" class="img-fluid">}
+                                else if (@Model.activeCauses.ElementAt(i * 3 + j).type == "Poverty Relief")
                                 {
-                            <img src="~/CardImages/Poverty Relief.jpg" alt="Speaker 1" class="img-fluid">}
-                                else if (@Model.causes.ElementAt(i * 3 + j).type == "Training")
+                                    <img src="~/CardImages/Poverty Relief.jpg" alt="Speaker 1" class="img-fluid">}
+                                else if (@Model.activeCauses.ElementAt(i * 3 + j).type == "Training")
                                 {
-                            <img src="~/CardImages/Training.png" alt="Speaker 1" class="img-fluid">}
-                                else if (@Model.causes.ElementAt(i * 3 + j).type == "Medical")
+                                    <img src="~/CardImages/Training.png" alt="Speaker 1" class="img-fluid">}
+                                else if (@Model.activeCauses.ElementAt(i * 3 + j).type == "Medical")
                                 {
-                            <img src="~/CardImages/Medical.jpg" alt="Speaker 1" class="img-fluid">}
-                                else if (@Model.causes.ElementAt(i * 3 + j).type == "Sports Clubs")
+                                    <img src="~/CardImages/Medical.jpg" alt="Speaker 1" class="img-fluid">}
+                                else if (@Model.activeCauses.ElementAt(i * 3 + j).type == "Sports Clubs")
                                 {
-                            <img src="~/CardImages/Sports Clubs.jpg" alt="Speaker 1" class="img-fluid">}
-                                else if (@Model.causes.ElementAt(i * 3 + j).type == "Arts and Culture")
+                                    <img src="~/CardImages/Sports Clubs.jpg" alt="Speaker 1" class="img-fluid">}
+                                else if (@Model.activeCauses.ElementAt(i * 3 + j).type == "Arts and Culture")
                                 {
-                            <img src="~/CardImages/Arts and Culture.jpg" alt="Speaker 1" class="img-fluid">}
-                                else if (@Model.causes.ElementAt(i * 3 + j).type == "Public Service and Military")
+                                    <img src="~/CardImages/Arts and Culture.jpg" alt="Speaker 1" class="img-fluid">}
+                                else if (@Model.activeCauses.ElementAt(i * 3 + j).type == "Public Service and Military")
                                 {
-                            <img src="~/CardImages/Public Service and Military.jpg" alt="Speaker 1" class="img-fluid">}
-                                else if (@Model.causes.ElementAt(i * 3 + j).type == "Education")
+                                    <img src="~/CardImages/Public Service and Military.jpg" alt="Speaker 1" class="img-fluid">}
+                                else if (@Model.activeCauses.ElementAt(i * 3 + j).type == "Education")
                                 {
-                            <img src="~/CardImages/Education.jpg" alt="Speaker 1" class="img-fluid">}
-                                else if (@Model.causes.ElementAt(i * 3 + j).type == "Children's")
+                                    <img src="~/CardImages/Education.jpg" alt="Speaker 1" class="img-fluid">}
+                                else if (@Model.activeCauses.ElementAt(i * 3 + j).type == "Children's")
                                 {
-                            <img src="~/CardImages/Children.png" alt="Speaker 1" class="img-fluid">}
-                                else if (@Model.causes.ElementAt(i * 3 + j).type == "Disability")
+                                    <img src="~/CardImages/Children.png" alt="Speaker 1" class="img-fluid">}
+                                else if (@Model.activeCauses.ElementAt(i * 3 + j).type == "Disability")
                                 {
-                            <img src="~/CardImages/Disability.png" alt="Speaker 1" class="img-fluid">}
-                                else if (@Model.causes.ElementAt(i * 3 + j).type == "Environmental")
+                                    <img src="~/CardImages/Disability.png" alt="Speaker 1" class="img-fluid">}
+                                else if (@Model.activeCauses.ElementAt(i * 3 + j).type == "Environmental")
                                 {
-                            <img src="~/CardImages/Environmental.jpg" alt="Speaker 1" class="img-fluid">}
-                                else if (@Model.causes.ElementAt(i * 3 + j).type == "Religious")
+                                    <img src="~/CardImages/Environmental.jpg" alt="Speaker 1" class="img-fluid">}
+                                else if (@Model.activeCauses.ElementAt(i * 3 + j).type == "Religious")
                                 {
-                            <img src="~/CardImages/Religious.png" alt="Speaker 1" class="img-fluid">}
-                                else if (@Model.causes.ElementAt(i * 3 + j).type == "Animal")
+                                    <img src="~/CardImages/Religious.png" alt="Speaker 1" class="img-fluid">}
+                                else if (@Model.activeCauses.ElementAt(i * 3 + j).type == "Animal")
                                 {
-                            <img src="~/CardImages/Animals.jpg" alt="Speaker 1" class="img-fluid">
+                                    <img src="~/CardImages/Animals.jpg" alt="Speaker 1" class="img-fluid">
                                 }
                                 else
                                 {
-                            <img src="~/CardImages/Elderly.jpg" alt="Speaker 1" class="img-fluid">
+                                    <img src="~/CardImages/Elderly.jpg" alt="Speaker 1" class="img-fluid">
                                 }
                                 <div class="details">
-                                    <h3>@Model.causes.ElementAt(i * 3 + j).name</h3>
-                                    <p class="text-break">@Model.causes.ElementAt(i * 3 + j).shortDescription</p>
+                                    <h3>@Model.activeCauses.ElementAt(i * 3 + j).name</h3>
+                                    <p class="text-break">@Model.activeCauses.ElementAt(i * 3 + j).shortDescription</p>
                                     <div class="row">
-                                        <p class="col-md-6">Goal:₹@Model.causes.ElementAt(i * 3 + j).goal</p>
-                                        <p class="col-md-6">Collected:₹@Model.causes.ElementAt(i * 3 + j).collected</p>
+                                        <p class="col-md-6">Goal:₹@Model.activeCauses.ElementAt(i * 3 + j).goal</p>
+                                        <p class="col-md-6">Collected:₹@Model.activeCauses.ElementAt(i * 3 + j).collected</p>
                                     </div>
                                 </div>
                             </div>
@@ -126,6 +127,88 @@
                 }
             </div>
         }
+
+        @if (Model.completedCauses.Count() > 0)
+        {<h2>Successfully Completed Causes</h2>
+            for (int i = 0; i < Model.crow; i++)
+            {
+                <div class="row">
+                    @for (int j = 0; j < 3; j++)
+                    {
+                        if ((i * 3 + j) < Model.ccols)
+                        {
+                            <div class="col-md-4">
+                                <div class="speaker" data-aos="fade-up" data-aos-delay="100">
+                                    @if (@Model.completedCauses.ElementAt(i * 3 + j).type == "Community")
+                                    {
+                                        <img src="~/CardImages/Community.png" alt="Speaker 1" class="img-fluid">}
+                                    else if (@Model.completedCauses.ElementAt(i * 3 + j).type == "Housing")
+                                    {
+                                        <img src="~/CardImages/Housing.jpg" alt="Speaker 1" class="img-fluid">}
+                                    else if (@Model.completedCauses.ElementAt(i * 3 + j).type == "Overseas Aid")
+                                    {
+                                        <img src="~/CardImages/Overseas Aid.jpg" alt="Speaker 1" class="img-fluid">}
+                                    else if (@Model.completedCauses.ElementAt(i * 3 + j).type == "Poverty Relief")
+                                    {
+                                        <img src="~/CardImages/Poverty Relief.jpg" alt="Speaker 1" class="img-fluid">}
+                                    else if (@Model.completedCauses.ElementAt(i * 3 + j).type == "Training")
+                                    {
+                                        <img src="~/CardImages/Training.png" alt="Speaker 1" class="img-fluid">}
+                                    else if (@Model.completedCauses.ElementAt(i * 3 + j).type == "Medical")
+                                    {
+                                        <img src="~/CardImages/Medical.jpg" alt="Speaker 1" class="img-fluid">}
+                                    else if (@Model.completedCauses.ElementAt(i * 3 + j).type == "Sports Clubs")
+                                    {
+                                        <img src="~/CardImages/Sports Clubs.jpg" alt="Speaker 1" class="img-fluid">}
+                                    else if (@Model.completedCauses.ElementAt(i * 3 + j).type == "Arts and Culture")
+                                    {
+                                        <img src="~/CardImages/Arts and Culture.jpg" alt="Speaker 1" class="img-fluid">}
+                                    else if (@Model.completedCauses.ElementAt(i * 3 + j).type == "Public Service and Military")
+                                    {
+                                        <img src="~/CardImages/Public Service and Military.jpg" alt="Speaker 1" class="img-fluid">}
+                                    else if (@Model.completedCauses.ElementAt(i * 3 + j).type == "Education")
+                                    {
+                                        <img src="~/CardImages/Education.jpg" alt="Speaker 1" class="img-fluid">}
+                                    else if (@Model.completedCauses.ElementAt(i * 3 + j).type == "Children's")
+                                    {
+                                        <img src="~/CardImages/Children.png" alt="Speaker 1" class="img-fluid">}
+                                    else if (@Model.completedCauses.ElementAt(i * 3 + j).type == "Disability")
+                                    {
+                                        <img src="~/CardImages/Disability.png" alt="Speaker 1" class="img-fluid">}
+                                    else if (@Model.completedCauses.ElementAt(i * 3 + j).type == "Environmental")
+                                    {
+                                        <img src="~/CardImages/Environmental.jpg" alt="Speaker 1" class="img-fluid">}
+                                    else if (@Model.completedCauses.ElementAt(i * 3 + j).type == "Religious")
+                                    {
+                                        <img src="~/CardImages/Religious.png" alt="Speaker 1" class="img-fluid">}
+                                    else if (@Model.completedCauses.ElementAt(i * 3 + j).type == "Animal")
+                                    {
+                                        <img src="~/CardImages/Animals.jpg" alt="Speaker 1" class="img-fluid">
+                                    }
+                                    else
+                                    {
+                                        <img src="~/CardImages/Elderly.jpg" alt="Speaker 1" class="img-fluid">
+                                    }
+                                    <div class="details">
+                                        <h3>@Model.completedCauses.ElementAt(i * 3 + j).name</h3>
+                                        <p class="text-break">@Model.completedCauses.ElementAt(i * 3 + j).shortDescription</p>
+                                        <div class="row">
+                                            <p class="col-md-6">Goal:₹@Model.completedCauses.ElementAt(i * 3 + j).goal</p>
+                                            <p class="col-md-6">Collected:₹@Model.completedCauses.ElementAt(i * 3 + j).collected</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        }
+                        else
+                        {
+                            break;
+                        }
+                    }
+                </div>
+            }
+        }
+
     </div>
 </section><!-- End Speakers Section -->
 
@@ -138,7 +221,7 @@
         <div class="row counters">
             <div class="col-lg-4 text-center">
                 @*<h4 class="speaker details" data-toggle="counter-up">274</h4>*@
-                <span class="countfect" data-num=@Model.causes.Count()></span>
+                <span class="countfect" data-num=@Model.totalCauses></span>
                 <h5 class="speaker details">Causes supported so far</h5>
             </div>
             <div class="col-lg-4 text-center">

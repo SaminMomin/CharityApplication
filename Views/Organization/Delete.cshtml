@@ -4,149 +4,139 @@
     ViewBag.Title = "Delete";
 }
 
-<h2>Delete</h2>
+<h2 class="text-center">Delete Organization</h2>
 
-<h3>Are you sure you want to delete this?</h3>
+<h3 class="text-center">Are you sure you want to delete this?</h3>
 <div>
-    <h4>organization</h4>
+    @*<h4>organization</h4>*@
     <hr />
-    <dl class="dl-horizontal">
-        <dt>
-            @Html.DisplayNameFor(model => model.name)
-        </dt>
+    <div class="row">
+        <div class="col-md-6">
+            <dl class="dl-horizontal">
+                <dt>
+                    @Html.DisplayNameFor(model => model.name)
+                </dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.name)
-        </dd>
+                <dd>
+                    @Html.DisplayFor(model => model.name)
+                </dd>
+                <dt>
+                    @Html.DisplayNameFor(model => model.description)
+                </dt>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.email)
-        </dt>
+                <dd>
+                    @Html.DisplayFor(model => model.description)
+                </dd>
 
-        <dd>
-            @Html.DisplayFor(model => model.email)
-        </dd>
+                <dt>
+                    @Html.DisplayNameFor(model => model.email)
+                </dt>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.password)
-        </dt>
+                <dd>
+                    @Html.DisplayFor(model => model.email)
+                </dd>
 
-        <dd>
-            @Html.DisplayFor(model => model.password)
-        </dd>
+                <dt>
+                    @Html.DisplayNameFor(model => model.password)
+                </dt>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.street)
-        </dt>
+                <dd>
+                    @Html.DisplayFor(model => model.password)
+                </dd>
 
-        <dd>
-            @Html.DisplayFor(model => model.street)
-        </dd>
+                <dt>
+                    @Html.DisplayNameFor(model => model.street)
+                </dt>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.city)
-        </dt>
+                <dd>
+                    @Html.DisplayFor(model => model.street)
+                </dd>
 
-        <dd>
-            @Html.DisplayFor(model => model.city)
-        </dd>
+                <dt>
+                    @Html.DisplayNameFor(model => model.city)
+                </dt>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.state)
-        </dt>
+                <dd>
+                    @Html.DisplayFor(model => model.city)
+                </dd>
 
-        <dd>
-            @Html.DisplayFor(model => model.state)
-        </dd>
+                <dt>
+                    @Html.DisplayNameFor(model => model.state)
+                </dt>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.country)
-        </dt>
+                <dd>
+                    @Html.DisplayFor(model => model.state)
+                </dd>
+            </dl>
+        </div>
+        <div class="col-md-6">
+            <dl class="dl-horizontal">
+                <dt>
+                    @Html.DisplayNameFor(model => model.country)
+                </dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.country)
-        </dd>
+                <dd>
+                    @Html.DisplayFor(model => model.country)
+                </dd>
 
-        @*<dt>
-            @Html.DisplayNameFor(model => model.hash)
-        </dt>
+                <dt>
+                    @Html.DisplayNameFor(model => model.type)
+                </dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.hash)
-        </dd>*@
+                <dd>
+                    @Html.DisplayFor(model => model.type)
+                </dd>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.type)
-        </dt>
+                <dt>
+                    @Html.DisplayNameFor(model => model.regno)
+                </dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.type)
-        </dd>
+                <dd>
+                    @Html.DisplayFor(model => model.regno)
+                </dd>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.regno)
-        </dt>
+                <dt>
+                    @Html.DisplayNameFor(model => model.fcra)
+                </dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.regno)
-        </dd>
+                <dd>
+                    @Html.DisplayFor(model => model.fcra)
+                </dd>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.fcra)
-        </dt>
+                <dt>
+                    @Html.DisplayNameFor(model => model.website)
+                </dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.fcra)
-        </dd>
+                <dd>
+                    @Html.DisplayFor(model => model.website)
+                </dd>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.website)
-        </dt>
+                <dt>
+                    @Html.DisplayNameFor(model => model.contact)
+                </dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.website)
-        </dd>
+                <dd>
+                    @Html.DisplayFor(model => model.contact)
+                </dd>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.contact)
-        </dt>
+                <dt>
+                    @Html.DisplayNameFor(model => model.regcerti)
+                </dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.contact)
-        </dd>
+                <dd>
+                    @Html.DisplayFor(model => model.regcerti)
+                </dd>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.regcerti)
-        </dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.regcerti)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.description)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.description)
-        </dd>
-
-        @*<dt>
-            @Html.DisplayNameFor(model => model.transactionhash)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.transactionhash)
-        </dd>*@
-
-    </dl>
-
+            </dl>
+        </div>
+    </div>
     @using (Html.BeginForm()) {
         @Html.AntiForgeryToken()
-
-        <div class="form-actions no-color">
-            <input type="submit" value="Delete" class="btn btn-danger" /> |
-            @Html.ActionLink("Back to Home", "Index","OrganizationAction")
+<br />
+        <div class="form-actions no-color text-center">
+            <input type="submit" value="Delete" class="btn btn-danger" /> 
+            @Html.ActionLink("Back to Home", "Index","OrganizationAction",new { },new { @class="btn btn-primary mx-1"})
         </div>
     }
 </div>

@@ -42,10 +42,13 @@
                         @Html.ActionLink("Dashboard", "Index", "OrganizationAction", new { @area = "" }, new { @class = "nav-link" })
                     </li>
                     <li class="nav-item">
-                        @Html.ActionLink("Edit Profile", "Edit", "Organization", new { @area = "", Id = CharityApplication.Models.General.userId }, new { @class = "nav-link" })@*<a class="nav-link" href="About">About</a>*@
+                        @Html.ActionLink("Manage Causes", "ManageCauses", "Cause", new { @area = "" }, new { @class = "nav-link" })
                     </li>
                     <li class="nav-item">
-                        @Html.ActionLink("Delete Profile", "Delete", "Organization", new { @area = "", id = CharityApplication.Models.General.userId }, new { @class = "nav-link" })
+                        @Html.ActionLink("Edit Profile", "Edit", "Organization", new { @area = "", Id = CharityApplication.Models.General.orgId}, new { @class = "nav-link" })@*<a class="nav-link" href="About">About</a>*@
+                    </li>
+                    <li class="nav-item">
+                        @Html.ActionLink("Delete Profile", "Delete", "Organization", new { @area = "", id = CharityApplication.Models.General.orgId}, new { @class = "nav-link" })
                     </li>
                 }
             </ul>

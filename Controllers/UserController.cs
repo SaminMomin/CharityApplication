@@ -98,7 +98,7 @@ namespace CharityApplication.Controllers
                     file.SaveAs(Server.MapPath("//UserImages//"+temp.profilepic));
                 }
                 temp.hash = string.Concat(usr.fname, usr.lname).GetHashCode() & 0xfffffff;
-                temp.transactionhash = await Smart.regFunc(usr.fname);
+                temp.transactionhash = await Smart.regFunc(usr.Id,usr.fname);
                 userContext.Insert(temp);
                 userContext.Save();
                 Users.Add(usr);
