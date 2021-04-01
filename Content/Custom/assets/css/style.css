@@ -9,10 +9,11 @@
 # General
 --------------------------------------------------------------*/
 body {
-  background: #fff;
-  color: #2f3138;
-  font-family: "Open Sans", sans-serif;
+    background-color: black;
+    color: white;
+    font-family: "Calibri", sans-serif;
 }
+
 .countfect {
     font-family:'Archivo Black';
     font-size:2.5rem;
@@ -35,11 +36,11 @@ p {
 }
 
 h1, h2, h3, h4, h5, h6 {
-  font-family: "Raleway", sans-serif;
+  font-family: "Calibri";
   font-weight: 400;
   margin: 0 0 20px 0;
   padding: 0;
-  color: #0e1b4d;
+  color: white;
 }
 
 .main-page {
@@ -176,7 +177,7 @@ h1, h2, h3, h4, h5, h6 {
   margin: 0;
   padding: 6px 0;
   line-height: 1;
-  font-family: "Raleway", sans-serif;
+  font-family: "Calibri", sans-serif;
   font-weight: 700;
   letter-spacing: 3px;
   text-transform: uppercase;
@@ -273,7 +274,7 @@ h1, h2, h3, h4, h5, h6 {
   text-decoration: none;
   display: inline-block;
   color: rgba(202, 206, 221, 0.8);
-  font-family: "Raleway", sans-serif;
+  font-family: "Calibri", sans-serif;
   font-weight: 600;
   font-size: 14px;
   outline: none;
@@ -525,7 +526,7 @@ body.mobile-nav-active #mobile-nav-toggle {
 
 #intro h1 {
   color: #fff;
-  font-family: "Raleway", sans-serif;
+  font-family: 'Calibri', sans-serif;
   font-size: 56px;
   font-weight: 600;
   text-transform: uppercase;
@@ -625,7 +626,7 @@ body.mobile-nav-active #mobile-nav-toggle {
 }
 
 #intro .about-btn {
-  font-family: "Raleway", sans-serif;
+  font-family: "Calibri", sans-serif;
   font-weight: 500;
   font-size: 14px;
   letter-spacing: 1px;
@@ -1154,16 +1155,16 @@ body.mobile-nav-active #mobile-nav-toggle {
   border-bottom: 1px solid #ddd;
 }
 
-#faq #faq-list a {
-  padding: 18px 0;
-  display: block;
-  position: relative;
-  font-family: "Raleway", sans-serif;
-  font-size: 16px;
-  line-height: 24px;
-  font-weight: 600;
-  padding-right: 20px;
-}
+    #faq #faq-list a {
+        padding: 18px 0;
+        display: block;
+        position: relative;
+        font-family: "Calibri", sans-serif;
+        font-size: 16px;
+        line-height: 24px;
+        font-weight: 600;
+        padding-right: 20px;
+    }
 
 #faq #faq-list i {
   font-size: 24px;
@@ -1344,7 +1345,7 @@ body.mobile-nav-active #mobile-nav-toggle {
 /*--------------------------------------------------------------
 # Contact Section
 --------------------------------------------------------------*/
-#contact {
+/*#contact {
   padding: 60px 0;
 }
 
@@ -1479,7 +1480,7 @@ body.mobile-nav-active #mobile-nav-toggle {
 #contact .php-email-form button[type="submit"]:hover {
   background: #e0072f;
 }
-
+*/
 @-webkit-keyframes animate-loading {
   0% {
     transform: rotate(0deg);
@@ -1517,28 +1518,28 @@ body.mobile-nav-active #mobile-nav-toggle {
   margin-bottom: 30px;
 }
 
-#footer .footer-top .footer-info h3 {
-  font-size: 26px;
-  margin: 0 0 20px 0;
-  padding: 2px 0 2px 0;
-  line-height: 1;
-  font-family: "Raleway", sans-serif;
-  font-weight: 700;
-  color: #fff;
-}
+    #footer .footer-top .footer-info h3 {
+        font-size: 26px;
+        margin: 0 0 20px 0;
+        padding: 2px 0 2px 0;
+        line-height: 1;
+        font-family: "Calibri", sans-serif;
+        font-weight: 700;
+        color: #fff;
+    }
 
 #footer .footer-top .footer-info img {
   height: 40px;
   margin-bottom: 10px;
 }
 
-#footer .footer-top .footer-info p {
-  font-size: 14px;
-  line-height: 24px;
-  margin-bottom: 0;
-  font-family: "Raleway", sans-serif;
-  color: #fff;
-}
+    #footer .footer-top .footer-info p {
+        font-size: 14px;
+        line-height: 24px;
+        margin-bottom: 0;
+        font-family: "Calibri", sans-serif;
+        color: #fff;
+    }
 
 #footer .footer-top .social-links a {
   font-size: 18px;

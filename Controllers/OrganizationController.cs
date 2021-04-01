@@ -104,12 +104,28 @@ namespace CharityApplication.Controllers
         }
         public ActionResult Edit(int Id)
         {
-            return View(organizationContext.Collection().FirstOrDefault(x=>x.Id==Id));
+            if (General.orgLoginStatus == true) {
+                General.userLoginStatus = false;
+                return View(organizationContext.Collection().FirstOrDefault(x=>x.Id==Id));
+            }
+            else {
+                if (General.userLoginStatus == true)
+                {
+                    General.userLoginStatus = false;
+                    General.orgLoginStatus = false;
+                    General.userId = -1;
+                    General.userName = "";
+                    General.userTx = "";
+                }
+                return RedirectToAction("Login", "Organization"); }
         }
         [HttpPost]
         public ActionResult Edit(organization Org,HttpPostedFileBase[] file)
         {
-            var temp = organizationContext.Find(General.orgId);
+            if (General.orgLoginStatus == true) {
+                General.userLoginStatus = false;
+
+                var temp = organizationContext.Find(General.orgId);
             if (!ModelState.IsValid || Org == null)
             {
                 return View(Org);
@@ -151,19 +167,48 @@ namespace CharityApplication.Controllers
                     return RedirectToAction("Index", "Error", new { error = "Organization not found!", type = 3 }) ;
                 }
             }
+            }
+            else {
+                if (General.userLoginStatus == true)
+                {
+                    General.userLoginStatus = false;
+                    General.orgLoginStatus = false;
+                    General.userId = -1;
+                    General.userName = "";
+                    General.userTx = "";
+                }
+                return RedirectToAction("Login", "Organization"); }
         }
 
         public ActionResult Delete(int Id)
         {
-            //var org= Organizations.Find(x=>x.Id==Id);
-            return View(organizationContext.Find(Id));
+            if (General.orgLoginStatus == true) {
+                General.userLoginStatus = false;
+
+                //var org= Organizations.Find(x=>x.Id==Id);
+                return View(organizationContext.Find(Id));
+            }
+            else {
+                if (General.userLoginStatus == true)
+                {
+                    General.userLoginStatus = false;
+                    General.orgLoginStatus = false;
+                    General.userId = -1;
+                    General.userName = "";
+                    General.userTx = "";
+                }
+                return RedirectToAction("Login", "Organization"); }
         }
 
         [HttpPost]
         [ActionName("Delete")]
         public ActionResult ConfirmDelete(int Id)
         {
-            var temp = organizationContext.Find(Id);
+            if (General.orgLoginStatus == true) {
+                General.userLoginStatus = false;
+
+
+                var temp = organizationContext.Find(Id);
             if (temp != null)
             {
                 organizationContext.Delete(Id);
@@ -180,6 +225,17 @@ namespace CharityApplication.Controllers
             {
                     return RedirectToAction("Index", "Error", new { error = "Organization not found!", type = 3 });   
             }
+            }
+            else {
+                if (General.userLoginStatus == true)
+                {
+                    General.userLoginStatus = false;
+                    General.orgLoginStatus = false;
+                    General.userId = -1;
+                    General.userName = "";
+                    General.userTx = "";
+                }
+                return RedirectToAction("Login", "Organization"); }
         }
 
         public ActionResult Logout()
@@ -189,7 +245,7 @@ namespace CharityApplication.Controllers
             General.orgName = "";
             General.orgId = -1;
             General.orgTx = "";
-            return RedirectToAction("Login","Organization");
+            return RedirectToAction("Index","Home");
         }
     }
 

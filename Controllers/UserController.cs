@@ -108,13 +108,29 @@ namespace CharityApplication.Controllers
 
         public ActionResult Edit(int Id)
         {
-            return View(userContext.Collection().FirstOrDefault(x => x.Id == Id));
-         }
+            if (General.userLoginStatus == true) {
+                General.orgLoginStatus = false;
+
+                return View(userContext.Collection().FirstOrDefault(x => x.Id == Id));
+            }
+            else {
+                if (General.orgLoginStatus == true)
+                {
+                    General.orgLoginStatus = false;
+                    General.orgName = "";
+                    General.orgId = -1;
+                    General.orgTx = "";
+                }
+                return RedirectToAction("Login", "User"); }
+        }
         
         [HttpPost]
         public ActionResult Edit(user usr,HttpPostedFileBase file)
         {
-            if (!ModelState.IsValid && usr == null)
+            if (General.userLoginStatus == true) {
+                General.orgLoginStatus = false;
+
+                if (!ModelState.IsValid && usr == null)
             {
                 return View(usr);
             }
@@ -157,15 +173,40 @@ namespace CharityApplication.Controllers
                     return RedirectToAction("Index", "Error",new { error="User not found",type=1});
                 }
             }
+            }
+            else {
+                if (General.orgLoginStatus == true)
+                {
+                    General.orgLoginStatus = false;
+                    General.orgName = "";
+                    General.orgId = -1;
+                    General.orgTx = "";
+                }
+                return RedirectToAction("Login", "User"); }
         }
 public ActionResult Delete(int id)
         {
-            return View(Users.FirstOrDefault(x => x.Id == id));
+            if (General.userLoginStatus == true) {
+                General.orgLoginStatus = false;
+
+                return View(Users.FirstOrDefault(x => x.Id == id));
+            }
+            else {
+                if (General.orgLoginStatus == true)
+                {
+                    General.orgLoginStatus = false;
+                    General.orgName = "";
+                    General.orgId = -1;
+                    General.orgTx = "";
+                }
+                return RedirectToAction("Login", "User"); }
         }
         [HttpPost]
         [ActionName("Delete")]
         public ActionResult ConfirmDelete(int Id)
         {
+            General.orgLoginStatus = false;
+            if (General.userLoginStatus == true) { 
             var usr = userContext.Find(Id);
             if (usr != null)
             {
@@ -182,6 +223,16 @@ public ActionResult Delete(int id)
             {
                 return RedirectToAction("Index", "Error", new { error = "User not found!",type=2 });
             }
+            }
+            else {
+                if (General.orgLoginStatus == true)
+                {
+                    General.orgLoginStatus = false;
+                    General.orgName = "";
+                    General.orgId = -1;
+                    General.orgTx = "";
+                }
+                return RedirectToAction("Login", "User"); }
         }
 
         public ActionResult Logout()
@@ -193,7 +244,5 @@ public ActionResult Delete(int id)
             General.userTx = "";
             return RedirectToAction("Index","Home");
         }
-
-
     } 
 }

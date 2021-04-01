@@ -22,6 +22,8 @@ namespace CharityApplication.Controllers
         
         public ActionResult Index()
         {
+            if (General.userLoginStatus == true) {
+            General.orgLoginStatus = false;
             var model = new UserIndexViewModel
             {
                 causes = causeContext.Collection().Where(x => x.isactive).ToList()
@@ -33,18 +35,28 @@ namespace CharityApplication.Controllers
                 tempMap.Add(t.Id, t.name);
             }
             model.orgMap = tempMap;
-            model.row = model.causes.Count / 3;
-            if (model.causes.Count % 3 != 0)
+            model.row = model.causes.Count / 2;
+            if (model.causes.Count % 2 != 0)
             {
                 model.row += 1;
             }
             model.cols = model.causes.Count;
             return View(model);
+            }
+            else { if (General.orgLoginStatus == true) {
+                    General.orgLoginStatus = false;
+                    General.orgName = "";
+                    General.orgId = -1;
+                    General.orgTx = "";
+                }
+                return RedirectToAction ("Login", "User"); }
         }
         [HttpGet]
         public ActionResult ViewOrg(int orgId)
         {
-            var temp = new OrgViewModel();
+            if (General.userLoginStatus == true) {
+                General.orgLoginStatus = false;
+                var temp = new OrgViewModel();
             temp.org = organizationContext.Collection().FirstOrDefault(x=>x.Id==orgId);
             temp.activeCauses= causeContext.Collection().Where(x => x.orgId == orgId && x.isactive==true).ToList();
             temp.completedCauses= causeContext.Collection().Where(x => x.orgId == orgId && x.isactive==false).ToList();
@@ -65,21 +77,46 @@ namespace CharityApplication.Controllers
             temp.fundsCollected = donationContext.Collection().Where(x => x.orgId == orgId).ToList().Sum(x => x.amount);
             temp.totalUsers = donationContext.Collection().Where(x => x.orgId == orgId).Count();
             return View(temp);
+            }
+            else {
+                if (General.orgLoginStatus == true)
+                {
+                    General.orgLoginStatus = false;
+                    General.orgName = "";
+                    General.orgId = -1;
+                    General.orgTx = "";
+                }
+                return RedirectToAction("Login", "User"); }
         } 
 
         public ActionResult ViewCause(int causeId)
         {
-            var model = new CauseViewModel
+            if (General.userLoginStatus == true) {
+                General.orgLoginStatus = false;
+
+                var model = new CauseViewModel
             {
                 Cause = causeContext.Collection().FirstOrDefault(x => x.Id == causeId)
             };
             model.Organization = organizationContext.Collection().FirstOrDefault(x => x.Id == model.Cause.orgId) ;
             return View(model);
+            }
+            else {
+                if (General.orgLoginStatus == true)
+                {
+                    General.orgLoginStatus = false;
+                    General.orgName = "";
+                    General.orgId = -1;
+                    General.orgTx = "";
+                }
+                return RedirectToAction("Login", "User"); }
         }
 
         public ActionResult History()
         {
-            Donations = donationContext.Collection().Where(x => x.userId == General.userId).ToList();
+            if (General.userLoginStatus == true) {
+                General.orgLoginStatus = false;
+                Donations = donationContext.Collection().Where(x => x.userId == General.userId).ToList();
             var temp = organizationContext.Collection().ToList();
             var temp2 = causeContext.Collection().ToList();
             List<UserViewModel> donateList = new List<UserViewModel>();
@@ -98,49 +135,89 @@ namespace CharityApplication.Controllers
                 });
             }
             return View(donateList);
+            }
+            else {
+                if (General.orgLoginStatus == true)
+                {
+                    General.orgLoginStatus = false;
+                    General.orgName = "";
+                    General.orgId = -1;
+                    General.orgTx = "";
+                }
+                return RedirectToAction("Login", "User"); }
         }
         public ActionResult Donate(int causeId,int orgId,int userId)
         {
-            var model = new DonationViewModel();
+            if (General.userLoginStatus == true) {
+                General.orgLoginStatus = false;
+
+                var model = new DonationViewModel();
             model.causeId = causeId;
             model.causeName = causeContext.Find(causeId).name;
             model.orgId = orgId;
             model.orgName = organizationContext.Find(orgId).name;
             model.userId = userId;
             return View(model);
+            }
+            else {
+                if (General.orgLoginStatus == true)
+                {
+                    General.orgLoginStatus = false;
+                    General.orgName = "";
+                    General.orgId = -1;
+                    General.orgTx = "";
+                }
+                return RedirectToAction("Login", "User"); }
         }
         [HttpPost]
-        public async Task<ActionResult> Donate(DonationViewModel model) {
-            var temp = new donation();
-            temp.Id = model.Id;
-            temp.orgId = model.orgId;
-            temp.userId = General.userId;
-            temp.causeId = model.causeId;
-            temp.amount = model.amount;
-            temp.date = DateTime.Today;
-            temp.transactionhash = await Smart.donate(temp.amount,temp.userId,temp.orgId,temp.causeId);
-            var x = causeContext.Find(model.causeId);
-            if (x.isactive == true)
+        public async Task<ActionResult> Donate(DonationViewModel model)
+        {
+            if (General.userLoginStatus == true)
             {
-                if (x.goal > x.collected)
+                General.orgLoginStatus = false;
+
+                var temp = new donation();
+                temp.Id = model.Id;
+                temp.orgId = model.orgId;
+                temp.userId = General.userId;
+                temp.causeId = model.causeId;
+                temp.amount = model.amount;
+                temp.date = DateTime.Today;
+                temp.transactionhash = await Smart.donate(temp.amount, temp.userId, temp.orgId, temp.causeId);
+                var x = causeContext.Find(model.causeId);
+                if (x.isactive == true)
                 {
-                    x.collected += model.amount;
-                    if (x.goal < x.collected)
+                    if (x.goal > x.collected)
+                    {
+                        x.collected += model.amount;
+                        if (x.goal < x.collected)
+                        {
+                            x.isactive = false;
+                        }
+                    }
+                    else
                     {
                         x.isactive = false;
                     }
                 }
-                else
-                {
-                    x.isactive = false;
-                }
+
+                causeContext.Update(x);
+                causeContext.Save();
+                donationContext.Insert(temp);
+                donationContext.Save();
+                return RedirectToAction("History", "UserAction");
             }
-            
-            causeContext.Insert(x);
-            causeContext.Save();
-            donationContext.Insert(temp);
-            donationContext.Save();
-            return RedirectToAction("History","UserAction");
+            else
+            {
+                if (General.orgLoginStatus == true)
+                {
+                    General.orgLoginStatus = false;
+                    General.orgName = "";
+                    General.orgId = -1;
+                    General.orgTx = "";
+                }
+                return RedirectToAction("Login", "User");
+            }
         }
-    }
+}
 }

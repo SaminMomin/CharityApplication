@@ -1,30 +1,627 @@
-﻿@{
+﻿@model CharityApplication.ViewModels.HomeViewModel
+
+
+@{
     ViewBag.Title = "Helping Hands";
 }
 
-<div class="jumbotron">
-    <h1 class="display-3">Helping Hands </h1>
-   <p class="lead">Helping Hands is a transparent and genuine charity application which uses Blockchain for providing tamperproof records of donations along with security and privacy of user and organizations.</p>
-</div>
 
-<div class="row">
-    <div class="col-md-4">
-        <h2>Getting started</h2>
-        <p>
-            ASP.NET MVC gives you a powerful, patterns-based way to build dynamic websites that
-            enables a clean separation of concerns and gives you full control over markup
-            for enjoyable, agile development.
-        </p>
-        <p><a class="btn btn-default" href="https://go.microsoft.com/fwlink/?LinkId=301865">Learn more &raquo;</a></p>
+<link href="~/Content/Custom/assets/img/favicon.png" rel="icon">
+<link href="~/Content/Custom/assets/img/apple-touch-icon.png" rel="apple-touch-icon">
+
+<!-- Google Fonts -->
+@*<link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,700,700i|Raleway:300,400,500,700,800" rel="stylesheet">*@
+
+<!-- Vendor CSS Files -->
+<link href="~/Content/Custom/assets/css/style.css" rel="stylesheet">
+<link href="~/Content/Custom/assets/vendor/venobox/venobox.css" rel="stylesheet">
+@*<link href="~/Content/Custom/assets/vendor/font-awesome/css/font-awesome.min.css" rel="stylesheet">*@
+<link href="~/Content/Custom/assets/vendor/owl.carousel/assets/owl.carousel.min.css" rel="stylesheet">
+<link href="~/Content/Custom/assets/vendor/aos/aos.css" rel="stylesheet">
+<link href="~/Content/Custom/assets/css/temp.css" rel="stylesheet">
+<link href="~/Content/Custom2/css/one-page-wonder.css" rel="stylesheet">
+
+<!-- Template Main CSS File -->
+<link href="~/Content/Custom/assets/css/style.css" rel="stylesheet">
+
+<section id="introhome">
+    <div class="introhome-container" data-aos="zoom-in" data-aos-delay="100">
+        <h1 class="mb-4 pb-0"><span>Helping Hands</span></h1>
+        <h2 style="color:floralwhite;" class="mb-4 pb-0">The platform built for the people, by the people like you</h2>
+        <h2 style="color:floralwhite;" class="mb-4 pb-0">The place where humanity unites to create a better world</h2>
+        <h1><span>&#10084;</span></h1>
+        @*<a href="https://www.youtube.com/watch?v=jDDaplaOz7Q" class="venobox play-btn mb-4" data-vbtype="video" data-autoplay="true"></a>*@
+        @*<a href="#*@<!--about" class="about-btn scrollto">About The Event</a>-->
+        
     </div>
-    <div class="col-md-4">
-        <h2>Get more libraries</h2>
-        <p>NuGet is a free Visual Studio extension that makes it easy to add, remove, and update libraries and tools in Visual Studio projects.</p>
-        <p><a class="btn btn-default" href="https://go.microsoft.com/fwlink/?LinkId=301866">Learn more &raquo;</a></p>
+</section><!-- End introhome Section -->
+<section id="about">
+    <div class="container" data-aos="fade-up">
+        <div class="row">
+            <div class="col-lg-6">
+                <h2>About</h2>
+                <p class="text-justify">
+                    Helping Hands is the right platform for people and organizations to donate and raise funds for various causes.
+                    We provide a unique secure platform to donate funds to various causes which lets you to donate without any doubt regarding the genuineness of any organization.
+                </p>
+            </div>
+            <div class="col-lg-3">
+                <h3>Unique, How?</h3>
+                <p>Each donation you make gets registered on the Ethereum Blockchain through its powerful smart contract feature. You can also verify your profile as well as an organization's profile along with their causes, only and only due to powerful functionality and robustness of Ethereum Blockchain.</p>
+            </div>
+            <div class="col-lg-3">
+                <h3>How to verify?</h3>
+                <p>Whenever you sign up for our website or donate to any cause, you will get the option to verify it's registration on Ethereum Blockchain through the Etherscan.io platform.</p>
+            </div>
+        </div>
     </div>
-    <div class="col-md-4">
-        <h2>Web Hosting</h2>
-        <p>You can easily find a web hosting company that offers the right mix of features and price for your applications.</p>
-        <p><a class="btn btn-default" href="https://go.microsoft.com/fwlink/?LinkId=301867">Learn more &raquo;</a></p>
+</section><!-- End About Section -->
+<section id="speakers">
+    <div class="container" data-aos="fade-up">
+        <div class="section-header">
+            <h2>Causes</h2>
+            <p>Here are some of our most successful causes that have made the world a better place</p>
+        </div>
+
+        <div class="row">
+            @if (Model.causeCount > 0)
+            {<div class="col-md-4">
+                    <div class="speaker" data-aos="fade-up" data-aos-delay="100">
+                        @if (@Model.Causes.ElementAt(0).type == "Community")
+                        {
+                            <img src="~/CardImages/Community.jpg" alt="Speaker 1" class="img-fluid">}
+                        else if (@Model.Causes.ElementAt(0).type == "Housing")
+                        {
+                            <img src="~/CardImages/Housing.jpg" alt="Speaker 1" class="img-fluid">}
+                        else if (@Model.Causes.ElementAt(0).type == "Overseas Aid")
+                        {
+                            <img src="~/CardImages/Overseas Aid.jpg" alt="Speaker 1" class="img-fluid">}
+                        else if (@Model.Causes.ElementAt(0).type == "Poverty Relief")
+                        {
+                            <img src="~/CardImages/Poverty Relief.jpg" alt="Speaker 1" class="img-fluid">}
+                        else if (@Model.Causes.ElementAt(0).type == "Training")
+                        {
+                            <img src="~/CardImages/Training.jpg" alt="Speaker 1" class="img-fluid">}
+                        else if (@Model.Causes.ElementAt(0).type == "Medical")
+                        {
+                            <img src="~/CardImages/Medical.jpg" alt="Speaker 1" class="img-fluid">}
+                        else if (@Model.Causes.ElementAt(0).type == "Sports Clubs")
+                        {
+                            <img src="~/CardImages/Sports Clubs.jpg" alt="Speaker 1" class="img-fluid">}
+                        else if (@Model.Causes.ElementAt(0).type == "Arts and Culture")
+                        {
+                            <img src="~/CardImages/Arts and Culture.jpg" alt="Speaker 1" class="img-fluid">}
+                        else if (@Model.Causes.ElementAt(0).type == "Public Service and Military")
+                        {
+                            <img src="~/CardImages/Public Service and Military.jpg" alt="Speaker 1" class="img-fluid">}
+                        else if (@Model.Causes.ElementAt(0).type == "Education")
+                        {
+                            <img src="~/CardImages/Education.jpg" alt="Speaker 1" class="img-fluid">}
+                        else if (@Model.Causes.ElementAt(0).type == "Children's")
+                        {
+                            <img src="~/CardImages/Children.jpg" alt="Speaker 1" class="img-fluid">}
+                        else if (@Model.Causes.ElementAt(0).type == "Disability")
+                        {
+                            <img src="~/CardImages/Disability.jpg" alt="Speaker 1" class="img-fluid">}
+                        else if (@Model.Causes.ElementAt(0).type == "Environmental")
+                        {
+                            <img src="~/CardImages/Environmental.jpg" alt="Speaker 1" class="img-fluid">}
+                        else if (@Model.Causes.ElementAt(0).type == "Religious")
+                        {
+                            <img src="~/CardImages/Religious.jpg" alt="Speaker 1" class="img-fluid">}
+                        else if (@Model.Causes.ElementAt(0).type == "Animal")
+                        {
+                            <img src="~/CardImages/Animals.jpg" alt="Speaker 1" class="img-fluid">
+                        }
+                        else
+                        {
+                            <img src="~/CardImages/Elderly.jpg" alt="Speaker 1" class="img-fluid">
+                        }<div class="details">
+                            <h3>@Html.ActionLink(@Model.Causes.ElementAt(0).name, "ViewCause", "UserAction", new { causeId = Model.Causes.ElementAt(0).Id }, new { })</h3>
+                            <p class="text-break">@Model.Causes.ElementAt(0).shortDescription</p>
+                            <div class="row">
+                                <p class="col-md-6">Goal:₹@Model.Causes.ElementAt(0).goal</p>
+                                <p class="col-md-6">Collected:₹@Model.Causes.ElementAt(0).collected</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            }
+            @if (Model.causeCount > 1)
+            {<div class="col-md-4">
+                    <div class="speaker" data-aos="fade-up" data-aos-delay="100">
+                        @if (@Model.Causes.ElementAt(1).type == "Community")
+                        {
+                            <img src="~/CardImages/Community.jpg" alt="Speaker 1" class="img-fluid">}
+                        else if (@Model.Causes.ElementAt(1).type == "Housing")
+                        {
+                            <img src="~/CardImages/Housing.jpg" alt="Speaker 1" class="img-fluid">}
+                        else if (@Model.Causes.ElementAt(1).type == "Overseas Aid")
+                        {
+                            <img src="~/CardImages/Overseas Aid.jpg" alt="Speaker 1" class="img-fluid">}
+                        else if (@Model.Causes.ElementAt(1).type == "Poverty Relief")
+                        {
+                            <img src="~/CardImages/Poverty Relief.jpg" alt="Speaker 1" class="img-fluid">}
+                        else if (@Model.Causes.ElementAt(1).type == "Training")
+                        {
+                            <img src="~/CardImages/Training.jpg" alt="Speaker 1" class="img-fluid">}
+                        else if (@Model.Causes.ElementAt(1).type == "Medical")
+                        {
+                            <img src="~/CardImages/Medical.jpg" alt="Speaker 1" class="img-fluid">}
+                        else if (@Model.Causes.ElementAt(1).type == "Sports Clubs")
+                        {
+                            <img src="~/CardImages/Sports Clubs.jpg" alt="Speaker 1" class="img-fluid">}
+                        else if (@Model.Causes.ElementAt(1).type == "Arts and Culture")
+                        {
+                            <img src="~/CardImages/Arts and Culture.jpg" alt="Speaker 1" class="img-fluid">}
+                        else if (@Model.Causes.ElementAt(1).type == "Public Service and Military")
+                        {
+                            <img src="~/CardImages/Public Service and Military.jpg" alt="Speaker 1" class="img-fluid">}
+                        else if (@Model.Causes.ElementAt(1).type == "Education")
+                        {
+                            <img src="~/CardImages/Education.jpg" alt="Speaker 1" class="img-fluid">}
+                        else if (@Model.Causes.ElementAt(1).type == "Children's")
+                        {
+                            <img src="~/CardImages/Children.jpg" alt="Speaker 1" class="img-fluid">}
+                        else if (@Model.Causes.ElementAt(1).type == "Disability")
+                        {
+                            <img src="~/CardImages/Disability.jpg" alt="Speaker 1" class="img-fluid">}
+                        else if (@Model.Causes.ElementAt(1).type == "Environmental")
+                        {
+                            <img src="~/CardImages/Environmental.jpg" alt="Speaker 1" class="img-fluid">}
+                        else if (@Model.Causes.ElementAt(1).type == "Religious")
+                        {
+                            <img src="~/CardImages/Religious.jpg" alt="Speaker 1" class="img-fluid">}
+                        else if (@Model.Causes.ElementAt(1).type == "Animal")
+                        {
+                            <img src="~/CardImages/Animals.jpg" alt="Speaker 1" class="img-fluid">
+                        }
+                        else
+                        {
+                            <img src="~/CardImages/Elderly.jpg" alt="Speaker 1" class="img-fluid">
+                        }<div class="details">
+                            <h3>@Html.ActionLink(@Model.Causes.ElementAt(1).name, "ViewCause", "UserAction", new { causeId = Model.Causes.ElementAt(1).Id }, new { })</h3>
+                            <p class="text-break">@Model.Causes.ElementAt(1).shortDescription</p>
+                            <div class="row">
+                                <p class="col-md-6">Goal:₹@Model.Causes.ElementAt(1).goal</p>
+                                <p class="col-md-6">Collected:₹@Model.Causes.ElementAt(1).collected</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            }
+            @if (Model.causeCount > 2)
+            {<div class="col-md-4">
+                    <div class="speaker" data-aos="fade-up" data-aos-delay="100">
+                        @if (@Model.Causes.ElementAt(2).type == "Community")
+                        {
+                            <img src="~/CardImages/Community.jpg" alt="Speaker 1" class="img-fluid">}
+                        else if (@Model.Causes.ElementAt(2).type == "Housing")
+                        {
+                            <img src="~/CardImages/Housing.jpg" alt="Speaker 1" class="img-fluid">}
+                        else if (@Model.Causes.ElementAt(2).type == "Overseas Aid")
+                        {
+                            <img src="~/CardImages/Overseas Aid.jpg" alt="Speaker 1" class="img-fluid">}
+                        else if (@Model.Causes.ElementAt(2).type == "Poverty Relief")
+                        {
+                            <img src="~/CardImages/Poverty Relief.jpg" alt="Speaker 1" class="img-fluid">}
+                        else if (@Model.Causes.ElementAt(2).type == "Training")
+                        {
+                            <img src="~/CardImages/Training.jpg" alt="Speaker 1" class="img-fluid">}
+                        else if (@Model.Causes.ElementAt(2).type == "Medical")
+                        {
+                            <img src="~/CardImages/Medical.jpg" alt="Speaker 1" class="img-fluid">}
+                        else if (@Model.Causes.ElementAt(2).type == "Sports Clubs")
+                        {
+                            <img src="~/CardImages/Sports Clubs.jpg" alt="Speaker 1" class="img-fluid">}
+                        else if (@Model.Causes.ElementAt(2).type == "Arts and Culture")
+                        {
+                            <img src="~/CardImages/Arts and Culture.jpg" alt="Speaker 1" class="img-fluid">}
+                        else if (@Model.Causes.ElementAt(2).type == "Public Service and Military")
+                        {
+                            <img src="~/CardImages/Public Service and Military.jpg" alt="Speaker 1" class="img-fluid">}
+                        else if (@Model.Causes.ElementAt(2).type == "Education")
+                        {
+                            <img src="~/CardImages/Education.jpg" alt="Speaker 1" class="img-fluid">}
+                        else if (@Model.Causes.ElementAt(2).type == "Children's")
+                        {
+                            <img src="~/CardImages/Children.jpg" alt="Speaker 1" class="img-fluid">}
+                        else if (@Model.Causes.ElementAt(2).type == "Disability")
+                        {
+                            <img src="~/CardImages/Disability.jpg" alt="Speaker 1" class="img-fluid">}
+                        else if (@Model.Causes.ElementAt(2).type == "Environmental")
+                        {
+                            <img src="~/CardImages/Environmental.jpg" alt="Speaker 1" class="img-fluid">}
+                        else if (@Model.Causes.ElementAt(2).type == "Religious")
+                        {
+                            <img src="~/CardImages/Religious.jpg" alt="Speaker 1" class="img-fluid">}
+                        else if (@Model.Causes.ElementAt(2).type == "Animal")
+                        {
+                            <img src="~/CardImages/Animals.jpg" alt="Speaker 1" class="img-fluid">
+                        }
+                        else
+                        {
+                            <img src="~/CardImages/Elderly.jpg" alt="Speaker 1" class="img-fluid">
+                        }<div class="details">
+                            <h3>@Html.ActionLink(@Model.Causes.ElementAt(2).name, "ViewCause", "UserAction", new { causeId = Model.Causes.ElementAt(2).Id }, new { })</h3>
+                            <p class="text-break">@Model.Causes.ElementAt(2).shortDescription</p>
+                            <div class="row">
+                                <p class="col-md-6">Goal:₹@Model.Causes.ElementAt(2).goal</p>
+                                <p class="col-md-6">Collected:₹@Model.Causes.ElementAt(2).collected</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>}
+        </div>
+        @if (Model.causeCount > 3)
+        {
+            <div class="row">
+                @if (Model.causeCount > 3)
+                {<div class="col-md-4">
+                        <div class="speaker" data-aos="fade-up" data-aos-delay="100">
+                            @if (@Model.Causes.ElementAt(3).type == "Community")
+                            {
+                                <img src="~/CardImages/Community.jpg" alt="Speaker 1" class="img-fluid">}
+                            else if (@Model.Causes.ElementAt(3).type == "Housing")
+                            {
+                                <img src="~/CardImages/Housing.jpg" alt="Speaker 1" class="img-fluid">}
+                            else if (@Model.Causes.ElementAt(3).type == "Overseas Aid")
+                            {
+                                <img src="~/CardImages/Overseas Aid.jpg" alt="Speaker 1" class="img-fluid">}
+                            else if (@Model.Causes.ElementAt(3).type == "Poverty Relief")
+                            {
+                                <img src="~/CardImages/Poverty Relief.jpg" alt="Speaker 1" class="img-fluid">}
+                            else if (@Model.Causes.ElementAt(3).type == "Training")
+                            {
+                                <img src="~/CardImages/Training.jpg" alt="Speaker 1" class="img-fluid">}
+                            else if (@Model.Causes.ElementAt(3).type == "Medical")
+                            {
+                                <img src="~/CardImages/Medical.jpg" alt="Speaker 1" class="img-fluid">}
+                            else if (@Model.Causes.ElementAt(3).type == "Sports Clubs")
+                            {
+                                <img src="~/CardImages/Sports Clubs.jpg" alt="Speaker 1" class="img-fluid">}
+                            else if (@Model.Causes.ElementAt(3).type == "Arts and Culture")
+                            {
+                                <img src="~/CardImages/Arts and Culture.jpg" alt="Speaker 1" class="img-fluid">}
+                            else if (@Model.Causes.ElementAt(3).type == "Public Service and Military")
+                            {
+                                <img src="~/CardImages/Public Service and Military.jpg" alt="Speaker 1" class="img-fluid">}
+                            else if (@Model.Causes.ElementAt(3).type == "Education")
+                            {
+                                <img src="~/CardImages/Education.jpg" alt="Speaker 1" class="img-fluid">}
+                            else if (@Model.Causes.ElementAt(3).type == "Children's")
+                            {
+                                <img src="~/CardImages/Children.jpg" alt="Speaker 1" class="img-fluid">}
+                            else if (@Model.Causes.ElementAt(3).type == "Disability")
+                            {
+                                <img src="~/CardImages/Disability.jpg" alt="Speaker 1" class="img-fluid">}
+                            else if (@Model.Causes.ElementAt(3).type == "Environmental")
+                            {
+                                <img src="~/CardImages/Environmental.jpg" alt="Speaker 1" class="img-fluid">}
+                            else if (@Model.Causes.ElementAt(3).type == "Religious")
+                            {
+                                <img src="~/CardImages/Religious.jpg" alt="Speaker 1" class="img-fluid">}
+                            else if (@Model.Causes.ElementAt(3).type == "Animal")
+                            {
+                                <img src="~/CardImages/Animals.jpg" alt="Speaker 1" class="img-fluid">
+                            }
+                            else
+                            {
+                                <img src="~/CardImages/Elderly.jpg" alt="Speaker 1" class="img-fluid">
+                            }<div class="details">
+                                <h3>@Html.ActionLink(@Model.Causes.ElementAt(3).name, "ViewCause", "UserAction", new { causeId = Model.Causes.ElementAt(3).Id }, new { })</h3>
+                                <p class="text-break">@Model.Causes.ElementAt(3).shortDescription</p>
+                                <div class="row">
+                                    <p class="col-md-6">Goal:₹@Model.Causes.ElementAt(3).goal</p>
+                                    <p class="col-md-6">Collected:₹@Model.Causes.ElementAt(3).collected</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                }
+                @if (Model.causeCount > 4)
+                {<div class="col-md-4">
+                        <div class="speaker" data-aos="fade-up" data-aos-delay="100">
+                            @if (@Model.Causes.ElementAt(4).type == "Community")
+                            {
+                                <img src="~/CardImages/Community.jpg" alt="Speaker 1" class="img-fluid">}
+                            else if (@Model.Causes.ElementAt(4).type == "Housing")
+                            {
+                                <img src="~/CardImages/Housing.jpg" alt="Speaker 1" class="img-fluid">}
+                            else if (@Model.Causes.ElementAt(4).type == "Overseas Aid")
+                            {
+                                <img src="~/CardImages/Overseas Aid.jpg" alt="Speaker 1" class="img-fluid">}
+                            else if (@Model.Causes.ElementAt(4).type == "Poverty Relief")
+                            {
+                                <img src="~/CardImages/Poverty Relief.jpg" alt="Speaker 1" class="img-fluid">}
+                            else if (@Model.Causes.ElementAt(4).type == "Training")
+                            {
+                                <img src="~/CardImages/Training.jpg" alt="Speaker 1" class="img-fluid">}
+                            else if (@Model.Causes.ElementAt(4).type == "Medical")
+                            {
+                                <img src="~/CardImages/Medical.jpg" alt="Speaker 1" class="img-fluid">}
+                            else if (@Model.Causes.ElementAt(4).type == "Sports Clubs")
+                            {
+                                <img src="~/CardImages/Sports Clubs.jpg" alt="Speaker 1" class="img-fluid">}
+                            else if (@Model.Causes.ElementAt(4).type == "Arts and Culture")
+                            {
+                                <img src="~/CardImages/Arts and Culture.jpg" alt="Speaker 1" class="img-fluid">}
+                            else if (@Model.Causes.ElementAt(4).type == "Public Service and Military")
+                            {
+                                <img src="~/CardImages/Public Service and Military.jpg" alt="Speaker 1" class="img-fluid">}
+                            else if (@Model.Causes.ElementAt(4).type == "Education")
+                            {
+                                <img src="~/CardImages/Education.jpg" alt="Speaker 1" class="img-fluid">}
+                            else if (@Model.Causes.ElementAt(4).type == "Children's")
+                            {
+                                <img src="~/CardImages/Children.jpg" alt="Speaker 1" class="img-fluid">}
+                            else if (@Model.Causes.ElementAt(4).type == "Disability")
+                            {
+                                <img src="~/CardImages/Disability.jpg" alt="Speaker 1" class="img-fluid">}
+                            else if (@Model.Causes.ElementAt(4).type == "Environmental")
+                            {
+                                <img src="~/CardImages/Environmental.jpg" alt="Speaker 1" class="img-fluid">}
+                            else if (@Model.Causes.ElementAt(4).type == "Religious")
+                            {
+                                <img src="~/CardImages/Religious.jpg" alt="Speaker 1" class="img-fluid">}
+                            else if (@Model.Causes.ElementAt(4).type == "Animal")
+                            {
+                                <img src="~/CardImages/Animals.jpg" alt="Speaker 1" class="img-fluid">
+                            }
+                            else
+                            {
+                                <img src="~/CardImages/Elderly.jpg" alt="Speaker 1" class="img-fluid">
+                            }<div class="details">
+                                <h3>@Html.ActionLink(@Model.Causes.ElementAt(4).name, "ViewCause", "UserAction", new { causeId = Model.Causes.ElementAt(4).Id }, new { })</h3>
+                                <p class="text-break">@Model.Causes.ElementAt(4).shortDescription</p>
+                                <div class="row">
+                                    <p class="col-md-6">Goal:₹@Model.Causes.ElementAt(4).goal</p>
+                                    <p class="col-md-6">Collected:₹@Model.Causes.ElementAt(4).collected</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                }
+                @if (Model.causeCount > 5)
+                {<div class="col-md-4">
+                        <div class="speaker" data-aos="fade-up" data-aos-delay="100">
+                            @if (@Model.Causes.ElementAt(5).type == "Community")
+                            {
+                                <img src="~/CardImages/Community.jpg" alt="Speaker 1" class="img-fluid">}
+                            else if (@Model.Causes.ElementAt(5).type == "Housing")
+                            {
+                                <img src="~/CardImages/Housing.jpg" alt="Speaker 1" class="img-fluid">}
+                            else if (@Model.Causes.ElementAt(5).type == "Overseas Aid")
+                            {
+                                <img src="~/CardImages/Overseas Aid.jpg" alt="Speaker 1" class="img-fluid">}
+                            else if (@Model.Causes.ElementAt(5).type == "Poverty Relief")
+                            {
+                                <img src="~/CardImages/Poverty Relief.jpg" alt="Speaker 1" class="img-fluid">}
+                            else if (@Model.Causes.ElementAt(5).type == "Training")
+                            {
+                                <img src="~/CardImages/Training.jpg" alt="Speaker 1" class="img-fluid">}
+                            else if (@Model.Causes.ElementAt(5).type == "Medical")
+                            {
+                                <img src="~/CardImages/Medical.jpg" alt="Speaker 1" class="img-fluid">}
+                            else if (@Model.Causes.ElementAt(5).type == "Sports Clubs")
+                            {
+                                <img src="~/CardImages/Sports Clubs.jpg" alt="Speaker 1" class="img-fluid">}
+                            else if (@Model.Causes.ElementAt(5).type == "Arts and Culture")
+                            {
+                                <img src="~/CardImages/Arts and Culture.jpg" alt="Speaker 1" class="img-fluid">}
+                            else if (@Model.Causes.ElementAt(5).type == "Public Service and Military")
+                            {
+                                <img src="~/CardImages/Public Service and Military.jpg" alt="Speaker 1" class="img-fluid">}
+                            else if (@Model.Causes.ElementAt(5).type == "Education")
+                            {
+                                <img src="~/CardImages/Education.jpg" alt="Speaker 1" class="img-fluid">}
+                            else if (@Model.Causes.ElementAt(5).type == "Children's")
+                            {
+                                <img src="~/CardImages/Children.jpg" alt="Speaker 1" class="img-fluid">}
+                            else if (@Model.Causes.ElementAt(5).type == "Disability")
+                            {
+                                <img src="~/CardImages/Disability.jpg" alt="Speaker 1" class="img-fluid">}
+                            else if (@Model.Causes.ElementAt(5).type == "Environmental")
+                            {
+                                <img src="~/CardImages/Environmental.jpg" alt="Speaker 1" class="img-fluid">}
+                            else if (@Model.Causes.ElementAt(5).type == "Religious")
+                            {
+                                <img src="~/CardImages/Religious.jpg" alt="Speaker 1" class="img-fluid">}
+                            else if (@Model.Causes.ElementAt(5).type == "Animal")
+                            {
+                                <img src="~/CardImages/Animals.jpg" alt="Speaker 1" class="img-fluid">
+                            }
+                            else
+                            {
+                                <img src="~/CardImages/Elderly.jpg" alt="Speaker 1" class="img-fluid">
+                            }<div class="details">
+                                <h3>@Html.ActionLink(@Model.Causes.ElementAt(5).name, "ViewCause", "UserAction", new { causeId = Model.Causes.ElementAt(5).Id }, new { })</h3>
+                                <p class="text-break">@Model.Causes.ElementAt(5).shortDescription</p>
+                                <div class="row">
+                                    <p class="col-md-6">Goal:₹@Model.Causes.ElementAt(5).goal</p>
+                                    <p class="col-md-6">Collected:₹@Model.Causes.ElementAt(5).collected</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>}
+            </div>
+        }
     </div>
-</div>
+</section>
+
+<section id="speakers">
+    <div class="container" data-aos="fade-up">
+        <div class="section-header">
+            <h2>Organizations</h2>
+            <p>Here are some of the prominent organizations that are working with us to make the world a better place</p>
+        </div>
+
+        @if (Model.organizationCount > 0)
+        {
+            <section>
+                <div class="container">
+                    <div class="row align-items-center">
+                        <div class="col-md-6 order-md-2">
+                            <div class="p-5">
+                                @if (@Model.Organizations.ElementAt(0).type == "Animal Charity")
+                                {
+                                    <img src="~/CardImages/Animal Charity.jpg" class="img-fluid rounded-circle">}
+                                else if (@Model.Organizations.ElementAt(0).type == "Environmental Charity")
+                                {
+                                    <img src="~/CardImages/Environmental Charity.jpg" alt="Speaker 1" class="rounded-circle img-fluid">}
+                                else if (@Model.Organizations.ElementAt(0).type == "International NGO")
+                                {
+                                    <img src="~/CardImages/Overseas Aid.jpg" alt="Speaker 1" class="img-fluid rounded-circle">}
+                                else if (@Model.Organizations.ElementAt(0).type == "Health Charity")
+                                {
+                                    <img src="~/CardImages/Medical.jpg" alt="Speaker 1" class="img-fluid rounded-circle">}
+                                else if (@Model.Organizations.ElementAt(0).type == "Education Charity")
+                                {
+                                    <img src="~/CardImages/Educational Charity.jpg" alt="Speaker 1" class="img-fluid rounded-circle">}
+                                else
+                                {
+                                    <img src="~/CardImages/Arts and Culture.jpg" alt="Speaker 1" class="img-fluid rounded-circle">}
+
+                            </div>
+                        </div>
+                        <div class="col-lg-6 order-lg-1">
+                            <div class="p-5">
+                                <h3 class="display-4">@Model.Organizations.ElementAt(0).name</h3>
+                                <h4 class="card-subtitle my-2">@Model.Organizations.ElementAt(0).type</h4>
+                                <h4 class="card-subtitle my-2">+91-@Model.Organizations.ElementAt(0).contact</h4>
+                                <p class="text-white-50">@Model.Organizations.ElementAt(0).description</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+        }
+        @if (Model.organizationCount > 1)
+        {<section>
+                <div class="container">
+                    <div class="row align-items-center">
+                        <div class="col-md-6 order-md-2">
+                            <div class="p-5">
+                                @if (@Model.Organizations.ElementAt(1).type == "Animal Charity")
+                                {
+                                    <img src="~/CardImages/Animal Charity.jpg" class="img-fluid rounded-circle">}
+                                else if (@Model.Organizations.ElementAt(1).type == "Environmental Charity")
+                                {
+                                    <img src="~/CardImages/Environmental Charity.jpg" alt="Speaker 1" class="img-fluid rounded-circle">}
+                                else if (@Model.Organizations.ElementAt(1).type == "International NGO")
+                                {
+                                    <img src="~/CardImages/Overseas Aid.jpg" alt="Speaker 1" class="img-fluid rounded-circle">}
+                                else if (@Model.Organizations.ElementAt(1).type == "Health Charity")
+                                {
+                                    <img src="~/CardImages/Medical.jpg" alt="Speaker 1" class="img-fluid rounded-circle">}
+                                else if (@Model.Organizations.ElementAt(1).type == "Education Charity")
+                                {
+                                    <img src="~/CardImages/Educational Charity.jpg" alt="Speaker 1" class="img-fluid rounded-circle">}
+                                else
+                                {
+                                    <img src="~/CardImages/Arts and Culture.jpg" alt="Speaker 1" class="img-fluid rounded-circle">}
+                            </div>
+                        </div>
+                        <div class="col-lg-6 order-lg-1">
+                            <div class="p-5">
+                                <h3 class="display-4">@Model.Organizations.ElementAt(1).name</h3>
+                                <h4 class="card-subtitle my-2">@Model.Organizations.ElementAt(1).type</h4>
+                                <h4 class="card-subtitle my-2">+91-@Model.Organizations.ElementAt(1).contact</h4>
+                                <p class="text-white-50">@Model.Organizations.ElementAt(1).description</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        }
+        @if (Model.organizationCount > 2)
+        {<section>
+                <div class="container">
+                    <div class="row align-items-center">
+                        <div class="col-md-6 order-md-2">
+                            <div class="p-5">
+                                @if (@Model.Organizations.ElementAt(2).type == "Animal Charity")
+                                {
+                                    <img src="~/CardImages/Animal Charity.jpg" class="img-fluid rounded-circle">}
+                                else if (@Model.Organizations.ElementAt(2).type == "Environmental Charity")
+                                {
+                                    <img src="~/CardImages/Environmental Charity.jpg" alt="Speaker 1" class="img-fluid rounded-circle">}
+                                else if (@Model.Organizations.ElementAt(2).type == "International NGO")
+                                {
+                                    <img src="~/CardImages/Overseas Aid.jpg" alt="Speaker 1" class="img-fluid rounded-circle">}
+                                else if (@Model.Organizations.ElementAt(2).type == "Health Charity")
+                                {
+                                    <img src="~/CardImages/Medical.jpg" alt="Speaker 1" class="img-fluid rounded-circle">}
+                                else if (@Model.Organizations.ElementAt(2).type == "Education Charity")
+                                {
+                                    <img src="~/CardImages/Educational Charity.jpg" alt="Speaker 1" class="img-fluid rounded-circle">}
+                                else
+                                {
+                                    <img src="~/CardImages/Arts and Culture.jpg" alt="Speaker 1" class="img-fluid rounded-circle">}
+                            </div>
+                        </div>
+                        <div class="col-lg-6 order-lg-1">
+                            <div class="p-5">
+                                <h3 class="display-4">@Model.Organizations.ElementAt(2).name</h3>
+                                <h4 class="card-subtitle my-2">@Model.Organizations.ElementAt(2).type</h4>
+                                <h4 class="card-subtitle my-2">+91-@Model.Organizations.ElementAt(2).contact</h4>
+                                <p class="text-white-50">@Model.Organizations.ElementAt(2).description</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        }
+    </div>
+</section>
+
+<section id="facts">
+    <div class="container" data-aos="fade-up">
+        <div class="section-header">
+            <h2>Stats</h2>
+        </div>
+        <div class="row counters mb-4">
+            <div class="col-lg-3 text-center">
+                @*<h4 class="speaker details" data-toggle="counter-up">274</h4>*@
+                <span class="countfect" style="color:#0d6efd;" data-num=@Model.userCount></span>
+                <h5 class="speaker details">Users registered till date</h5>
+            </div>
+            <div class="col-lg-3 text-center">
+                @*<h4 class="speaker details" data-toggle="counter-num">421</h4>*@
+                <span class="countfect" style="color:#0d6efd;" data-num=@Model.donationCount></span>
+                <h5 class="speaker details">Total Funds Received ₹</h5>
+            </div>
+            <div class="col-lg-3 text-center">
+                @*<h4 class="speaker details" data-toggle="counter-up">1,364</h4>*@
+                <span class="countfect" style="color:#0d6efd;" data-num=@Model.organizationCount></span>
+                <h5 class="speaker details">Organizations connected with us</h5>
+            </div>
+
+            <div class="col-lg-3 text-center">
+                @*<h4 class="speaker details" data-toggle="counter-up">1,364</h4>*@
+                <span class="countfect" style="color:#0d6efd;" data-num=@Model.causeCount></span>
+                <h5 class="speaker details">Causes supported so far</h5>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+
+
+
+<!-- Vendor JS Files -->
+<script src="~/Content/Custom/assets/vendor/jquery/jquery.min.js"></script>
+<script src="~/Content/Custom/assets/js/countfect.min.js"></script>
+<script src="~/Content/Custom/assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+<script src="~/Content/Custom/assets/vendor/jquery.easing/jquery.easing.min.js"></script>
+<script src="~/Content/Custom/assets/vendor/php-email-form/validate.js"></script>
+<script src="~/Content/Custom/assets/vendor/venobox/venobox.min.js"></script>
+<script src="~/Content/Custom/assets/vendor/owl.carousel/owl.carousel.min.js"></script>
+<script src="~/Content/Custom/assets/vendor/superfish/superfish.min.js"></script>
+<script src="~/Content/Custom/assets/vendor/hoverIntent/hoverIntent.js"></script>
+<script src="~/Content/Custom/assets/vendor/aos/aos.js"></script>
+
+<!-- Template Main JS File -->
+<script src="~/Content/Custom/assets/js/main.js"></script>

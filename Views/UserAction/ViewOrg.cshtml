@@ -7,7 +7,6 @@
 <link href="~/Content/Custom/assets/img/apple-touch-icon.png" rel="apple-touch-icon">
 
 <!-- Google Fonts -->
-@*<link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,700,700i|Raleway:300,400,500,700,800" rel="stylesheet">*@
 
 <!-- Vendor CSS Files -->
 <link href="~/Content/bootstrap.min.css" rel="stylesheet">
@@ -28,7 +27,7 @@
         <p class="mb-4 pb-0">@string.Concat("Call us at +91", Model.org.contact)</p>
 
         @*<a href="https://www.youtube.com/watch?v=jDDaplaOz7Q" class="venobox play-btn mb-4" data-vbtype="video" data-autoplay="true"></a>*@
-        @*<a href="#about" class="about-btn scrollto">About The Organization</a>*@
+    <a class="about-btn scrollto" target="_blank" href=@string.Concat("https://kovan.etherscan.io/tx/",Model.org.transactionhash)>Verify on Etherscan</a>
     </div>
 </section><!-- End Intro Section -->
 <section id="about">
@@ -61,7 +60,7 @@
                             <div class="speaker" data-aos="fade-up" data-aos-delay="100">
                                 @if (@Model.activeCauses.ElementAt(i * 3 + j).type == "Community")
                                 {
-                                    <img src="~/CardImages/Community.png" alt="Speaker 1" class="img-fluid">}
+                                    <img src="~/CardImages/Community.jpg" alt="Speaker 1" class="img-fluid">}
                                 else if (@Model.activeCauses.ElementAt(i * 3 + j).type == "Housing")
                                 {
                                     <img src="~/CardImages/Housing.jpg" alt="Speaker 1" class="img-fluid">}
@@ -73,7 +72,7 @@
                                     <img src="~/CardImages/Poverty Relief.jpg" alt="Speaker 1" class="img-fluid">}
                                 else if (@Model.activeCauses.ElementAt(i * 3 + j).type == "Training")
                                 {
-                                    <img src="~/CardImages/Training.png" alt="Speaker 1" class="img-fluid">}
+                                    <img src="~/CardImages/Training.jpg" alt="Speaker 1" class="img-fluid">}
                                 else if (@Model.activeCauses.ElementAt(i * 3 + j).type == "Medical")
                                 {
                                     <img src="~/CardImages/Medical.jpg" alt="Speaker 1" class="img-fluid">}
@@ -91,16 +90,16 @@
                                     <img src="~/CardImages/Education.jpg" alt="Speaker 1" class="img-fluid">}
                                 else if (@Model.activeCauses.ElementAt(i * 3 + j).type == "Children's")
                                 {
-                                    <img src="~/CardImages/Children.png" alt="Speaker 1" class="img-fluid">}
+                                    <img src="~/CardImages/Children.jpg" alt="Speaker 1" class="img-fluid">}
                                 else if (@Model.activeCauses.ElementAt(i * 3 + j).type == "Disability")
                                 {
-                                    <img src="~/CardImages/Disability.png" alt="Speaker 1" class="img-fluid">}
+                                    <img src="~/CardImages/Disability.jpg" alt="Speaker 1" class="img-fluid">}
                                 else if (@Model.activeCauses.ElementAt(i * 3 + j).type == "Environmental")
                                 {
                                     <img src="~/CardImages/Environmental.jpg" alt="Speaker 1" class="img-fluid">}
                                 else if (@Model.activeCauses.ElementAt(i * 3 + j).type == "Religious")
                                 {
-                                    <img src="~/CardImages/Religious.png" alt="Speaker 1" class="img-fluid">}
+                                    <img src="~/CardImages/Religious.jpg" alt="Speaker 1" class="img-fluid">}
                                 else if (@Model.activeCauses.ElementAt(i * 3 + j).type == "Animal")
                                 {
                                     <img src="~/CardImages/Animals.jpg" alt="Speaker 1" class="img-fluid">
@@ -110,7 +109,7 @@
                                     <img src="~/CardImages/Elderly.jpg" alt="Speaker 1" class="img-fluid">
                                 }
                                 <div class="details">
-                                    <h3>@Model.activeCauses.ElementAt(i * 3 + j).name</h3>
+                                    <h3>@Html.ActionLink(@Model.activeCauses.ElementAt(i * 3 + j).name, "ViewCause", "UserAction", new { causeId = Model.activeCauses.ElementAt(i * 3 + j).Id }, new { })</h3>
                                     <p class="text-break">@Model.activeCauses.ElementAt(i * 3 + j).shortDescription</p>
                                     <div class="row">
                                         <p class="col-md-6">Goal:₹@Model.activeCauses.ElementAt(i * 3 + j).goal</p>
@@ -141,7 +140,7 @@
                                 <div class="speaker" data-aos="fade-up" data-aos-delay="100">
                                     @if (@Model.completedCauses.ElementAt(i * 3 + j).type == "Community")
                                     {
-                                        <img src="~/CardImages/Community.png" alt="Speaker 1" class="img-fluid">}
+                                        <img src="~/CardImages/Community.jpg" alt="Speaker 1" class="img-fluid">}
                                     else if (@Model.completedCauses.ElementAt(i * 3 + j).type == "Housing")
                                     {
                                         <img src="~/CardImages/Housing.jpg" alt="Speaker 1" class="img-fluid">}
@@ -153,7 +152,7 @@
                                         <img src="~/CardImages/Poverty Relief.jpg" alt="Speaker 1" class="img-fluid">}
                                     else if (@Model.completedCauses.ElementAt(i * 3 + j).type == "Training")
                                     {
-                                        <img src="~/CardImages/Training.png" alt="Speaker 1" class="img-fluid">}
+                                        <img src="~/CardImages/Training.jpg" alt="Speaker 1" class="img-fluid">}
                                     else if (@Model.completedCauses.ElementAt(i * 3 + j).type == "Medical")
                                     {
                                         <img src="~/CardImages/Medical.jpg" alt="Speaker 1" class="img-fluid">}
@@ -171,16 +170,16 @@
                                         <img src="~/CardImages/Education.jpg" alt="Speaker 1" class="img-fluid">}
                                     else if (@Model.completedCauses.ElementAt(i * 3 + j).type == "Children's")
                                     {
-                                        <img src="~/CardImages/Children.png" alt="Speaker 1" class="img-fluid">}
+                                        <img src="~/CardImages/Children.jpg" alt="Speaker 1" class="img-fluid">}
                                     else if (@Model.completedCauses.ElementAt(i * 3 + j).type == "Disability")
                                     {
-                                        <img src="~/CardImages/Disability.png" alt="Speaker 1" class="img-fluid">}
+                                        <img src="~/CardImages/Disability.jpg" alt="Speaker 1" class="img-fluid">}
                                     else if (@Model.completedCauses.ElementAt(i * 3 + j).type == "Environmental")
                                     {
                                         <img src="~/CardImages/Environmental.jpg" alt="Speaker 1" class="img-fluid">}
                                     else if (@Model.completedCauses.ElementAt(i * 3 + j).type == "Religious")
                                     {
-                                        <img src="~/CardImages/Religious.png" alt="Speaker 1" class="img-fluid">}
+                                        <img src="~/CardImages/Religious.jpg" alt="Speaker 1" class="img-fluid">}
                                     else if (@Model.completedCauses.ElementAt(i * 3 + j).type == "Animal")
                                     {
                                         <img src="~/CardImages/Animals.jpg" alt="Speaker 1" class="img-fluid">
@@ -190,7 +189,7 @@
                                         <img src="~/CardImages/Elderly.jpg" alt="Speaker 1" class="img-fluid">
                                     }
                                     <div class="details">
-                                        <h3>@Model.completedCauses.ElementAt(i * 3 + j).name</h3>
+                                        <h3>@Html.ActionLink(@Model.completedCauses.ElementAt(i * 3 + j).name, "ViewCause", "UserAction", new { causeId = Model.completedCauses.ElementAt(i * 3 + j).Id }, new { })</h3>
                                         <p class="text-break">@Model.completedCauses.ElementAt(i * 3 + j).shortDescription</p>
                                         <div class="row">
                                             <p class="col-md-6">Goal:₹@Model.completedCauses.ElementAt(i * 3 + j).goal</p>
@@ -237,10 +236,7 @@
         </div>
     </div>
 </section>
-<p>
-    @Html.ActionLink("Edit", "Edit", new { /* id = Model.PrimaryKey */ }) |
-    @Html.ActionLink("Back to List", "Index")
-</p>
+
 
 <!-- Vendor JS Files -->
 <script src="~/Content/Custom/assets/vendor/jquery/jquery.min.js"></script>

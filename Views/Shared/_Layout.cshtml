@@ -7,7 +7,8 @@
     <title>@ViewBag.Title - My ASP.NET Application</title>
     @Styles.Render("~/Content/css")
     @Scripts.Render("~/bundles/modernizr")
-
+    <link href="~/Content/Custom/assets/vendor/font-awesome/css/font-awesome.min.css" rel="stylesheet">
+    <link href="~/Content/Custom/assets/css/style.css" rel="stylesheet" />
 </head>
 <body>
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
@@ -17,7 +18,7 @@
         </button>
         <div class="collapse navbar-collapse" id="navbarColor02">
             <ul class="navbar-nav mr-auto">
-                @if (CharityApplication.Models.General.userLoginStatus == true)
+                @if (CharityApplication.Models.General.userLoginStatus == true && CharityApplication.Models.General.orgLoginStatus == false)
                 {
                     <li class="nav-item">
                         @Html.ActionLink("Dashboard", "Index", "UserAction", new { @area = "" }, new { @class = "nav-link" })
@@ -36,7 +37,7 @@
                     </li>
                 }
 
-                @if (CharityApplication.Models.General.orgLoginStatus == true)
+                @if (CharityApplication.Models.General.orgLoginStatus == true && CharityApplication.Models.General.userLoginStatus== false)
                 {
                     <li class="nav-item">
                         @Html.ActionLink("Dashboard", "Index", "OrganizationAction", new { @area = "" }, new { @class = "nav-link" })
@@ -63,13 +64,13 @@
                     </li>
                 }
                 
-                @if (CharityApplication.Models.General.orgLoginStatus == true)
+                @if (CharityApplication.Models.General.orgLoginStatus == true && CharityApplication.Models.General.userLoginStatus== false)
                 {
                     <li class="nav-item">
                         @Html.ActionLink(string.Concat("Logout ", CharityApplication.Models.General.orgName), "Logout", "Organization", new { @area = "" }, new { @class = "nav-link" })
                     </li>
                 }
-                @if (CharityApplication.Models.General.userLoginStatus == true)
+                @if (CharityApplication.Models.General.userLoginStatus == true && CharityApplication.Models.General.orgLoginStatus == false)
                 {
                     <li class="nav-item">
                         @Html.ActionLink(string.Concat("Logout ", CharityApplication.Models.General.userName), "Logout", "User", new { @area = "" }, new { @class = "nav-link" })
@@ -81,12 +82,51 @@
             </ul>
         </div>
     </nav>
- <div class="body-content">
+    <div>
         @RenderBody()
         <hr />
-        <footer>
-            <p>&copy; @DateTime.Now.Year - Helping Hands</p>
+        <footer id="footer">
+            <div class="footer-top">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-lg-6 col-md-6 footer-contact">
+                            <h4>Contact Us</h4>
+                            <p>
+                                <strong>Phone:</strong> +91 87879 54885<br>
+                                <strong>Email:</strong> info@helpinghands.com<br>
+                            </p>
+                            </div>
+                        @*<div class="social-links col-lg-6 footer-contact">*@
+                            <div class="social-links col-lg-6 footer-contact">
+                                <h4>Social Handles</h4>
+                                <a href="https://twitter.com/MominSamin" class="twitter"><i class="fa fa-twitter"></i></a>
+                                <a href="https://www.facebook.com/samin.momin.96/" class="facebook"><i class="fa fa-facebook"></i></a>
+                                <a href="https://www.instagram.com/samin_momin/" class="instagram"><i class="fa fa-instagram"></i></a>
+                                <a href="https://www.linkedin.com/in/samin-momin-32a889145/" class="linkedin"><i class="fa fa-linkedin"></i></a>
+                            </div>
+
+                        @*</div>*@
+
+                    </div>
+                </div>
+            </div>
+
+            <div class="container">
+                <div class="copyright">
+                    &copy; Copyright <strong>Helping Hands</strong>. All Rights Reserved
+                </div>
+                <div class="credits">
+                    <!--
+                  All the links in the footer should remain intact.
+                  You can delete the links only if you purchased the pro version.
+                  Licensing information: https://bootstrapmade.com/license/
+                  Purchase the pro version with working PHP/AJAX contact form: https://bootstrapmade.com/buy/?theme=TheEvent
+                -->
+                    @*Designed by <a href="https://bootstrapmade.com/">BootstrapMade</a>*@
+                </div>
+            </div>
         </footer>
+
     </div>
     @Scripts.Render("~/bundles/jquery")
     @Scripts.Render("~/bundles/bootstrap")

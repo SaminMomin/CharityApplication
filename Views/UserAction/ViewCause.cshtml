@@ -13,10 +13,16 @@
             <h2 class="masthead-subheading mb-0">@Model.Organization.name</h2>
             <h3 class="text-center my-3">@Model.Cause.shortDescription</h3>
             <div class="row">
-                @if (Model.Cause.isactive == true)
+                @if (Model.Cause.isactive == true && CharityApplication.Models.General.userLoginStatus == true)
                 {<div class="col-md-6">@Html.ActionLink("Donate", "Donate", "UserAction", new { causeId = Model.Cause.Id, orgId = Model.Cause.orgId, userId = CharityApplication.Models.General.userId }, new { @class = "btn btn-primary btn-xl rounded-pill mt-5" })</div>
-            }
-                <div class="col-md-6"> <a href=@string.Concat("https://kovan.etherscan.io/tx/",Model.Cause.transactionhash) target="_blank" class="btn btn-primary btn-xl rounded-pill mt-5" })>Verify on Etherscan</a></div>
+                <div class="col-md-6"> <a href=@string.Concat("https://kovan.etherscan.io/tx/", Model.Cause.transactionhash) target="_blank" class="btn btn-primary btn-xl rounded-pill mt-5" })>Verify on Etherscan</a></div>}
+            else if(CharityApplication.Models.General.orgLoginStatus== true)
+            {<div class="col-md-6">@Html.ActionLink("View Received Donations", "ViewDonations", "Cause", new { causeId = Model.Cause.Id, orgId = Model.Cause.orgId, userId = CharityApplication.Models.General.userId }, new { @class = "btn btn-primary btn-xl rounded-pill mt-5" })</div>
+            <div class="col-md-6"> <a href=@string.Concat("https://kovan.etherscan.io/tx/", Model.Cause.transactionhash) target="_blank" class="btn btn-primary btn-xl rounded-pill mt-5" })>Verify on Etherscan</a></div>}
+        else
+        {
+            <div class="col-sm-12"> <a href=@string.Concat("https://kovan.etherscan.io/tx/", Model.Cause.transactionhash) target="_blank" class="btn btn-primary btn-xl rounded-pill mt-5" })>Verify on Etherscan</a></div>
+        }
             </div>
         </div>
     </div>
@@ -31,7 +37,56 @@
         <div class="row align-items-center">
             <div class="col-lg-6 order-lg-2">
                 <div class="p-5">
-                    <img class="img-fluid rounded-circle" src="~/Content/Custom2/img/01.jpg" alt="">
+                    @if (@Model.Cause.type== "Community")
+                    {
+                        <img src="~/CardImages/Community.jpg" alt="Speaker 1" class="img-fluid rounded-circle">}
+                    else if (@Model.Cause.type == "Housing")
+                    {
+                        <img src="~/CardImages/Housing.jpg" alt="Speaker 1" class="img-fluid rounded-circle">}
+                    else if (@Model.Cause.type == "Overseas Aid")
+                    {
+                        <img src="~/CardImages/Overseas Aid.jpg" alt="Speaker 1" class="img-fluid rounded-circle">}
+                    else if (@Model.Cause.type == "Poverty Relief")
+                    {
+                        <img src="~/CardImages/Poverty Relief.jpg" alt="Speaker 1" class="img-fluid rounded-circle">}
+                    else if (@Model.Cause.type == "Training")
+                    {
+                        <img src="~/CardImages/Training.jpg" alt="Speaker 1" class="img-fluid rounded-circle">}
+                    else if (@Model.Cause.type == "Medical")
+                    {
+                        <img src="~/CardImages/Medical.jpg" alt="Speaker 1" class="img-fluid rounded-circle">}
+                    else if (@Model.Cause.type == "Sports Clubs")
+                    {
+                        <img src="~/CardImages/Sports Clubs.jpg" alt="Speaker 1" class="img-fluid rounded-circle">}
+                    else if (@Model.Cause.type == "Arts and Culture")
+                    {
+                        <img src="~/CardImages/Arts and Culture.jpg" alt="Speaker 1" class="img-fluid rounded-circle">}
+                    else if (@Model.Cause.type == "Public Service and Military")
+                    {
+                        <img src="~/CardImages/Public Service and Military.jpg" alt="Speaker 1" class="img-fluid rounded-circle">}
+                    else if (@Model.Cause.type == "Education")
+                    {
+                        <img src="~/CardImages/Education.jpg" alt="Speaker 1" class="img-fluid rounded-circle">}
+                    else if (@Model.Cause.type == "Children's")
+                    {
+                        <img src="~/CardImages/Children.jpg" alt="Speaker 1" class="img-fluid rounded-circle">}
+                    else if (@Model.Cause.type == "Disability")
+                    {
+                        <img src="~/CardImages/Disability.jpg" alt="Speaker 1" class="img-fluid rounded-circle">}
+                    else if (@Model.Cause.type == "Environmental")
+                    {
+                        <img src="~/CardImages/Environmental.jpg" alt="Speaker 1" class="img-fluid rounded-circle">}
+                    else if (@Model.Cause.type == "Religious")
+                    {
+                        <img src="~/CardImages/Religious.jpg" alt="Speaker 1" class="img-fluid rounded-circle">}
+                    else if (@Model.Cause.type == "Animal")
+                    {
+                        <img src="~/CardImages/Animals.jpg" alt="Speaker 1" class="img-fluid rounded-circle">
+                    }
+                    else
+                    {
+                        <img src="~/CardImages/Elderly.jpg" alt="Speaker 1" class="img-fluid rounded-circle">
+                    }
                 </div>
             </div>
             <div class="col-lg-6 order-lg-1">

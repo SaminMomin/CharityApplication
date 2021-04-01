@@ -14,14 +14,14 @@ namespace CharityApplication.Controllers
         SQLRepository<cause> causeContext = new SQLRepository<cause>(new DataContext());
         SQLRepository<organization> organizationContext = new SQLRepository<organization>(new DataContext());
         SQLRepository<donation> donationContext = new SQLRepository<donation>(new DataContext());
-        
-        List<cause> Causes;
+
         // GET: OrganizationAction
         public ActionResult Index()
         {
-            var model = new OrgViewModel();
-            if (General.orgId != -1)
-            {
+            if (General.orgLoginStatus == true) {
+                General.userLoginStatus = false;
+
+                var model = new OrgViewModel();
                 model.activeCauses= causeContext.Collection().Where(x => x.orgId == General.orgId && x.isactive==true).ToList();
                 model.completedCauses= causeContext.Collection().Where(x => x.orgId == General.orgId && x.isactive==false).ToList();
                 model.org = organizationContext.Find(General.orgId);
@@ -43,11 +43,15 @@ namespace CharityApplication.Controllers
                 model.fundsCollected = donationContext.Collection().Where(x => x.orgId == General.orgId).ToList().Sum(x => x.amount);
                 model.totalUsers = donationContext.Collection().Where(x => x.orgId == General.orgId).Count();
                 return View(model);
+            
             }
-            else
-            {
-                return RedirectToAction("Index", "Error", new { error = "Organization not logged in. Please Log In first.", type = 4 });
-            }
+            else { if (General.userLoginStatus == true) {
+                    General.userLoginStatus = false;
+                    General.orgLoginStatus = false;
+                    General.userId = -1;
+                    General.userName = "";
+                    General.userTx = "";
+                } return RedirectToAction("Login", "Organization"); }
         }
     }
 }

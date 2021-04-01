@@ -3,51 +3,55 @@
 @{
     ViewBag.Title = "ManageCauses";
 }
+<div class="body-content">
+    <h2 class="text-center">ManageCauses</h2>
 
-<h2>ManageCauses</h2>
+    <table class="table">
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.name)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.goal)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.collected)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.isactive)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.type)
+            </th>
+            <th></th>
+        </tr>
 
-<table class="table">
-    <tr>
-        <th>
-            @Html.DisplayNameFor(model => model.name)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.goal)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.collected)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.isactive)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.type)
-        </th>
-        <th></th>
-    </tr>
-
-@foreach (var item in Model) {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.name)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.goal)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.collected)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.isactive)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.type)
-        </td>
-        <td>
-            @Html.ActionLink("Close Cause", "CloseCause", "Cause", new { causeId = item.Id}, new { @class = "btn btn-secondary" })
-            <a class="btn btn-success mx-1" target="_blank" href=@string.Concat("https://kovan.etherscan.io/tx/",item.transactionhash)>Verify on Etherscan</a>
-        </td>
-    </tr>
-}
-
-</table>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.name)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.goal)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.collected)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.isactive)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.type)
+                </td>
+                <td>
+                    @if (item.isactive == true)
+                    {@Html.ActionLink("Close Cause", "CloseCause", "Cause", new { causeId = item.Id }, new { @class = "btn btn-secondary" });
+                }
+                    <a class="btn btn-success mx-1" target="_blank" href=@string.Concat("https://kovan.etherscan.io/tx/",item.transactionhash)>Verify on Etherscan</a>
+                    @Html.ActionLink("View Donations", "ViewDonations", "Cause", new { causeId = item.Id }, new { @class = "btn btn-primary" })
+                </td>
+            </tr>
+        }
+    </table>
+</div>

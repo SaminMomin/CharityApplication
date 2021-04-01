@@ -3,97 +3,114 @@
 @{
     ViewBag.Title = "Index";
 }
-<h2 class="text-lg-center">Active Causes</h2>
-@for (int i = 0; i < Model.row; i++)
-{
-    <div class="row">
-        @for (int j = 0; j < 3; j++)
-        {
-            if ((i * 3 + j) < Model.cols)
+<link href="~/Content/Custom/assets/img/favicon.png" rel="icon">
+<link href="~/Content/Custom/assets/img/apple-touch-icon.png" rel="apple-touch-icon">
+
+<!-- Google Fonts -->
+<!-- Vendor CSS Files -->
+<link href="~/Content/bootstrap.min.css" rel="stylesheet">
+<link href="~/Content/Custom/assets/vendor/venobox/venobox.css" rel="stylesheet">
+@*<link href="~/Content/Custom/assets/vendor/font-awesome/css/font-awesome.min.css" rel="stylesheet">*@
+<link href="~/Content/Custom/assets/vendor/owl.carousel/assets/owl.carousel.min.css" rel="stylesheet">
+<link href="~/Content/Custom/assets/vendor/aos/aos.css" rel="stylesheet">
+<link href="~/Content/Custom/assets/css/style.css" rel="stylesheet">
+
+<div class="body-content">
+    <section id="speakers">
+        <div class="container" data-aos="fade-up">
+            @for (int i = 0; i < Model.row; i++)
             {
-                <div class="col-md-4">
-                    <div class="card flex-md-row mb-4 shadow-sm h-md-250 border-primary">
-                        <div class="card-body d-flex flex-column align-items-start">
-                            <h5 class="d-inline-block mb-2 text-primary">@Model.causes.ElementAt(i * 3 + j).name</h5>
-                            <h6 class="mb-0">
-                                @Html.ActionLink(@Model.orgMap[@Model.causes.ElementAt(i * 3 + j).orgId], "ViewOrg", "UserAction", new { orgId = @Model.causes.ElementAt(i * 3 + j).orgId }, new { @class= "btn btn-outline-success" })
-                            </h6>
-                            <br />
-                            <h6 class="mb-1 text-primary">@string.Concat("Goal: ₹", @Model.causes.ElementAt(i * 3 + j).goal)</h6>
-                            <p class="card-text text-white text-justify mb-auto">@Model.causes.ElementAt(i * 3 + j).shortDescription</p>
-                            @Html.ActionLink("Click To View More", "ViewCause", "UserAction", new {causeId= @Model.causes.ElementAt(i * 3 + j).Id }, new { @class = "btn btn-outline-primary btn-sm" })
-                        </div>
-                        @if (@Model.causes.ElementAt(i * 3 + j).type == "Community")
+                <div class="row">
+                    @for (int j = 0; j < 2; j++)
+                    {
+                        if ((i * 2 + j) < Model.cols)
                         {
-                            <img class="card-img-right flex-auto d-none d-lg-block" alt="Thumbnail [200x250]" src="~/CardImages/Community.png" style="width: 200px; height: 250px;">
-                        }
-                        else if (@Model.causes.ElementAt(i * 3 + j).type == "Housing")
-                        {
-                            <img class="card-img-right flex-auto d-none d-lg-block" alt="Thumbnail [200x250]" src="~/CardImages/Housing.jpg" style="width: 200px; height: 250px;">
-                        }
-                        else if (@Model.causes.ElementAt(i * 3 + j).type == "Overseas Aid")
-                        {
-                            <img class="card-img-right flex-auto d-none d-lg-block" alt="Thumbnail [200x250]" src="~/CardImages/Overseas Aid.jpg" style="width: 200px; height: 250px;">
-                        }
-                        else if (@Model.causes.ElementAt(i * 3 + j).type == "Poverty Relief")
-                        {
-                            <img class="card-img-right flex-auto d-none d-lg-block" alt="Thumbnail [200x250]" src="~/CardImages/Poverty Relief.jpg" style="width: 200px; height: 250px;">
-                        }
-                        else if (@Model.causes.ElementAt(i * 3 + j).type == "Training")
-                        {
-                            <img class="card-img-right flex-auto d-none d-lg-block" alt="Thumbnail [200x250]" src="~/CardImages/Training.png" style="width: 200px; height: 250px;">
-                        }
-                        else if (@Model.causes.ElementAt(i * 3 + j).type == "Medical")
-                        {
-                            <img class="card-img-right flex-auto d-none d-lg-block" alt="Thumbnail [200x250]" src="~/CardImages/Medical.jpg" style="width: 200px; height: 250px;">
-                        }
-                        else if (@Model.causes.ElementAt(i * 3 + j).type == "Sports Clubs")
-                        {
-                            <img class="card-img-right flex-auto d-none d-lg-block" alt="Thumbnail [200x250]" src="~/CardImages/Sports Clubs.jpg" style="width: 200px; height: 250px;">
-                        }
-                        else if (@Model.causes.ElementAt(i * 3 + j).type == "Arts and Culture")
-                        {
-                            <img class="card-img-right flex-auto d-none d-lg-block" alt="Thumbnail [200x250]" src="~/CardImages/Arts and Culture.jpg" style="width: 200px; height: 250px;">
-                        }
-                        else if (@Model.causes.ElementAt(i * 3 + j).type == "Public Service and Military")
-                        {
-                            <img class="card-img-right flex-auto d-none d-lg-block" alt="Thumbnail [200x250]" src="~/CardImages/Public Service and Military.jpg" style="width: 200px; height: 250px;">
-                        }
-                        else if (@Model.causes.ElementAt(i * 3 + j).type == "Education")
-                        {
-                            <img class="card-img-right flex-auto d-none d-lg-block" alt="Thumbnail [200x250]" src="~/CardImages/Education.jpg" style="width: 200px; height: 250px;">
-                        }
-                        else if (@Model.causes.ElementAt(i * 3 + j).type == "Children's")
-                        {
-                            <img class="card-img-right flex-auto d-none d-lg-block" alt="Thumbnail [200x250]" src="~/CardImages/Children.png" style="width: 200px; height: 250px;">
-                        }
-                        else if (@Model.causes.ElementAt(i * 3 + j).type == "Disability")
-                        {
-                            <img class="card-img-right flex-auto d-none d-lg-block" alt="Thumbnail [200x250]" src="~/CardImages/Disability.png" style="width: 200px; height: 250px;">
-                        }
-                        else if (@Model.causes.ElementAt(i * 3 + j).type == "Environmental")
-                        {
-                            <img class="card-img-right flex-auto d-none d-lg-block" alt="Thumbnail [200x250]" src="~/CardImages/Environmental.jpg" style="width: 200px; height: 250px;">
-                        }
-                        else if (@Model.causes.ElementAt(i * 3 + j).type == "Religious")
-                        {
-                            <img class="card-img-right flex-auto d-none d-lg-block" alt="Thumbnail [200x250]" src="~/CardImages/Religious.png" style="width: 200px; height: 250px;">
-                        }
-                        else if (@Model.causes.ElementAt(i * 3 + j).type == "Animal")
-                        {
-                            <img class="card-img-right flex-auto d-none d-lg-block" alt="Thumbnail [200x250]" src="~/CardImages/Animals.jpg" style="width: 200px; height: 250px;">
+                            <div class="col-md-6">
+                                <div class="speaker" data-aos="fade-up" data-aos-delay="100">
+                                    @if (@Model.causes.ElementAt(i * 2 + j).type == "Community")
+                                    {
+                                        <img src="~/CardImages/Community.jpg" alt="Speaker 1" class="img-fluid">}
+                                    else if (@Model.causes.ElementAt(i * 2 + j).type == "Housing")
+                                    {
+                                        <img src="~/CardImages/Housing.jpg" alt="Speaker 1" class="img-fluid">}
+                                    else if (@Model.causes.ElementAt(i * 2 + j).type == "Overseas Aid")
+                                    {
+                                        <img src="~/CardImages/Overseas Aid.jpg" alt="Speaker 1" class="img-fluid">}
+                                    else if (@Model.causes.ElementAt(i * 2 + j).type == "Poverty Relief")
+                                    {
+                                        <img src="~/CardImages/Poverty Relief.jpg" alt="Speaker 1" class="img-fluid">}
+                                    else if (@Model.causes.ElementAt(i * 2 + j).type == "Training")
+                                    {
+                                        <img src="~/CardImages/Training.jpg" alt="Speaker 1" class="img-fluid">}
+                                    else if (@Model.causes.ElementAt(i * 2 + j).type == "Medical")
+                                    {
+                                        <img src="~/CardImages/Medical.jpg" alt="Speaker 1" class="img-fluid">}
+                                    else if (@Model.causes.ElementAt(i * 2 + j).type == "Sports Clubs")
+                                    {
+                                        <img src="~/CardImages/Sports Clubs.jpg" alt="Speaker 1" class="img-fluid">}
+                                    else if (@Model.causes.ElementAt(i * 2 + j).type == "Arts and Culture")
+                                    {
+                                        <img src="~/CardImages/Arts and Culture.jpg" alt="Speaker 1" class="img-fluid">}
+                                    else if (@Model.causes.ElementAt(i * 2 + j).type == "Public Service and Military")
+                                    {
+                                        <img src="~/CardImages/Public Service and Military.jpg" alt="Speaker 1" class="img-fluid">}
+                                    else if (@Model.causes.ElementAt(i * 2 + j).type == "Education")
+                                    {
+                                        <img src="~/CardImages/Education.jpg" alt="Speaker 1" class="img-fluid">}
+                                    else if (@Model.causes.ElementAt(i * 2 + j).type == "Children's")
+                                    {
+                                        <img src="~/CardImages/Children.jpg" alt="Speaker 1" class="img-fluid">}
+                                    else if (@Model.causes.ElementAt(i * 2 + j).type == "Disability")
+                                    {
+                                        <img src="~/CardImages/Disability.jpg" alt="Speaker 1" class="img-fluid">}
+                                    else if (@Model.causes.ElementAt(i * 2 + j).type == "Environmental")
+                                    {
+                                        <img src="~/CardImages/Environmental.jpg" alt="Speaker 1" class="img-fluid">}
+                                    else if (@Model.causes.ElementAt(i * 2 + j).type == "Religious")
+                                    {
+                                        <img src="~/CardImages/Religious.jpg" alt="Speaker 1" class="img-fluid">}
+                                    else if (@Model.causes.ElementAt(i * 2 + j).type == "Animal")
+                                    {
+                                        <img src="~/CardImages/Animals.jpg" alt="Speaker 1" class="img-fluid">
+                                    }
+                                    else
+                                    {
+                                        <img src="~/CardImages/Elderly.jpg" alt="Speaker 1" class="img-fluid">
+                                    }
+                                    <div class="details">
+                                        <h3>@Html.ActionLink(@Model.causes.ElementAt(i * 2 + j).name, "ViewCause", "UserAction", new { causeId = Model.causes.ElementAt(i * 2 + j).Id }, new { })</h3>
+                                        <h3>@Html.ActionLink(@Model.orgMap[@Model.causes.ElementAt(i * 2 + j).orgId], "ViewOrg", "UserAction", new { orgId = @Model.causes.ElementAt(i * 2 + j).orgId }, new { })</h3>
+                                        <p class="text-break">@Model.causes.ElementAt(i * 2 + j).shortDescription</p>
+                                        <div class="row">
+                                            <p class="col-md-4">Goal:₹@Model.causes.ElementAt(i * 2 + j).goal</p>
+                                            <h3 class="col-md-4"><span>@Html.ActionLink("Click To Donate", "Donate", "UserAction", new { causeId = @Model.causes.ElementAt(i * 2 + j).Id, orgId = Model.causes.ElementAt(i * 2 + j).orgId, userId = CharityApplication.Models.General.userId }, new { })</span></h3>
+                                            <p class="col-md-4">Collected:₹@Model.causes.ElementAt(i * 2 + j).collected</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
                         }
                         else
                         {
-                            <img class="card-img-right flex-auto d-none d-lg-block" alt="Thumbnail [200x250]" src="~/CardImages/Elderly.jpg" style="width: 200px; height: 250px;">
+                            break;
                         }
-                    </div>
+                    }
                 </div>
             }
-            else
-            {
-                break;
-            }
-        }
-    </div>
-}
+        </div>
+    </section>
+</div>
+<!-- Vendor JS Files -->
+<script src="~/Content/Custom/assets/vendor/jquery/jquery.min.js"></script>
+<script src="~/Content/Custom/assets/js/countfect.min.js"></script>
+<script src="~/Content/Custom/assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+<script src="~/Content/Custom/assets/vendor/jquery.easing/jquery.easing.min.js"></script>
+<script src="~/Content/Custom/assets/vendor/php-email-form/validate.js"></script>
+<script src="~/Content/Custom/assets/vendor/venobox/venobox.min.js"></script>
+<script src="~/Content/Custom/assets/vendor/owl.carousel/owl.carousel.min.js"></script>
+<script src="~/Content/Custom/assets/vendor/superfish/superfish.min.js"></script>
+<script src="~/Content/Custom/assets/vendor/hoverIntent/hoverIntent.js"></script>
+<script src="~/Content/Custom/assets/vendor/aos/aos.js"></script>
+
+<!-- Template Main JS File -->
+<script src="~/Content/Custom/assets/js/main.js"></script>

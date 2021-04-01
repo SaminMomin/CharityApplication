@@ -1,5 +1,6 @@
 ﻿using CharityApplication.Database;
 using CharityApplication.Models;
+using CharityApplication.ViewModels;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -10,25 +11,21 @@ namespace CharityApplication.Controllers
 {
     public class HomeController : Controller
     {
-        //SQLRepository<user> userContext=new SQLRepository<user>(new DataContext());
+        SQLRepository<user> userContext = new SQLRepository<user>(new DataContext());
+        SQLRepository<donation> donationContext = new SQLRepository<donation>(new DataContext());
+        SQLRepository<organization> organizationContext = new SQLRepository<organization>(new DataContext());
+        SQLRepository<cause> causeContext = new SQLRepository<cause>(new DataContext());
 
         public ActionResult Index()
         {
-            return View() ;
-        }
-
-        public ActionResult About()
-        {
-            ViewBag.Message = "Your application description page.";
-
-            return View();
-        }
-
-        public ActionResult Contact()
-        {
-            ViewBag.Message = "Your contact page.";
-
-            return View();
+            var model = new HomeViewModel();
+            model.Causes = causeContext.Collection().OrderByDescending(x => x.collected).Take(6).ToList();
+            model.Organizations = organizationContext.Collection().Take(6).ToList();
+            model.organizationCount = model.Organizations.Count();
+            model.causeCount = model.Causes.Count();
+            model.userCount = userContext.Collection().Count();
+            model.donationCount = causeContext.Collection().Sum(x => x.collected);
+            return View(model);
         }
     }
 }
