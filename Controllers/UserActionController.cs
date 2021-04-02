@@ -54,8 +54,6 @@ namespace CharityApplication.Controllers
         [HttpGet]
         public ActionResult ViewOrg(int orgId)
         {
-            if (General.userLoginStatus == true) {
-                General.orgLoginStatus = false;
                 var temp = new OrgViewModel();
             temp.org = organizationContext.Collection().FirstOrDefault(x=>x.Id==orgId);
             temp.activeCauses= causeContext.Collection().Where(x => x.orgId == orgId && x.isactive==true).ToList();
@@ -77,39 +75,17 @@ namespace CharityApplication.Controllers
             temp.fundsCollected = donationContext.Collection().Where(x => x.orgId == orgId).ToList().Sum(x => x.amount);
             temp.totalUsers = donationContext.Collection().Where(x => x.orgId == orgId).Count();
             return View(temp);
-            }
-            else {
-                if (General.orgLoginStatus == true)
-                {
-                    General.orgLoginStatus = false;
-                    General.orgName = "";
-                    General.orgId = -1;
-                    General.orgTx = "";
-                }
-                return RedirectToAction("Login", "User"); }
+           
         } 
 
         public ActionResult ViewCause(int causeId)
         {
-            if (General.userLoginStatus == true) {
-                General.orgLoginStatus = false;
-
                 var model = new CauseViewModel
             {
                 Cause = causeContext.Collection().FirstOrDefault(x => x.Id == causeId)
             };
             model.Organization = organizationContext.Collection().FirstOrDefault(x => x.Id == model.Cause.orgId) ;
             return View(model);
-            }
-            else {
-                if (General.orgLoginStatus == true)
-                {
-                    General.orgLoginStatus = false;
-                    General.orgName = "";
-                    General.orgId = -1;
-                    General.orgTx = "";
-                }
-                return RedirectToAction("Login", "User"); }
         }
 
         public ActionResult History()

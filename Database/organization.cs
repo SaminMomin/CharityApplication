@@ -12,7 +12,9 @@ namespace CharityApplication.Database
     using CharityApplication.Models;
     using System;
     using System.Collections.Generic;
-    
+    using System.ComponentModel;
+    using System.ComponentModel.DataAnnotations;
+
     public partial class organization: BaseEntity
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
@@ -23,22 +25,57 @@ namespace CharityApplication.Database
         }
     
         //public int Id { get; set; }
+        [Required]
+        [DisplayName("Organization Name")]
         public string name { get; set; }
+        [DisplayName("Email")]
+        [Required]
+        [DataType(DataType.EmailAddress)]
+        [EmailAddress]
         public string email { get; set; }
+        [Required]
+        [DataType(DataType.Password)]
+        [DisplayName("Password")]
         public string password { get; set; }
+        [DisplayName("Street")]
+        [Required]
         public string street { get; set; }
+        [DisplayName("City")]
+        [Required]
         public string city { get; set; }
+        [DisplayName("State")]
+        [Required]
         public string state { get; set; }
+        [DisplayName("Country")]
+        [Required]
         public string country { get; set; }
+        [DisplayName("Hash")]
         public Nullable<int> hash { get; set; }
+        [DisplayName("Organization Type")]
+        [Required]
         public string type { get; set; }
+        [DisplayName("Registration Number")]
+        [Required]
         public string regno { get; set; }
+        [DisplayName("FCRA Number")]
+        [Required]
         public string fcra { get; set; }
+        [DisplayName("Website")]
+        [Required]
         public string website { get; set; }
+        [DisplayName("Contact")]
+        [DataType(DataType.PhoneNumber)]
+        [Required]
         public string contact { get; set; }
+        [DisplayName("Registration Certificate (.pdf Format Only)")]
+        [DataType(DataType.Upload)]
         public string regcerti { get; set; }
+        [DisplayName("Description")]
+        [Required]
         public string description { get; set; }
         public string transactionhash { get; set; }
+        [DisplayName("Profile Pic")]
+        [DataType(DataType.Upload)]
         public string profilepic { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]

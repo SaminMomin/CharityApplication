@@ -149,12 +149,23 @@ namespace CharityApplication.Controllers
                     temp.type = Org.type;
                     temp.website = Org.website;
                     temp.description = Org.description;
-                    if (file != null)
+                    if (file[0] != null)
                     {
                         temp.profilepic = string.Concat(temp.Id, Path.GetExtension(file[0].FileName));
-                        temp.regcerti = Org.Id + Path.GetExtension(file[1].FileName);
                         file[0].SaveAs(Server.MapPath("//OrganizationImages//") + temp.profilepic);
+                    }
+                    else
+                    {
+                        temp.profilepic = Org.profilepic;
+                    }
+                    if (file[1] != null)
+                    {
+                        temp.regcerti = Org.Id + Path.GetExtension(file[1].FileName);
                         file[1].SaveAs(Server.MapPath("//OrganizationCertificates//") + temp.regcerti);
+                    }
+                    else 
+                    {
+                        temp.regcerti = Org.regcerti;
                     }
                     organizationContext.Update(temp);
                     organizationContext.Save();

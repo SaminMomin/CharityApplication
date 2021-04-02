@@ -12,7 +12,9 @@ namespace CharityApplication.Database
     using CharityApplication.Models;
     using System;
     using System.Collections.Generic;
-    
+    using System.ComponentModel;
+    using System.ComponentModel.DataAnnotations;
+
     public partial class user: BaseEntity
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
@@ -20,20 +22,48 @@ namespace CharityApplication.Database
         {
             this.donations = new HashSet<donation>();
         }
-    
+
         //public int Id { get; set; }
+        [DisplayName("First Name")]
+        [Required]
         public string fname { get; set; }
+        [DisplayName("Last Name")]
+        [Required]
         public string lname { get; set; }
+        [DisplayName("Age")]
+        [Required]
         public int age { get; set; }
+        [DisplayName("Password")]
+        [DataType(DataType.Password)]
+        [Required]
         public string password { get; set; }
+        [DisplayName("Date Of Birth")]
+        [DataType(DataType.Date)]
+        [Required]
         public System.DateTime dob { get; set; }
+        [DisplayName("Contact")]
+        [DataType(DataType.PhoneNumber)]
+        [Required]
         public string contact { get; set; }
+        [DisplayName("City")]
+        [Required]
         public string city { get; set; }
+        [DisplayName("State")]
+        [Required]
         public string state { get; set; }
+        [DisplayName("Country")]
+        [Required]
         public string country { get; set; }
+        [DisplayName("Email")]
+        [EmailAddress]
+        [DataType(DataType.EmailAddress)]
+        [Required]
         public string email { get; set; }
+        [DisplayName("Hash")]
         public Nullable<int> hash { get; set; }
         public string transactionhash { get; set; }
+        [DisplayName("Profile Pic")]
+        [DataType(DataType.Upload)]
         public string profilepic { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
