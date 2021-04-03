@@ -258,6 +258,21 @@ namespace CharityApplication.Controllers
             General.orgTx = "";
             return RedirectToAction("Index","Home");
         }
+        public ActionResult Reset()
+        {
+            return View();
+        }
+        [HttpPost]
+        public async Task<ActionResult> Reset(string email)
+        {
+            var org = organizationContext.Collection().ToList().FirstOrDefault(x => x.email == email);
+            if (org != null)
+            {
+                var x = await Email.Execute(email,org.name, org.password);
+                if (x == true) { General.orgemailStatus = true; return RedirectToAction("Login", "Organization"); } else { return RedirectToAction("Index", "Error", new { error = "Failed to send email. Try again.", type = 4 }); }
+            }
+            else { return RedirectToAction("Index", "Error", new { error = "Organization does not exist", type = 3 }); }
+        }
     }
 
 }

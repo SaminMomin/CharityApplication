@@ -12,6 +12,8 @@ namespace CharityApplication.Models
         public static string userName;
         public static string userTx;
         public static string orgTx;
+        public static bool useremailStatus = false;
+        public static bool orgemailStatus = false;
         public static IEnumerable<TypeList> typeCollection()
         {
             List<TypeList> lister = new List<TypeList>();

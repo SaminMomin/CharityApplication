@@ -244,5 +244,21 @@ public ActionResult Delete(int id)
             General.userTx = "";
             return RedirectToAction("Index","Home");
         }
+
+        public ActionResult Reset()
+        {
+            return View();
+        }
+        [HttpPost]
+        public async Task<ActionResult> Reset(string email) 
+        {
+            var usr = userContext.Collection().ToList().FirstOrDefault(x=>x.email==email);
+            if (usr != null)
+            {
+                var x = await Email.Execute(email, string.Concat(usr.fname, " ", usr.lname), usr.password);
+                if (x == true) { General.useremailStatus = true; return RedirectToAction("Login", "User"); } else { return RedirectToAction("Index", "Error", new { error = "Failed to send email. Try again.", type = 2 }); }
+            }
+            else { return RedirectToAction("Index", "Error", new { error = "User does not exist", type = 1 }); }
+        }
     } 
 }

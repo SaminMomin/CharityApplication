@@ -100,6 +100,12 @@
     <Reference Include="Nethereum.Web3, Version=3.8.0.0, Culture=neutral, PublicKeyToken=8768a594786aba4e, processorArchitecture=MSIL">
       <HintPath>packages\Nethereum.Web3.3.8.0\lib\net451\Nethereum.Web3.dll</HintPath>
     </Reference>
+    <Reference Include="SendGrid, Version=9.22.0.0, Culture=neutral, PublicKeyToken=4f047e93159395ca, processorArchitecture=MSIL">
+      <HintPath>packages\SendGrid.9.22.0\lib\net452\SendGrid.dll</HintPath>
+    </Reference>
+    <Reference Include="StarkbankEcdsa, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>packages\starkbank-ecdsa.1.2.0\lib\net452\StarkbankEcdsa.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Data" />
     <Reference Include="System.Drawing" />
@@ -221,6 +227,7 @@
     <Compile Include="Interfaces\IRepository.cs" />
     <Compile Include="Models\BaseEntity.cs" />
     <Compile Include="Models\DataContext.cs" />
+    <Compile Include="Models\Email.cs" />
     <Compile Include="Models\Error.cs" />
     <Compile Include="Models\General.cs" />
     <Compile Include="Models\Smart.cs" />
@@ -466,6 +473,8 @@
     <Content Include="Views\UserAction\Donate.cshtml" />
     <Content Include="Views\Cause\ManageCauses.cshtml" />
     <Content Include="Views\Cause\ViewDonations.cshtml" />
+    <Content Include="Views\User\Reset.cshtml" />
+    <Content Include="Views\Organization\Reset.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
