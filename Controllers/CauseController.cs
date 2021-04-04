@@ -61,7 +61,7 @@ namespace CharityApplication.Controllers
                     type=model.type
                 };
                 temp.hash = String.Concat(temp.name, temp.longDescription,temp.shortDescription).GetHashCode();
-                temp.transactionhash = await Smart.regCause(temp.orgId,temp.Id,temp.goal,temp.name);
+                temp.transactionhash = await Smart2.regCause(temp.orgId,temp.Id,temp.goal,temp.name);
                 causeContext.Insert(temp);
                 causeContext.Save();
                 return RedirectToAction("Index","OrganizationAction");

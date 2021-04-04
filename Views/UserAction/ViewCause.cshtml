@@ -15,13 +15,13 @@
             <div class="row">
                 @if (Model.Cause.isactive == true && CharityApplication.Models.General.userLoginStatus == true)
                 {<div class="col-md-6">@Html.ActionLink("Donate", "Donate", "UserAction", new { causeId = Model.Cause.Id, orgId = Model.Cause.orgId, userId = CharityApplication.Models.General.userId }, new { @class = "btn btn-primary btn-xl rounded-pill mt-5" })</div>
-                <div class="col-md-6"> <a href=@string.Concat("https://kovan.etherscan.io/tx/", Model.Cause.transactionhash) target="_blank" class="btn btn-primary btn-xl rounded-pill mt-5" })>Verify on Etherscan</a></div>}
+                <div class="col-md-6"> <a href=@string.Concat("https://rinkeby.etherscan.io/tx/", Model.Cause.transactionhash) target="_blank" class="btn btn-primary btn-xl rounded-pill mt-5" })>Verify on Etherscan</a></div>}
             else if(CharityApplication.Models.General.orgLoginStatus== true)
             {<div class="col-md-6">@Html.ActionLink("View Received Donations", "ViewDonations", "Cause", new { causeId = Model.Cause.Id, orgId = Model.Cause.orgId, userId = CharityApplication.Models.General.userId }, new { @class = "btn btn-primary btn-xl rounded-pill mt-5" })</div>
-            <div class="col-md-6"> <a href=@string.Concat("https://kovan.etherscan.io/tx/", Model.Cause.transactionhash) target="_blank" class="btn btn-primary btn-xl rounded-pill mt-5" })>Verify on Etherscan</a></div>}
+            <div class="col-md-6"> <a href=@string.Concat("https://rinkeby.etherscan.io/tx/", Model.Cause.transactionhash) target="_blank" class="btn btn-primary btn-xl rounded-pill mt-5" })>Verify on Etherscan</a></div>}
         else
         {
-            <div class="col-sm-12"> <a href=@string.Concat("https://kovan.etherscan.io/tx/", Model.Cause.transactionhash) target="_blank" class="btn btn-primary btn-xl rounded-pill mt-5" })>Verify on Etherscan</a></div>
+            <div class="col-sm-12"> <a href=@string.Concat("https://rinkeby.etherscan.io/tx/", Model.Cause.transactionhash) target="_blank" class="btn btn-primary btn-xl rounded-pill mt-5" })>Verify on Etherscan</a></div>
         }
             </div>
         </div>

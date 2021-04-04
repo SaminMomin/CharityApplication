@@ -159,7 +159,7 @@ namespace CharityApplication.Controllers
                 temp.causeId = model.causeId;
                 temp.amount = model.amount;
                 temp.date = DateTime.Today;
-                temp.transactionhash = await Smart.donate(temp.amount, temp.userId, temp.orgId, temp.causeId);
+                temp.transactionhash = await Smart2.donate(temp.amount, temp.userId, temp.orgId, temp.causeId);
                 var x = causeContext.Find(model.causeId);
                 if (x.isactive == true)
                 {

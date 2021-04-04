@@ -88,7 +88,7 @@ namespace CharityApplication.Controllers
                 temp.type = Org.type;
                 temp.website = Org.website;
                 temp.description = Org.description;
-                temp.transactionhash = await Smart.regOrg(temp.Id,temp.name);
+                temp.transactionhash = await Smart2.regOrg(temp.Id,temp.name);
                 if (file != null)
                 {
                     temp.profilepic = string.Concat(temp.Id, Path.GetExtension(file[0].FileName));

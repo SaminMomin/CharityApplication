@@ -231,6 +231,7 @@
     <Compile Include="Models\Error.cs" />
     <Compile Include="Models\General.cs" />
     <Compile Include="Models\Smart.cs" />
+    <Compile Include="Models\Smart2.cs" />
     <Compile Include="Models\SQLRepository.cs" />
     <Compile Include="Models\TypeList.cs" />
     <Compile Include="Models\User.cs" />

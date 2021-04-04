@@ -14,13 +14,14 @@ using System.Numerics;
 
 namespace CharityApplication.Models
 {
-	class Smart
+	class Smart2
 	{
-		public static async Task<string> regFunc(int userId,string name)
+		//Rinkeby Configuration
+		public static async Task<string> regFunc(int userId, string name)
 		{
-			var privateKey = "0x1f2ed433579f8d059fd95610fe12f2462156fac047a6f99d99f53b1fb7b2be48";
+			var privateKey = "0x663d76c2dfeb3a0dce01178c6fb72b978603fd7e4aaf44d6030a4e70956cf3db";
 			var account = new Account(privateKey);
-			var web3 = new Web3(account, "https://kovan.infura.io/v3/aed105d4f1364e188fba9f1295c89452");
+			var web3 = new Web3(account, "https://rinkeby.infura.io/v3/aed105d4f1364e188fba9f1295c89452");
 			var abi = @"[
 	{
 		""inputs"": [
@@ -285,18 +286,18 @@ namespace CharityApplication.Models
 		""type"": ""function""
 	}
 ]";
-            var contract = web3.Eth.GetContract(abi, "0xB9A8667ea54A815a67Fda4B8f0aB39F0362edC3c");
+			var contract = web3.Eth.GetContract(abi, "0xF29a1F9F7489D957f803a089a58393B2bB29B6b9");
 			var regUserFunction = contract.GetFunction("regUser");
-			var gas = await regUserFunction.EstimateGasAsync(account.Address, null, null, new Object[] { userId,name});
-			var receiptFirstAmountSend = await regUserFunction.SendTransactionAndWaitForReceiptAsync(account.Address, gas, null, null, new Object[] { userId,name });
+			var gas = await regUserFunction.EstimateGasAsync(account.Address, null, null, new Object[] { userId, name });
+			var receiptFirstAmountSend = await regUserFunction.SendTransactionAndWaitForReceiptAsync(account.Address, gas, null, null, new Object[] { userId, name });
 			return (receiptFirstAmountSend.TransactionHash);
 		}
 
-		public static async Task<string> donate(int amount,int userId,int orgId,int causeId)
+		public static async Task<string> donate(int amount, int userId, int orgId, int causeId)
 		{
-			var privateKey = "0x1f2ed433579f8d059fd95610fe12f2462156fac047a6f99d99f53b1fb7b2be48";
+			var privateKey = "0x663d76c2dfeb3a0dce01178c6fb72b978603fd7e4aaf44d6030a4e70956cf3db";
 			var account = new Account(privateKey);
-			var web3 = new Web3(account, "https://kovan.infura.io/v3/aed105d4f1364e188fba9f1295c89452");
+			var web3 = new Web3(account, "https://rinkeby.infura.io/v3/aed105d4f1364e188fba9f1295c89452");
 			var abi = @"[
 	{
 		""inputs"": [
@@ -561,18 +562,18 @@ namespace CharityApplication.Models
 		""type"": ""function""
 	}
 ]";
-			var contract = web3.Eth.GetContract(abi, "0xB9A8667ea54A815a67Fda4B8f0aB39F0362edC3c");
+			var contract = web3.Eth.GetContract(abi, "0xF29a1F9F7489D957f803a089a58393B2bB29B6b9");
 			var regUserFunction = contract.GetFunction("donate");
-			var gas = await regUserFunction.EstimateGasAsync(account.Address, null, null, new Object[] {amount,userId,orgId,causeId});
+			var gas = await regUserFunction.EstimateGasAsync(account.Address, null, null, new Object[] { amount, userId, orgId, causeId });
 			var receiptFirstAmountSend = await regUserFunction.SendTransactionAndWaitForReceiptAsync(account.Address, gas, null, null, new Object[] { amount, userId, orgId, causeId });
 			return (receiptFirstAmountSend.TransactionHash);
 		}
 
-		public static async Task<string> regOrg(int orgId,string name)
+		public static async Task<string> regOrg(int orgId, string name)
 		{
-			var privateKey = "0x1f2ed433579f8d059fd95610fe12f2462156fac047a6f99d99f53b1fb7b2be48";
+			var privateKey = "0x663d76c2dfeb3a0dce01178c6fb72b978603fd7e4aaf44d6030a4e70956cf3db";
 			var account = new Account(privateKey);
-			var web3 = new Web3(account, "https://kovan.infura.io/v3/aed105d4f1364e188fba9f1295c89452");
+			var web3 = new Web3(account, "https://rinkeby.infura.io/v3/aed105d4f1364e188fba9f1295c89452");
 			var abi = @"[
 	{
 		""inputs"": [
@@ -837,18 +838,18 @@ namespace CharityApplication.Models
 		""type"": ""function""
 	}
 ]";
-			var contract = web3.Eth.GetContract(abi, "0xB9A8667ea54A815a67Fda4B8f0aB39F0362edC3c");
+			var contract = web3.Eth.GetContract(abi, "0xF29a1F9F7489D957f803a089a58393B2bB29B6b9");
 			var regUserFunction = contract.GetFunction("regOrg");
-			var gas = await regUserFunction.EstimateGasAsync(account.Address, null, null, new Object[] { orgId,name});
-			var receiptFirstAmountSend = await regUserFunction.SendTransactionAndWaitForReceiptAsync(account.Address, gas, null, null, new Object[] {orgId,name});
+			var gas = await regUserFunction.EstimateGasAsync(account.Address, null, null, new Object[] { orgId, name });
+			var receiptFirstAmountSend = await regUserFunction.SendTransactionAndWaitForReceiptAsync(account.Address, gas, null, null, new Object[] { orgId, name });
 			return (receiptFirstAmountSend.TransactionHash);
 		}
 
-		public static async Task<string> regCause(int orgId,int causeId,int goal,string name)
+		public static async Task<string> regCause(int orgId, int causeId, int goal, string name)
 		{
-			var privateKey = "0x1f2ed433579f8d059fd95610fe12f2462156fac047a6f99d99f53b1fb7b2be48";
+			var privateKey = "0x663d76c2dfeb3a0dce01178c6fb72b978603fd7e4aaf44d6030a4e70956cf3db";
 			var account = new Account(privateKey);
-			var web3 = new Web3(account, "https://kovan.infura.io/v3/aed105d4f1364e188fba9f1295c89452");
+			var web3 = new Web3(account, "https://rinkeby.infura.io/v3/aed105d4f1364e188fba9f1295c89452");
 			var abi = @"[
 	{
 		""inputs"": [
@@ -1113,10 +1114,10 @@ namespace CharityApplication.Models
 		""type"": ""function""
 	}
 ]";
-			var contract = web3.Eth.GetContract(abi, "0xB9A8667ea54A815a67Fda4B8f0aB39F0362edC3c");
+			var contract = web3.Eth.GetContract(abi, "0xF29a1F9F7489D957f803a089a58393B2bB29B6b9");
 			var regUserFunction = contract.GetFunction("regCause");
-			var gas = await regUserFunction.EstimateGasAsync(account.Address, null, null, new Object[] { orgId, causeId,goal, name });
-			var receiptFirstAmountSend = await regUserFunction.SendTransactionAndWaitForReceiptAsync(account.Address, gas, null, null, new Object[] {orgId,causeId,goal,name});
+			var gas = await regUserFunction.EstimateGasAsync(account.Address, null, null, new Object[] { orgId, causeId, goal, name });
+			var receiptFirstAmountSend = await regUserFunction.SendTransactionAndWaitForReceiptAsync(account.Address, gas, null, null, new Object[] { orgId, causeId, goal, name });
 			return (receiptFirstAmountSend.TransactionHash);
 		}
 	}

@@ -48,7 +48,7 @@
                     @if (item.isactive == true)
                     {@Html.ActionLink("Close Cause", "CloseCause", "Cause", new { causeId = item.Id }, new { @class = "btn btn-secondary" });
                 }
-                    <a class="btn btn-success mx-1" target="_blank" href=@string.Concat("https://kovan.etherscan.io/tx/",item.transactionhash)>Verify on Etherscan</a>
+                    <a class="btn btn-success mx-1" target="_blank" href=@string.Concat("https://rinkeby.etherscan.io/tx/",item.transactionhash)>Verify on Etherscan</a>
                     @Html.ActionLink("View Donations", "ViewDonations", "Cause", new { causeId = item.Id }, new { @class = "btn btn-primary" })
                 </td>
             </tr>

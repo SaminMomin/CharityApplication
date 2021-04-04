@@ -41,7 +41,7 @@
                 <td>
                     @Html.ActionLink("View Organization", "ViewOrg", "UserAction", new { orgId = item.orgId }, new { @class = "btn btn-primary mx-1" })
                     @Html.ActionLink("View Cause", "ViewCause", "UserAction", new { causeId = item.causeId }, new { @class = "btn btn-success" })
-                    <a class="btn btn-secondary mx-1" target="_blank" href=@string.Concat("https://kovan.etherscan.io/tx/",item.transactionHash)>Verify on Etherscan</a>@*@Html.ActionLink("Verify on EtherScan", "7", new { /* id=item.PrimaryKey */ })*@
+                    <a class="btn btn-secondary mx-1" target="_blank" href=@string.Concat("https://rinkeby.etherscan.io/tx/",item.transactionHash)>Verify on Etherscan</a>@*@Html.ActionLink("Verify on EtherScan", "7", new { /* id=item.PrimaryKey */ })*@
                 </td>
             </tr>
         }
