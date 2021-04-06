@@ -24,7 +24,14 @@ namespace CharityApplication.Controllers
             model.organizationCount = model.Organizations.Count();
             model.causeCount = model.Causes.Count();
             model.userCount = userContext.Collection().Count();
-            model.donationCount = causeContext.Collection().Sum(x => x.collected);
+            if (causeContext.Collection().Count() != 0) {
+                model.donationCount = causeContext.Collection().Sum(x => x.collected);
+            }
+            else
+            {
+                model.donationCount = 0;
+            }
+            
             return View(model);
         }
     }

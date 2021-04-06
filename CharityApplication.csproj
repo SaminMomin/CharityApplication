@@ -367,6 +367,7 @@
     <Content Include="Content\Custom\assets\vendor\venobox\venobox.js" />
     <Content Include="Content\Custom\assets\vendor\venobox\venobox.min.css" />
     <Content Include="Content\Custom\assets\vendor\venobox\venobox.min.js" />
+    <Content Include="Content\Error.css" />
     <Content Include="Database\CharityApplication.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
       <DependentUpon>CharityApplication.edmx</DependentUpon>
