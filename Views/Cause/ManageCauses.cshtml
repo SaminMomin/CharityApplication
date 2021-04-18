@@ -1,10 +1,10 @@
 ﻿@model IEnumerable<CharityApplication.Database.cause>
 
 @{
-    ViewBag.Title = "ManageCauses";
+    ViewBag.Title = "Manage Causes";
 }
 <div class="body-content">
-    <h2 class="text-center">ManageCauses</h2>
+    <h2 class="text-center">Manage Causes</h2>
 
     <table class="table">
         <tr>
@@ -45,11 +45,11 @@
                     @Html.DisplayFor(modelItem => item.type)
                 </td>
                 <td>
+                    <a class="btn btn-success mx-1" target="_blank" href=@string.Concat("https://rinkeby.etherscan.io/tx/",item.transactionhash)>Verify on Etherscan</a>
+                    @Html.ActionLink("View Donations", "ViewDonations", "Cause", new { causeId = item.Id }, new { @class = "btn btn-primary" })
                     @if (item.isactive == true)
                     {@Html.ActionLink("Close Cause", "CloseCause", "Cause", new { causeId = item.Id }, new { @class = "btn btn-secondary" });
                 }
-                    <a class="btn btn-success mx-1" target="_blank" href=@string.Concat("https://rinkeby.etherscan.io/tx/",item.transactionhash)>Verify on Etherscan</a>
-                    @Html.ActionLink("View Donations", "ViewDonations", "Cause", new { causeId = item.Id }, new { @class = "btn btn-primary" })
                 </td>
             </tr>
         }

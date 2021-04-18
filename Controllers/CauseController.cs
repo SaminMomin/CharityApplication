@@ -126,7 +126,7 @@ namespace CharityApplication.Controllers
             if (General.orgLoginStatus == true) {
                 General.userLoginStatus = false;
 
-                var temp = donationContext.Collection().Where(x => x.causeId == causeId).ToList();
+                var temp = donationContext.Collection().Where(x => x.causeId == causeId).OrderBy(x=>x.date).ToList();
             var model = new List<DonationHistoryVM>();
             var s = "bg-secondary";
            foreach(var t in temp)

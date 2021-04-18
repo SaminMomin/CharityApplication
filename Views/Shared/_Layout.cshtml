@@ -4,7 +4,7 @@
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>@ViewBag.Title - My ASP.NET Application</title>
+    <title>@ViewBag.Title</title>
     @Styles.Render("~/Content/css")
     @Scripts.Render("~/bundles/modernizr")
     <link href="~/Content/Custom/assets/vendor/font-awesome/css/font-awesome.min.css" rel="stylesheet">
@@ -60,7 +60,7 @@
                         @Html.ActionLink(" Organization Login", "Login", "Organization", new { @area = "" }, new { @class = "nav-link" })
                     </li>
                     <li class="nav-item">
-                        @Html.ActionLink("User Login", "Login", "User", new { @area = "" }, new { @class = "nav-link" })
+                        @Html.ActionLink("Donor Login", "Login", "User", new { @area = "" }, new { @class = "nav-link" })
                     </li>
                 }
                 

@@ -247,26 +247,14 @@ namespace CharityApplication.Models
 		""name"": ""getUser"",
 		""outputs"": [
 			{
-				""components"": [
-					{
-						""internalType"": ""string"",
-						""name"": ""name"",
-						""type"": ""string""
-					},
-					{
-						""internalType"": ""uint256"",
-						""name"": ""moneyDonated"",
-						""type"": ""uint256""
-					},
-					{
-						""internalType"": ""string[]"",
-						""name"": ""orgList"",
-						""type"": ""string[]""
-					}
-				],
-				""internalType"": ""struct Charity.User"",
-				""name"": ""user"",
-				""type"": ""tuple""
+				""internalType"": ""string"",
+				""name"": ""username"",
+				""type"": ""string""
+			},
+			{
+				""internalType"": ""uint256"",
+				""name"": ""fundsDonated"",
+				""type"": ""uint256""
 			}
 		],
 		""stateMutability"": ""view"",
@@ -285,8 +273,8 @@ namespace CharityApplication.Models
 		""stateMutability"": ""view"",
 		""type"": ""function""
 	}
-]";
-			var contract = web3.Eth.GetContract(abi, "0xF29a1F9F7489D957f803a089a58393B2bB29B6b9");
+]"; 
+			var contract = web3.Eth.GetContract(abi, "0xb770688B8eE45da5b5F649597b87A1ed8a0A5EEe");
 			var regUserFunction = contract.GetFunction("regUser");
 			var gas = await regUserFunction.EstimateGasAsync(account.Address, null, null, new Object[] { userId, name });
 			var receiptFirstAmountSend = await regUserFunction.SendTransactionAndWaitForReceiptAsync(account.Address, gas, null, null, new Object[] { userId, name });
@@ -523,26 +511,14 @@ namespace CharityApplication.Models
 		""name"": ""getUser"",
 		""outputs"": [
 			{
-				""components"": [
-					{
-						""internalType"": ""string"",
-						""name"": ""name"",
-						""type"": ""string""
-					},
-					{
-						""internalType"": ""uint256"",
-						""name"": ""moneyDonated"",
-						""type"": ""uint256""
-					},
-					{
-						""internalType"": ""string[]"",
-						""name"": ""orgList"",
-						""type"": ""string[]""
-					}
-				],
-				""internalType"": ""struct Charity.User"",
-				""name"": ""user"",
-				""type"": ""tuple""
+				""internalType"": ""string"",
+				""name"": ""username"",
+				""type"": ""string""
+			},
+			{
+				""internalType"": ""uint256"",
+				""name"": ""fundsDonated"",
+				""type"": ""uint256""
 			}
 		],
 		""stateMutability"": ""view"",
@@ -562,7 +538,7 @@ namespace CharityApplication.Models
 		""type"": ""function""
 	}
 ]";
-			var contract = web3.Eth.GetContract(abi, "0xF29a1F9F7489D957f803a089a58393B2bB29B6b9");
+			var contract = web3.Eth.GetContract(abi, "0xb770688B8eE45da5b5F649597b87A1ed8a0A5EEe");
 			var regUserFunction = contract.GetFunction("donate");
 			var gas = await regUserFunction.EstimateGasAsync(account.Address, null, null, new Object[] { amount, userId, orgId, causeId });
 			var receiptFirstAmountSend = await regUserFunction.SendTransactionAndWaitForReceiptAsync(account.Address, gas, null, null, new Object[] { amount, userId, orgId, causeId });
@@ -799,26 +775,14 @@ namespace CharityApplication.Models
 		""name"": ""getUser"",
 		""outputs"": [
 			{
-				""components"": [
-					{
-						""internalType"": ""string"",
-						""name"": ""name"",
-						""type"": ""string""
-					},
-					{
-						""internalType"": ""uint256"",
-						""name"": ""moneyDonated"",
-						""type"": ""uint256""
-					},
-					{
-						""internalType"": ""string[]"",
-						""name"": ""orgList"",
-						""type"": ""string[]""
-					}
-				],
-				""internalType"": ""struct Charity.User"",
-				""name"": ""user"",
-				""type"": ""tuple""
+				""internalType"": ""string"",
+				""name"": ""username"",
+				""type"": ""string""
+			},
+			{
+				""internalType"": ""uint256"",
+				""name"": ""fundsDonated"",
+				""type"": ""uint256""
 			}
 		],
 		""stateMutability"": ""view"",
@@ -838,7 +802,7 @@ namespace CharityApplication.Models
 		""type"": ""function""
 	}
 ]";
-			var contract = web3.Eth.GetContract(abi, "0xF29a1F9F7489D957f803a089a58393B2bB29B6b9");
+			var contract = web3.Eth.GetContract(abi, "0xb770688B8eE45da5b5F649597b87A1ed8a0A5EEe");
 			var regUserFunction = contract.GetFunction("regOrg");
 			var gas = await regUserFunction.EstimateGasAsync(account.Address, null, null, new Object[] { orgId, name });
 			var receiptFirstAmountSend = await regUserFunction.SendTransactionAndWaitForReceiptAsync(account.Address, gas, null, null, new Object[] { orgId, name });
@@ -1075,26 +1039,14 @@ namespace CharityApplication.Models
 		""name"": ""getUser"",
 		""outputs"": [
 			{
-				""components"": [
-					{
-						""internalType"": ""string"",
-						""name"": ""name"",
-						""type"": ""string""
-					},
-					{
-						""internalType"": ""uint256"",
-						""name"": ""moneyDonated"",
-						""type"": ""uint256""
-					},
-					{
-						""internalType"": ""string[]"",
-						""name"": ""orgList"",
-						""type"": ""string[]""
-					}
-				],
-				""internalType"": ""struct Charity.User"",
-				""name"": ""user"",
-				""type"": ""tuple""
+				""internalType"": ""string"",
+				""name"": ""username"",
+				""type"": ""string""
+			},
+			{
+				""internalType"": ""uint256"",
+				""name"": ""fundsDonated"",
+				""type"": ""uint256""
 			}
 		],
 		""stateMutability"": ""view"",
@@ -1114,7 +1066,7 @@ namespace CharityApplication.Models
 		""type"": ""function""
 	}
 ]";
-			var contract = web3.Eth.GetContract(abi, "0xF29a1F9F7489D957f803a089a58393B2bB29B6b9");
+			var contract = web3.Eth.GetContract(abi, "0xb770688B8eE45da5b5F649597b87A1ed8a0A5EEe");
 			var regUserFunction = contract.GetFunction("regCause");
 			var gas = await regUserFunction.EstimateGasAsync(account.Address, null, null, new Object[] { orgId, causeId, goal, name });
 			var receiptFirstAmountSend = await regUserFunction.SendTransactionAndWaitForReceiptAsync(account.Address, gas, null, null, new Object[] { orgId, causeId, goal, name });
