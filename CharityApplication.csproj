@@ -386,6 +386,11 @@
     <Content Include="Images\lock-line.png" />
     <Content Include="Images\pexels-snapwire-34950.jpg" />
     <Content Include="Images\star.jpg" />
+    <Content Include="Screenshots\Home Page.png" />
+    <Content Include="Screenshots\Organization Dashboard.png" />
+    <Content Include="Screenshots\User Cause Donate.png" />
+    <Content Include="Screenshots\User Dashboard.png" />
+    <Content Include="Screenshots\User Donation Etherscan.png" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
     <Content Include="fonts\SourceSansPro-Regular.ttf" />

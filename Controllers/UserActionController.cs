@@ -92,7 +92,7 @@ namespace CharityApplication.Controllers
         {
             if (General.userLoginStatus == true) {
                 General.orgLoginStatus = false;
-                Donations = donationContext.Collection().Where(x => x.userId == General.userId).OrderBy(x=>x.date).ToList();
+                Donations = donationContext.Collection().Where(x => x.userId == General.userId).OrderByDescending(x=>x.date).ToList();
             var temp = organizationContext.Collection().ToList();
             var temp2 = causeContext.Collection().ToList();
             List<UserViewModel> donateList = new List<UserViewModel>();
